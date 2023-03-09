@@ -18,7 +18,7 @@ const Hero = () => {
         }}
         className={styles.hero__text}
       >
-        <h1>Flash</h1>
+        <h1>Flashy</h1>
         <h2>Effortless Flashcards</h2>
         <ul>
           <li>Free and Open Source</li>
@@ -58,7 +58,7 @@ const Hero = () => {
         >
           <Flashcard
             front="What is the **best** flashcard app?"
-            back="***Flash***, a free and open source flashcard app, 
+            back="***Flashy***, a free and open source flashcard app, 
           created by [Mitchell Sharma](https://mitchellsharma.com)"
           />
         </Tilt>

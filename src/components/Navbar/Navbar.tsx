@@ -23,7 +23,7 @@ const Navbar = (props: NavbarProps) => {
     <div>
       <nav className={styles.navbar}>
         <Link to="/" className={styles.logo}>
-          Flash
+          Flashy
         </Link>
         <ul className={styles.navbar__list}>
           {paths.map((path) => (
