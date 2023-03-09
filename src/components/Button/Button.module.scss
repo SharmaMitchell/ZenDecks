@@ -1,16 +1,16 @@
-.button{
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--saturated-teal);
-    color: var(--cool-white);
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    text-decoration: none;
+.button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--saturated-teal);
+  color: var(--cool-white);
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
 
-    &:hover{
-        background-color: var(--medium-teal);
-    }
+  &:hover {
+    background-color: var(--medium-teal);
+  }
 }

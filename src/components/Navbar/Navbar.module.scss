@@ -1,54 +1,56 @@
-.navbar{
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 64px;
-    background-color: var(--menu-color);
+.navbar {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 64px;
+  background-color: var(--menu-color);
+  transition: background-color 0.3s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 6px var(--shadow-color);
+
+  &__list {
     display: flex;
-    flex-direction: row;
+    // justify-content: space-between;
     align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 0px 6px var(--shadow-color);
+    height: 100%;
+    padding: 0 20px;
+    margin: 0;
+    list-style: none;
+  }
 
-    &__list{
-        display: flex;
-        // justify-content: space-between;
-        align-items: center;
-        height: 100%;
-        padding: 0 20px;
-        margin: 0;
-        list-style: none;
+  &__item {
+    margin: 0 10px;
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    color: var(--menu-font);
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--saturated-teal);
     }
-
-    &__item{
-        margin: 0 10px;
-        display: inline-block;
-        position: relative;
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    &__link{
-        color: var(--cool-white);
-        text-decoration: none;
-        text-align: center;
-        font-size: 1.2rem;
-        font-weight: 600;
-        transition: all 0.3s ease-in-out;
-
-        &:hover{
-            color: var(--saturated-teal);
-        }
-    }
+  }
 }
 
-.logo{
-    font-family: var(--logo-font);
-    font-size: 2.5rem;
-    color: var(--cool-white);
-    margin: 0 20px;
-    text-decoration: none;
+.logo {
+  font-family: var(--logo-font);
+  font-size: 2.5rem;
+  color: var(--menu-font);
+  margin: 0 20px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }

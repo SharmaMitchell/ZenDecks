@@ -14,7 +14,9 @@
   --shadow-color: var(--text-color);
   --card-color: var(--manilla-color);
   --menu-color: var(--dark-brown);
+  --menu-font: var(--cool-white);
   --text-highlight: var(--medium-teal);
+  // --button-text: #1b1818;
 
   /* Cursive Logo Font */
   --logo-font: "Parisienne", cursive;
@@ -35,6 +37,8 @@
   --menu-color: #413d3e;
   --shadow-color: #878787;
   --text-highlight: var(--saturated-teal);
+  --menu-font: var(--text-color);
+  // --button-text: var(--background-color);
 }
 
 body {
