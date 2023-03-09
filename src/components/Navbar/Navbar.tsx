@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styles from "./Navbar.module.scss";
+import Button from '../Button/Button';
 
 const Navbar = () => {
   return (
@@ -17,6 +18,12 @@ const Navbar = () => {
                 <li className={styles.navbar__item}>
                     <Link to="/demo" className={styles.navbar__link}>Demo</Link>
                 </li>
+                <div className={styles.navbar__item}>
+                    <Button label="Sign Up" link="/signup" />
+                </div>
+                <div className={styles.navbar__item}>
+                    <Button label="Login" link="/login" />
+                </div>
             </ul>
         </nav>
     </div>
