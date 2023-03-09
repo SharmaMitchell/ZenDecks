@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom'
 import styles from "./Navbar.module.scss";
 import Button from '../Button/Button';
 
-const Navbar = () => {
+interface NavbarProps{
+    switchTheme: () => void;
+    theme: string;
+}
+
+const Navbar = (props: NavbarProps) => {
+  const { switchTheme } = props;
   return (
     <div>
         <nav className={styles.navbar}>
@@ -23,6 +29,9 @@ const Navbar = () => {
                 </div>
                 <div className={styles.navbar__item}>
                     <Button label="Login" link="/login" />
+                </div>
+                <div className={styles.navbar__item}>
+                    <Button label="Theme" onClick={switchTheme} />
                 </div>
             </ul>
         </nav>

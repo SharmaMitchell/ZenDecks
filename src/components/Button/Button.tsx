@@ -4,13 +4,14 @@ import styles from "./Button.module.scss";
 
 interface ButtonProps {
     label: string;
-    link: string;
+    link?: string;
+    onClick?: () => void;
 }
 
 const Button = (props: ButtonProps) => {
-  const { label, link } = props;
+  const { label, link = '', onClick } = props;
   return (
-    <Link to={link} className={styles.button}>{label}</Link>
+    <Link to={link} onClick={onClick} className={styles.button}>{label}</Link>
   )
 }
 
