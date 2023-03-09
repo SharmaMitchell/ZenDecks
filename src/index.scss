@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Parisienne');
 :root{
+  /* Color palette */
   --background-color: #f1d9bd;
   --text-color: #413d3e;
   --saturated-teal: #4bbed5;
@@ -7,17 +8,31 @@
   --dark-teal: #2c7083;
   --medium-teal: #01a1b1;
   --light-brown: #dba879;
+  --manilla-color: #f7ebdd;
   --dark-brown: #87695f;
   --cool-white: #dfe8f1;
   --shadow-color: var(--text-color);
-  --card-color: var(--dark-brown);
+  --card-color: var(--manilla-color);
+  --menu-color: var(--dark-brown);
+  
+  /* Cursive Logo Font */
   --logo-font: 'Parisienne', cursive;
+
+  /* Page spacing */
+  --page-width: 1200px;
+  --page-paddingX: 20px;
+  
+  /* Section spacing */
+  --section-paddingY: 30px;
+
 }
 
 [data-theme='dark']{
+  /* Dark theme color palette */
   --background-color: #1b1818 ;
   --text-color: #f1d9bd;
   --card-color: #413d3e;
+  --menu-color: #413d3e;
   --shadow-color: #878787;
 }
 

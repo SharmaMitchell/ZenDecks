@@ -1,8 +1,11 @@
 import React from 'react'
+import Flashcard from '../components/Flashcard/Flashcard'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div >
+      <Flashcard />
+    </div>
   )
 }
 
