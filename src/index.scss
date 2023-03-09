@@ -2,27 +2,23 @@
 :root{
   --background-color: #f1d9bd;
   --text-color: #413d3e;
-  --primary-color: #01a1b1;
-  --light-teal: #7bb4bd;
   --saturated-teal: #4bbed5;
+  --light-teal: #7bb4bd;
   --dark-teal: #2c7083;
+  --medium-teal: #01a1b1;
   --light-brown: #dba879;
   --dark-brown: #87695f;
   --cool-white: #dfe8f1;
-
+  --shadow-color: var(--text-color);
+  --card-color: var(--dark-brown);
   --logo-font: 'Parisienne', cursive;
 }
 
 [data-theme='dark']{
-  --background-color: #413d3e;
+  --background-color: #1b1818 ;
   --text-color: #f1d9bd;
-  --primary-color: #01a1b1;
-  --light-teal: #7bb4bd;
-  --saturated-teal: #4bbed5;
-  --dark-teal: #2c7083;
-  --light-brown: #dba879;
-  --dark-brown: #87695f;
-  --cool-white: #dfe8f1;
+  --card-color: #413d3e;
+  --shadow-color: #878787;
 }
 
 body {

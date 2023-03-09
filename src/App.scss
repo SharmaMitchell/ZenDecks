@@ -8,4 +8,5 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: var(--text-color);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
