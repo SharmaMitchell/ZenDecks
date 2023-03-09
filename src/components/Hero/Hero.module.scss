@@ -52,4 +52,21 @@
       }
     }
   }
+
+  &__buttons {
+    margin-top: 15px;
+  }
+  &__button {
+    margin-right: 10px;
+    display: inline-block;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      transform: translateY(-2px) scale(1.03);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
 }

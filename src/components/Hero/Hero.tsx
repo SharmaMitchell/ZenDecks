@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Hero.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
+import Button from "../Button/Button";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 
@@ -24,6 +25,24 @@ const Hero = () => {
           <li>100% Ad-free with No paywalls</li>
           <li>Import from Quizlet, Anki, Excel, and more</li>
         </ul>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25, delay: 0.2 }}
+          className={styles.hero__buttons}
+        >
+          <div className={styles.hero__button}>
+            <Button label="Get Started" link="/signup" />
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, delay: 0.1 }}
+            className={styles.hero__button}
+          >
+            <Button label="Learn More" link="/#about" />
+          </motion.div>
+        </motion.div>
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
