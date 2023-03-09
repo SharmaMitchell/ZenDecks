@@ -16,6 +16,7 @@
   --menu-color: var(--dark-brown);
   --menu-font: var(--cool-white);
   --text-highlight: var(--medium-teal);
+  --sb-size: 10px;
   // --button-text: #1b1818;
 
   /* Cursive Logo Font */
@@ -53,6 +54,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // overflow: hidden;
+
+  scrollbar-color: var(--background-color) var(--menu-color);
+  transition: scrollbar-color 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+  // border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--menu-color);
+  // border-radius: 10px;
+  background-clip: padding-box;
 }
 
 code {
