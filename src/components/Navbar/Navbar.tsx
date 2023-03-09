@@ -13,7 +13,7 @@ const Navbar = (props: NavbarProps) => {
   return (
     <div>
         <nav className={styles.navbar}>
-            <Link to="/" className={styles.logo}>Flow</Link>
+            <Link to="/" className={styles.logo}>Flash</Link>
             <ul className={styles.navbar__list}>
                 <li className={styles.navbar__item}>
                     <Link to="/" className={styles.navbar__link}>Home</Link>
