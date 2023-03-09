@@ -10,7 +10,7 @@
   transform: rotateY(var(--rotate-y, 0)) perspective(1000px)
     translateY(var(--translate-y, 0));
   transform-style: preserve-3d;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease-in-out;
   cursor: pointer;
   user-select: none;
 

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Hero.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
+import Tilt from "react-parallax-tilt";
 
 const Hero = () => {
   return (
@@ -14,11 +15,19 @@ const Hero = () => {
           <li>Import from Quizlet, Anki, Excel, and more</li>
         </ul>
       </div>
-      <Flashcard
-        front="What is the **best** flashcard app?"
-        back="***Flash***, a free and open source flashcard app, 
+      <Tilt
+        tiltMaxAngleX={4}
+        tiltMaxAngleY={10}
+        scale={1.025}
+        tiltAngleYInitial={10}
+        tiltAngleXInitial={0}
+      >
+        <Flashcard
+          front="What is the **best** flashcard app?"
+          back="***Flash***, a free and open source flashcard app, 
           created by [Mitchell Sharma](https://mitchellsharma.com)"
-      />
+        />
+      </Tilt>
     </div>
   );
 };
