@@ -24,7 +24,7 @@
   --page-paddingX: 20px;
 
   /* Section spacing */
-  --section-paddingY: 30px;
+  --section-paddingY: 60px;
 }
 
 [data-theme="dark"] {
@@ -44,6 +44,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {

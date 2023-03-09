@@ -1,13 +1,11 @@
 import React from "react";
-import Flashcard from "../components/Flashcard/Flashcard";
+// import Flashcard from "../components/Flashcard/Flashcard";
+import Hero from "../components/Hero/Hero";
 
 const Home = () => {
   return (
     <div>
-      <Flashcard
-        front="What is the **best** flashcard app?"
-        back="***Flash***, a free and open source flashcard app, created by [Mitchell Sharma](https://mitchellsharma.com).)"
-      />
+      <Hero />
     </div>
   );
 };
