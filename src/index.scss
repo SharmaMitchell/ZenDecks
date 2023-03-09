@@ -27,6 +27,10 @@
 
   /* Section spacing */
   --section-paddingY: 60px;
+
+  /* Media Queries */
+  --tablet: 768px;
+  --desktop: 1200px;
 }
 
 [data-theme="dark"] {
@@ -48,7 +52,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 code {

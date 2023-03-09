@@ -7,7 +7,7 @@
   width: min(var(--page-width), 95vw);
   //   overflow: hidden;
   //   min-height: min(100vh, 1000px);
-  height: min(600px, 100vh);
+  min-height: min(600px, 100vh);
   padding: var(--section-paddingY) 0;
 
   &__text {
