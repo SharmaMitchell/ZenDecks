@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from "./Button.module.scss";
 
 interface ButtonProps {
@@ -9,7 +10,7 @@ interface ButtonProps {
 const Button = (props: ButtonProps) => {
   const { label, link } = props;
   return (
-    <a href={link} className={styles.button}>{label}</a>
+    <Link to={link} className={styles.button}>{label}</Link>
   )
 }
 
