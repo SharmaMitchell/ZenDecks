@@ -1,7 +1,15 @@
 import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import styles from "./Flashcard.module.scss";
 
-const Flashcard = () => {
+interface CardProps {
+  front?: string;
+  back?: string;
+}
+
+const Flashcard = (props: CardProps) => {
+  const { front = "", back = "" } = props;
+
   const [isFlipped, setIsFlipped] = useState(false);
 
   const flipCard = () => {
@@ -14,10 +22,10 @@ const Flashcard = () => {
       onClick={flipCard}
     >
       <div className={styles.flashcard__front}>
-        <h1>Front</h1>
+        <ReactMarkdown linkTarget="_blank">{front}</ReactMarkdown>
       </div>
       <div className={styles.flashcard__back}>
-        <h1>Back</h1>
+        <ReactMarkdown linkTarget="_blank">{back}</ReactMarkdown>
       </div>
     </div>
   );

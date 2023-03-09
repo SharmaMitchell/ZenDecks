@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Parisienne');
-:root{
+@import url("https://fonts.googleapis.com/css2?family=Parisienne");
+:root {
   /* Color palette */
   --background-color: #f1d9bd;
   --text-color: #413d3e;
@@ -14,38 +14,44 @@
   --shadow-color: var(--text-color);
   --card-color: var(--manilla-color);
   --menu-color: var(--dark-brown);
-  
+  --text-highlight: var(--medium-teal);
+
   /* Cursive Logo Font */
-  --logo-font: 'Parisienne', cursive;
+  --logo-font: "Parisienne", cursive;
 
   /* Page spacing */
   --page-width: 1200px;
   --page-paddingX: 20px;
-  
+
   /* Section spacing */
   --section-paddingY: 30px;
-
 }
 
-[data-theme='dark']{
+[data-theme="dark"] {
   /* Dark theme color palette */
-  --background-color: #1b1818 ;
+  --background-color: #1b1818;
   --text-color: #f1d9bd;
   --card-color: #413d3e;
   --menu-color: #413d3e;
   --shadow-color: #878787;
+  --text-highlight: var(--saturated-teal);
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+a {
+  // text-decoration: none;
+  color: var(--text-highlight);
 }
