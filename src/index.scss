@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Parisienne');
+:root{
+  --background-color: #f1d9bd;
+  --text-color: #413d3e;
+  --primary-color: #01a1b1;
+  --light-teal: #7bb4bd;
+  --saturated-teal: #4bbed5;
+  --dark-teal: #2c7083;
+  --light-brown: #dba879;
+  --dark-brown: #87695f;
+  --cool-white: #dfe8f1;
+
+  --logo-font: 'Parisienne', cursive;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
