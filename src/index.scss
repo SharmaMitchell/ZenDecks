@@ -33,6 +33,11 @@
   /* Media Queries */
   --tablet: 768px;
   --desktop: 1200px;
+
+  /* Card Scrollbar */
+  --card-scroll-thumb-color: var(--menu-color);
+  --card-scroll-track-color: var(--background-color);
+  --card-sb-size: 6px;
 }
 
 [data-theme="dark"] {
@@ -44,6 +49,8 @@
   --shadow-color: #878787;
   --text-highlight: var(--saturated-teal);
   --menu-font: var(--text-color);
+  --card-scroll-thumb-color: var(--text-color);
+  --card-scroll-track-color: var(--background-color);
   // --button-text: var(--background-color);
 }
 
@@ -83,4 +90,11 @@ code {
 a {
   // text-decoration: none;
   color: var(--text-highlight);
+}
+
+blockquote {
+  border-left: 5px solid var(--text-color);
+  padding-left: 10px;
+  margin-left: 0;
+  margin-right: 0;
 }

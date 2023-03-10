@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import styles from "./Flashcard.module.scss";
 
@@ -22,10 +22,20 @@ const Flashcard = (props: CardProps) => {
       onClick={flipCard}
     >
       <div className={styles.flashcard__front}>
-        <ReactMarkdown linkTarget="_blank">{front}</ReactMarkdown>
+        <ReactMarkdown
+          className={styles.flashcard__markdown}
+          linkTarget="_blank"
+        >
+          {front}
+        </ReactMarkdown>
       </div>
       <div className={styles.flashcard__back}>
-        <ReactMarkdown linkTarget="_blank">{back}</ReactMarkdown>
+        <ReactMarkdown
+          className={styles.flashcard__markdown}
+          linkTarget="_blank"
+        >
+          {back}
+        </ReactMarkdown>
       </div>
     </div>
   );

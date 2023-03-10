@@ -59,7 +59,15 @@ const Hero = () => {
           <Flashcard
             front="What is the **best** flashcard app?"
             back="***Flashy***, a free and open source flashcard app, 
-          created by [Mitchell Sharma](https://mitchellsharma.com)"
+          created by [Mitchell Sharma](https://mitchellsharma.com).  
+          Cards have full **Markdown** and **LaTeX** support, meaning you can format your cards for any subject: 
+          - Programming
+          - Math
+          - Langauge Learning
+          - Medicine  
+          ... and more!  
+          Sign up for free today!  
+          Cards scale to fit your needs, and you can import from Quizlet, Anki, Excel, and more."
           />
         </Tilt>
       </motion.div>
