@@ -60,14 +60,11 @@ const Hero = () => {
             front="What is the **best** flashcard app?"
             back="***Flashy***, a free and open source flashcard app, 
           created by [Mitchell Sharma](https://mitchellsharma.com).  
-          Cards have full **Markdown** and **LaTeX** support, meaning you can format your cards for any subject: 
-          - Programming
-          - Math
-          - Langauge Learning
-          - Medicine  
-          ... and more!  
-          Sign up for free today!  
-          Cards scale to fit your needs, and you can import from Quizlet, Anki, Excel, and more."
+          Cards have full **Markdown** and **LaTeX** support, meaning you can format your cards for any subject! 
+          - Math: 
+          - Coding: `print(hello world)`
+          - Langauge: 안녕하세요  
+          ... and more!"
           />
         </Tilt>
       </motion.div>
