@@ -4,6 +4,7 @@ import styles from "./Navbar.module.scss";
 import Button from "../Button/Button";
 // import Hamburger from "../Hamburger/Hamburger";
 import { Squash as HamburgerButton } from "hamburger-react";
+import { motion } from "framer-motion";
 
 interface NavbarProps {
   switchTheme: () => void;
@@ -20,7 +21,11 @@ const Navbar = (props: NavbarProps) => {
     { link: "/demo", label: "Demo" },
   ];
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: -64 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35 }}
+    >
       <nav className={styles.navbar}>
         <Link to="/" className={styles.logo}>
           Flashy
@@ -73,7 +78,7 @@ const Navbar = (props: NavbarProps) => {
           </ul>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Parisienne");
+@import url("https://fonts.googleapis.com/css2?family=Allura&family=Parisienne");
 :root {
   /* Color palette */
   --background-color: #f1d9bd;
@@ -20,7 +20,8 @@
   // --button-text: #1b1818;
 
   /* Cursive Logo Font */
-  --logo-font: "Parisienne", cursive;
+  --logo-font: "Allura", cursive;
+  // --logo-font: "Parisienne", cursive; /* F was blending into l, looked like "Hashy" */
 
   /* Page spacing */
   --page-width: 1300px;
