@@ -1,7 +1,7 @@
 .flashcard {
   background-color: var(--card-color);
   width: min(600px, 90vw);
-  min-height: min(400px, 90vh);
+  min-height: min(420px, 90vh);
   height: 100%;
   max-height: 90vh;
   border-radius: 10px;
@@ -50,13 +50,18 @@
     margin: 0;
   }
 
-  ul {
+  ul,
+  ol {
     text-align: left;
     margin: 0;
   }
 
   &__markdown {
     max-height: 100%;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     overflow-y: auto;
   }
 }

@@ -40,7 +40,9 @@ const Hero = () => {
             transition={{ duration: 0.25, delay: 0.1 }}
             className={styles.hero__button}
           >
-            <Button label="Learn More" link="/#about" />
+            <div className={styles.hero__button}>
+              <Button label="Learn More" link="/#about" />
+            </div>
           </motion.div>
         </motion.div>
       </motion.div>
@@ -61,9 +63,9 @@ const Hero = () => {
             back="***Flashy***, a free and open source flashcard app, 
           created by [Mitchell Sharma](https://mitchellsharma.com).  
           Cards have full **Markdown** and **LaTeX** support, meaning you can format your cards for any subject! 
-          - Math: $e^{i\pi}+1=0$
-          - Coding: `print(hello world)`
-          - Langauge: 안녕하세요  
+          - **Math**: $e^{i\pi}+1=0$
+          - **Code**: `print(hello world)`
+          - **Langauge**: 안녕하세요  
           ... and more!"
           />
         </Tilt>

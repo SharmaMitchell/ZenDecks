@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
@@ -36,7 +38,7 @@ const Flashcard = (props: CardProps) => {
         <ReactMarkdown
           className={styles.flashcard__markdown}
           linkTarget="_blank"
-          remarkPlugins={[remarkMath]}
+          remarkPlugins={[remarkMath, remarkGfm, remarkBreaks]}
           rehypePlugins={[rehypeKatex]}
         >
           {back}
