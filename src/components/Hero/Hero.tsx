@@ -23,7 +23,7 @@ const Hero = () => {
         <ul>
           <li>Free and Open Source</li>
           <li>100% Ad-free with No paywalls</li>
-          <li>Import from Quizlet, Anki, Excel, and more</li>
+          <li>Import/Export compatible with Quizlet, Anki, Excel, and more</li>
         </ul>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,7 +61,7 @@ const Hero = () => {
             back="***Flashy***, a free and open source flashcard app, 
           created by [Mitchell Sharma](https://mitchellsharma.com).  
           Cards have full **Markdown** and **LaTeX** support, meaning you can format your cards for any subject! 
-          - Math: 
+          - Math: $e^{i\pi}+1=0$
           - Coding: `print(hello world)`
           - Langauge: 안녕하세요  
           ... and more!"

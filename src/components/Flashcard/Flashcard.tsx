@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import styles from "./Flashcard.module.scss";
 
 interface CardProps {
@@ -33,6 +36,8 @@ const Flashcard = (props: CardProps) => {
         <ReactMarkdown
           className={styles.flashcard__markdown}
           linkTarget="_blank"
+          remarkPlugins={[remarkMath]}
+          rehypePlugins={[rehypeKatex]}
         >
           {back}
         </ReactMarkdown>

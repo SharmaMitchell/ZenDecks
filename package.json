@@ -18,6 +18,8 @@
     "react-parallax-tilt": "^1.7.111",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
+    "rehype-katex": "^6.0.2",
+    "remark-math": "^5.1.1",
     "sass": "^1.58.3",
     "typescript": "^4.9.5",
     "use-local-storage": "^2.3.6",
