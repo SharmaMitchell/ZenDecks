@@ -22,8 +22,8 @@ const Navbar = (props: NavbarProps) => {
   ];
   return (
     <motion.div
-      initial={{ opacity: 0, y: -64 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.35 }}
     >
       <nav className={styles.navbar}>

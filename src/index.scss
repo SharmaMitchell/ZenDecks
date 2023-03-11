@@ -82,12 +82,17 @@ body {
   background-clip: padding-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-  text-align: left;
-  font-size: calc(10px + 1vmin);
-}
+// pre {
+//   white-space: pre-wrap;
+// }
+
+// code {
+//   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+//     monospace;
+//   text-align: left;
+//   font-size: calc(10px + 1.5vmin);
+//   white-space: pre-wrap;
+// }
 
 a {
   // text-decoration: none;

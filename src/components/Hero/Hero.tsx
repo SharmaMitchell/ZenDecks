@@ -60,8 +60,7 @@ const Hero = () => {
         >
           <Flashcard
             front="What is the **best** flashcard app?"
-            back="***Flashy***, a free and open source flashcard app, 
-          created by [Mitchell Sharma](https://mitchellsharma.com).  
+            back="***Flashy***, a *free*, *open source* flashcard app.  
           Cards have full **Markdown** and **LaTeX** support, meaning you can format your cards for any subject! 
           - **Math**: $e^{i\pi}+1=0$
           - **Code**: `print(hello world)`

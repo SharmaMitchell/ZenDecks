@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import remarkMath from "remark-math";
@@ -30,6 +32,9 @@ const Flashcard = (props: CardProps) => {
         <ReactMarkdown
           className={styles.flashcard__markdown}
           linkTarget="_blank"
+          skipHtml={false}
+          remarkPlugins={[remarkMath, remarkGfm, remarkBreaks]}
+          rehypePlugins={[rehypeKatex]}
         >
           {front}
         </ReactMarkdown>
@@ -38,8 +43,28 @@ const Flashcard = (props: CardProps) => {
         <ReactMarkdown
           className={styles.flashcard__markdown}
           linkTarget="_blank"
+          skipHtml={false}
           remarkPlugins={[remarkMath, remarkGfm, remarkBreaks]}
           rehypePlugins={[rehypeKatex]}
+          components={{
+            code: ({ node, inline, className, children, ...props }) => {
+              const match = /language-(\w+)/.exec(className || "");
+              return !inline && match ? (
+                <SyntaxHighlighter
+                  style={tomorrow as any}
+                  language={match[1]}
+                  PreTag="div"
+                  {...props}
+                >
+                  {String(children)}
+                </SyntaxHighlighter>
+              ) : (
+                <code className={className} {...props}>
+                  {children}
+                </code>
+              );
+            },
+          }}
         >
           {back}
         </ReactMarkdown>

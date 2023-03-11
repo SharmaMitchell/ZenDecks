@@ -18,6 +18,7 @@
     "react-parallax-tilt": "^1.7.111",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
+    "react-syntax-highlighter": "^15.5.0",
     "rehype-katex": "^6.0.2",
     "remark-breaks": "^3.0.2",
     "remark-gfm": "^3.0.1",
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-syntax-highlighter": "^15.5.6",
     "typescript-plugin-css-modules": "^4.2.2"
   }
 }
