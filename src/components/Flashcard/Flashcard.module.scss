@@ -5,7 +5,7 @@
   height: 100%;
   max-height: 90vh;
   border-radius: 10px;
-  box-shadow: 1px 1px 3px var(--shadow-color);
+  // box-shadow: 1px 1px 3px var(--shadow-color);
 
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@
 
   &.flipped {
     --rotate-y: 180deg;
-    box-shadow: -1px 1px 3px var(--shadow-color);
+    // box-shadow: -1px 1px 3px var(--shadow-color);
   }
 
   p {

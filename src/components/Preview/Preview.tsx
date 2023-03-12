@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
-import styles from "./Preview.module.scss";
+
 import Flashcard from "../Flashcard/Flashcard";
-import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import styles from "./Preview.module.scss";
 import { ReactComponent as LeftArrow } from "../../assets/arrow-left-circle.svg";
 import { ReactComponent as RightArrow } from "../../assets/arrow-right-circle.svg";
 
@@ -35,6 +35,7 @@ const Preview = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const [swiperInitialized, setSwiperInitialized] = useState(false);
+  const [swiping, setSwiping] = useState(false);
 
   return (
     <div className={styles.wrapper}>
@@ -62,9 +63,8 @@ const Preview = () => {
           />
         </div>
         <Swiper
-          spaceBetween={100}
           slidesPerView={"auto"}
-          loop={true}
+          // loop={true}
           modules={[Navigation, Pagination]}
           navigation={
             swiperInitialized && {
@@ -72,9 +72,15 @@ const Preview = () => {
               nextEl: navigationNextRef.current,
             }
           }
-          pagination={{ clickable: true }}
+          pagination={true}
           className={styles.swiper}
           onSwiper={() => setSwiperInitialized(true)}
+          onTouchMove={(e) => {
+            setSwiping(true);
+          }}
+          onTouchEnd={(e) => {
+            setSwiping(false);
+          }}
           breakpoints={{
             0: {
               spaceBetween: 16,
@@ -85,10 +91,18 @@ const Preview = () => {
               centeredSlides: false,
             },
           }}
+          // touchMoveStopPropagation={true}
+          // touchStartForcePreventDefault={true}
+          // touchStartPreventDefault={true}
         >
           {cards.map((card, index) => (
             <SwiperSlide key={index} style={{ width: "auto" }}>
-              <Flashcard front={card.front} back={card.back} />
+              <Flashcard
+                front={card.front}
+                back={card.back}
+                swiping={swiping}
+              />
+              {/* <div style={{ width: "200px", height: "200px" }}>{card.back}</div> */}
             </SwiperSlide>
           ))}
         </Swiper>
