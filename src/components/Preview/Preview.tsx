@@ -27,7 +27,7 @@ const cards = [
   {
     front:
       "____, a **biguanide**, is the first-line oral agent for the management of **type 2 diabetes**.",
-    back: "Metformin  ![Metformin Structure](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Metformin.svg/330px-Metformin.svg.png)",
+    back: "Metformin  \n![Metformin Structure](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Metformin.svg/330px-Metformin.svg.png)",
   },
 ];
 
@@ -38,10 +38,20 @@ const Preview = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.preview__title}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, delay: 0.3 }}
+        className={styles.preview__title}
+      >
         <h2>Preview</h2>
-      </div>
-      <div className={styles.swiper__wrapper}>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, delay: 0.35 }}
+        className={styles.swiper__wrapper}
+      >
         <div ref={navigationPrevRef}>
           <LeftArrow
             stroke="var(--text-color)"
@@ -94,7 +104,7 @@ const Preview = () => {
             className={styles.swiper__arrow}
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
