@@ -1,46 +1,18 @@
-# Getting Started with Create React App
+# Flashy: Effortless Flashcards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Flashy is a free, open source flashcard webapp with full Markdown and LaTeX support. With *no ads* and *no paywalls*, Flashy is a feature-rich and *100% free* alternative to Quizlet, Anki, Memrise, and other spaced repetition systems. CSV import/export is fully supported, meaning that Flashy decks are compatible with Quizlet, Anki, Memrise, Excel, and many other apps!
 
-## Available Scripts
+## Tech Stack
+**Frontend**: TypeScript, ReactJS, SCSS  
+**Backend**: Firebase  
 
-In the project directory, you can run:
+## Contributing  
+Post an issue, or respond to an open issue to get started. Feel free to contact the main developer, Mitchell, via [Discord](https://discord.com/users/157610726326927361) if you have any questions.  
+  
+To run the codebase locally:
+- Ensure that you have a package manager, such as npm from [Node.js](https://nodejs.org/) installed.
+- Clone the repository and run `npm install`, to install the required dependencies
+- Run `npm start` to start a local server for the React application
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Work in Progress
+Flashy is an early-stage work in progress; many features are currently missing or imcomplete. Suggestions are welcome in the issues tab, as are contributions!
