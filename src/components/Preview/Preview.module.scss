@@ -1,7 +1,9 @@
 .wrapper {
   h2 {
     margin: 0;
+    margin-bottom: 100px;
   }
+  padding-bottom: 100px;
 }
 
 .preview {
@@ -15,4 +17,39 @@
   //   min-height: min(100vh, 1000px);
   min-height: min(500px, 100vh);
   padding: var(--section-paddingY) 0;
+}
+.swiper {
+  max-width: min(var(--page-width), 95vw);
+
+  &-slide {
+    width: auto !important;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__arrow {
+    display: none; //only show on desktop
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .swiper {
+    max-width: calc(min(var(--page-width), 95vw) - 130px);
+
+    &__arrow {
+      display: block;
+    }
+  }
 }
