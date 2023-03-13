@@ -9,6 +9,7 @@
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   text-decoration: none;
+  width: fit-content;
 
   &:hover {
     background-color: var(--medium-teal);

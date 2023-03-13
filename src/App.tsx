@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Home from "./pages/Home";
+import Demo from "./pages/Demo";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.scss";
 
@@ -25,9 +27,11 @@ function App() {
   return (
     <div className="App" data-theme={theme}>
       <Router>
+        <ScrollToTop />
         <Navbar switchTheme={switchTheme} theme={theme} />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/demo" element={<Demo />} />
         </Routes>
       </Router>
     </div>
