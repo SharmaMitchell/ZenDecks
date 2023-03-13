@@ -78,12 +78,14 @@ const Preview = () => {
               nextEl: navigationNextRef.current,
             }
           }
-          pagination={true}
+          // TODO: Implement custom pagination indicator (dots)
+          // pagination={true}
           className={styles.swiper}
           onSwiper={() => setSwiperInitialized(true)}
           // TODO: set swiperUsed to true if user interacts with swiper
           breakpoints={{
             0: {
+              // TODO: justify content space between when multiple cards on screen??
               spaceBetween: 16,
               centeredSlides: true,
             },
