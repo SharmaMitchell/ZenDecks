@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import Flashcard from "../Flashcard/Flashcard";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -11,6 +11,7 @@ import styles from "./Preview.module.scss";
 import { ReactComponent as LeftArrow } from "../../assets/arrow-left-circle.svg";
 import { ReactComponent as RightArrow } from "../../assets/arrow-right-circle.svg";
 
+// Example cards
 const cards = [
   {
     front: "What is the Taylor series formula?",
@@ -32,9 +33,10 @@ const cards = [
 ];
 
 const Preview = () => {
-  const navigationPrevRef = useRef(null);
-  const navigationNextRef = useRef(null);
-  const [swiperInitialized, setSwiperInitialized] = useState(false);
+  const navigationPrevRef = useRef(null); // Swiper navigation prev element
+  const navigationNextRef = useRef(null); // Swiper navigation next element
+  const [swiperInitialized, setSwiperInitialized] = useState(false); // Swiper initialized state for nav buttons
+  const [swiperUsed, setSwiperUsed] = useState(false); // Swiper used state for hint, auto card flip, and autoplay
 
   return (
     <div className={styles.wrapper}>
@@ -64,7 +66,11 @@ const Preview = () => {
         <Swiper
           slidesPerView={"auto"}
           loop={true}
-          modules={[Navigation, Pagination]}
+          autoplay={{
+            delay: 8000,
+            disableOnInteraction: true,
+          }}
+          modules={[Navigation, Pagination, Autoplay]}
           navigation={
             swiperInitialized && {
               prevEl: navigationPrevRef.current,
@@ -87,8 +93,14 @@ const Preview = () => {
         >
           {cards.map((card, index) => (
             <SwiperSlide key={index} style={{ width: "auto" }}>
-              <Flashcard front={card.front} back={card.back} hint={true} />
-              {/* <div style={{ width: "200px", height: "200px" }}>{card.back}</div> */}
+              <Flashcard
+                front={card.front}
+                back={card.back}
+                hint={swiperUsed ? false : true}
+                autoflip={4000 + 8000 * index}
+                swiperUsed={swiperUsed}
+                setSwiperUsed={setSwiperUsed}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
