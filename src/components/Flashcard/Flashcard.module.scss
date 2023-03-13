@@ -1,6 +1,6 @@
 .flashcard {
   background-color: var(--card-color);
-  width: min(600px, 90vw);
+  width: min(380px, 90vw);
   min-height: min(420px, 90vh);
   height: 100%;
   max-height: 90vh;
@@ -105,4 +105,13 @@
 
 .flashcard__back {
   transform: rotateY(180deg) translateY(-2px);
+}
+
+@media screen and (min-width: 1024px) {
+  .flashcard {
+    width: min(600px, 90vw);
+    min-height: min(420px, 90vh);
+    height: 100%;
+    max-height: 90vh;
+  }
 }

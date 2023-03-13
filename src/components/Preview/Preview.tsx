@@ -67,6 +67,7 @@ const Preview = () => {
           slidesPerView={"auto"}
           loop={true}
           autoplay={{
+            // TODO: disable if swiperUsed
             delay: 8000,
             disableOnInteraction: true,
           }}
@@ -80,6 +81,7 @@ const Preview = () => {
           pagination={true}
           className={styles.swiper}
           onSwiper={() => setSwiperInitialized(true)}
+          // TODO: set swiperUsed to true if user interacts with swiper
           breakpoints={{
             0: {
               spaceBetween: 16,
@@ -96,8 +98,8 @@ const Preview = () => {
               <Flashcard
                 front={card.front}
                 back={card.back}
-                hint={swiperUsed ? false : true}
-                autoflip={4000 + 8000 * index}
+                hint={/*swiperUsed ? false :*/ true}
+                // autoflip={4000 + 2 * 4000 * index}
                 swiperUsed={swiperUsed}
                 setSwiperUsed={setSwiperUsed}
               />

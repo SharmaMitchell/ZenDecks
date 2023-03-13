@@ -69,4 +69,14 @@
       transition: transform 0.2s ease-in-out;
     }
   }
+  &__flashcard {
+    margin-left: auto;
+    margin-right: 6px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    flex-wrap: nowrap;
+  }
 }
