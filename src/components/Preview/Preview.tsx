@@ -35,7 +35,6 @@ const Preview = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const [swiperInitialized, setSwiperInitialized] = useState(false);
-  const [swiping, setSwiping] = useState(false);
 
   return (
     <div className={styles.wrapper}>
@@ -75,12 +74,6 @@ const Preview = () => {
           pagination={true}
           className={styles.swiper}
           onSwiper={() => setSwiperInitialized(true)}
-          onTouchMove={(e) => {
-            setSwiping(true);
-          }}
-          onTouchEnd={(e) => {
-            setSwiping(false);
-          }}
           breakpoints={{
             0: {
               spaceBetween: 16,
@@ -97,11 +90,7 @@ const Preview = () => {
         >
           {cards.map((card, index) => (
             <SwiperSlide key={index} style={{ width: "auto" }}>
-              <Flashcard
-                front={card.front}
-                back={card.back}
-                swiping={swiping}
-              />
+              <Flashcard front={card.front} back={card.back} />
               {/* <div style={{ width: "200px", height: "200px" }}>{card.back}</div> */}
             </SwiperSlide>
           ))}

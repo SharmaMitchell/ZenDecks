@@ -12,11 +12,10 @@ import styles from "./Flashcard.module.scss";
 interface CardProps {
   front?: string;
   back?: string;
-  swiping?: boolean;
 }
 
 const Flashcard = (props: CardProps) => {
-  const { front = "", back = "", swiping = false } = props;
+  const { front = "", back = "" } = props;
 
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -27,9 +26,7 @@ const Flashcard = (props: CardProps) => {
   return (
     <div
       className={styles.flashcard + " " + (isFlipped ? styles.flipped : "")}
-      onClick={!swiping ? flipCard : undefined}
-      // onDragStart={(e) => e.preventDefault()}
-      // onTouchMove={(e) => e.preventDefault()}
+      onClick={flipCard}
     >
       <div className={styles.flashcard__front}>
         <ReactMarkdown
