@@ -57,7 +57,12 @@ const Navbar = (props: NavbarProps) => {
         </div>
       </nav>
       {isOpen && (
-        <div className={styles.hamburger}>
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.2 }}
+          className={styles.hamburger}
+        >
           <ul className={styles.hamburger__list}>
             {paths.map((path) => (
               <li className={styles.hamburger__item} key={path.link}>
@@ -76,7 +81,7 @@ const Navbar = (props: NavbarProps) => {
               <Button label="Theme" onClick={switchTheme} />
             </div>
           </ul>
-        </div>
+        </motion.div>
       )}
     </motion.div>
   );
