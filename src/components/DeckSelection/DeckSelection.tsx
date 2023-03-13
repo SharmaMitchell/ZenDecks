@@ -8,10 +8,20 @@ const exampleDecks = [
     description:
       "A collection of Japanese words and phrases used in software engineering and computer science. Includes words for programming languages, web development, and more.",
     tags: ["Japanese", "Programming", "Computer Science"],
-    author: "Mitchell Sharma",
+    author: "SharmaMitchell",
     rating: 4.5,
-    numcards: 85,
-    numusers: 100,
+    numcards: 84,
+    numusers: 16,
+  },
+  {
+    title: "Linear Algebra Essentails",
+    description:
+      "Essential linear algebra concepts & formulas. Matrices, vectors, determinants, eigenvalues, eigenvectors, etc.",
+    tags: ["Math", "Linear Algebra"],
+    author: "SharmaMitchell",
+    rating: 5,
+    numcards: 39,
+    numusers: 47,
   },
 ];
 
