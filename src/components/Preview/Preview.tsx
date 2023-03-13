@@ -87,7 +87,7 @@ const Preview = () => {
         >
           {cards.map((card, index) => (
             <SwiperSlide key={index} style={{ width: "auto" }}>
-              <Flashcard front={card.front} back={card.back} />
+              <Flashcard front={card.front} back={card.back} hint={true} />
               {/* <div style={{ width: "200px", height: "200px" }}>{card.back}</div> */}
             </SwiperSlide>
           ))}

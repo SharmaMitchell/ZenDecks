@@ -66,6 +66,7 @@ const Hero = () => {
           - **Code**: `print(hello world)`
           - **Langauge**: 안녕하세요  
           ... and more!"
+            hint={true}
           />
         </Tilt>
       </motion.div>

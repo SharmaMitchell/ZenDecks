@@ -41,6 +41,10 @@
 
   &:hover {
     --translate-y: -2px;
+
+    .flashcard__hint {
+      opacity: 100%;
+    }
   }
 
   &.flipped {
@@ -66,6 +70,17 @@
     justify-content: center;
     overflow-y: auto;
     touch-action: pan-y;
+  }
+
+  &__hint {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    padding-bottom: 20px;
+    opacity: 60%;
+    user-select: none;
+    transition: all 0.3s ease;
+    font-size: calc(10px + 1.25vmin);
   }
 }
 

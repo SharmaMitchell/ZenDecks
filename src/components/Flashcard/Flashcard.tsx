@@ -12,10 +12,11 @@ import styles from "./Flashcard.module.scss";
 interface CardProps {
   front?: string;
   back?: string;
+  hint?: boolean; // "Tap to flip" hint
 }
 
 const Flashcard = (props: CardProps) => {
-  const { front = "", back = "" } = props;
+  const { front = "", back = "", hint = false } = props;
 
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -38,6 +39,11 @@ const Flashcard = (props: CardProps) => {
         >
           {front}
         </ReactMarkdown>
+        {hint && (
+          <div className={styles.flashcard__hint}>
+            <p>Tap to flip</p>
+          </div>
+        )}
       </div>
       <div className={styles.flashcard__back}>
         <ReactMarkdown
