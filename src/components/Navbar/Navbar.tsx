@@ -58,9 +58,11 @@ const Navbar = (props: NavbarProps) => {
       </nav>
       {isOpen && (
         <motion.div
-          initial={{ x: "100%" }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.2 }}
+          initial={{ y: "-100%" }}
+          animate={{ y: 0 }}
+          transition={{
+            duration: 0.2,
+          }}
           className={styles.hamburger}
         >
           <ul className={styles.hamburger__list}>

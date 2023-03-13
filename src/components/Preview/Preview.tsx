@@ -63,7 +63,7 @@ const Preview = () => {
         </div>
         <Swiper
           slidesPerView={"auto"}
-          // loop={true}
+          loop={true}
           modules={[Navigation, Pagination]}
           navigation={
             swiperInitialized && {
@@ -84,9 +84,6 @@ const Preview = () => {
               centeredSlides: false,
             },
           }}
-          // touchMoveStopPropagation={true}
-          // touchStartForcePreventDefault={true}
-          // touchStartPreventDefault={true}
         >
           {cards.map((card, index) => (
             <SwiperSlide key={index} style={{ width: "auto" }}>

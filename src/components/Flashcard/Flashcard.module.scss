@@ -16,7 +16,7 @@
     translateY(var(--translate-y, 0));
   transform-style: preserve-3d;
   transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease-in-out;
-  // cursor: pointer;
+  cursor: pointer;
   user-select: none;
 
   scrollbar-color: var(--card-scroll-track-color) var(--card-scroll-thumb-color);
