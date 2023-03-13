@@ -3,61 +3,62 @@ import styles from "./DeckPreview.module.scss";
 import Button from "../Button/Button";
 import { ReactComponent as User } from "../../assets/user.svg";
 import { ReactComponent as Cards } from "../../assets/cards.svg";
+import { ReactComponent as Star } from "../../assets/star.svg";
 import { ReactComponent as Lightning } from "../../assets/lightning.svg";
 
-/* 
+interface DeckPreviewProps {
+  title: string;
+  description: string;
+  tags?: string[];
+  author: string;
+  rating?: number;
+  numcards: number;
+  numusers?: number;
+  // Card array for preview carousel
+}
 
-Left side:
-    Deck title
-    Deck description
-    Deck tags
-    Deck author
-    Deck rating
-    Deck number of cards
-    Deck number of users
-    "Study deck" button
-
-Right side:
-    Deck preview carousel (via swiper)
-        First 5 cards
-*/
-
-const DeckPreview = () => {
+const DeckPreview = (props: DeckPreviewProps) => {
+  const {
+    title,
+    description,
+    tags = [],
+    author,
+    rating = 0,
+    numcards,
+    numusers = 0,
+  } = props;
   return (
     <div className={styles.deckpreview}>
       <div className={styles.deckpreview__left}>
-        <h3 className={styles.deckpreview__title}>
-          Japanese Software Engineering Vocabulary
-        </h3>
-        <p className={styles.deckpreview__description}>
-          A collection of Japanese words and phrases used in software
-          engineering and computer science. Includes words for programming
-          languages, web development, and more.
-        </p>
+        <h3 className={styles.deckpreview__title}>{title}</h3>
+        <p className={styles.deckpreview__description}>{description}</p>
         <ul className={styles.deckpreview__tags}>
-          <li>Japanese</li>
-          <li>Programming</li>
-          <li>Computer Science</li>
+          {tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
         </ul>
 
         <div className={styles.deckpreview__author}>
           <User fill="var(--text-color)" className={styles.deckpreview__icon} />
-          Mitchell Sharma
+          {author}
         </div>
-        <div className={styles.deckpreview__rating}>Deck rating</div>
+        <div className={styles.deckpreview__rating}>
+          <Star fill="var(--text-color)" className={styles.deckpreview__icon} />
+          {rating}
+        </div>
         <div className={styles.deckpreview__numcards}>
           <Cards
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
-          85 cards
+          {numcards} cards
         </div>
         <div className={styles.deckpreview__numusers}>
           <Lightning
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
-          14 users
+          {numusers} users
         </div>
         <Button label="Study deck" />
       </div>

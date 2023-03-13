@@ -1,4 +1,9 @@
 .deckselection {
   padding: var(--section-paddingY) 0;
   width: min(var(--page-width), 95vw);
+
+  h2 {
+    margin: 0;
+    margin-bottom: 100px;
+  }
 }
