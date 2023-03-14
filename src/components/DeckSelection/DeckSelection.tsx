@@ -12,6 +12,28 @@ const exampleDecks = [
     rating: 4.5,
     numcards: 84,
     numusers: 16,
+    cards: [
+      {
+        front: "ラフ",
+        back: "rough draft (of a document, design, etc.)",
+      },
+      {
+        front: "通知",
+        back: "notification (e.g. from an app)",
+      },
+      {
+        front: "プロフィール",
+        back: "profile",
+      },
+      {
+        front: "バックエンド",
+        back: "backend",
+      },
+      {
+        front: "フロントエンド",
+        back: "frontend",
+      },
+    ],
   },
   {
     title: "Linear Algebra Essentails",
@@ -22,6 +44,28 @@ const exampleDecks = [
     rating: 5,
     numcards: 39,
     numusers: 47,
+    cards: [
+      {
+        front: "Determinant",
+        back: "The determinant of a square matrix is a scalar value that can be computed from the elements of the matrix using a simple formula. The determinant is a useful tool for solving systems of linear equations and for calculating the inverse of a matrix.",
+      },
+      {
+        front: "Eigenvalue",
+        back: "An eigenvalue of a square matrix is a scalar value that, when multiplied by the matrix, results in a new matrix in which each element is multiplied by the same scalar value.",
+      },
+      {
+        front: "Eigenvector",
+        back: "An eigenvector of a square matrix is a vector that, when multiplied by the matrix, results in a new vector that is multiplied by the same scalar value as the original eigenvector.",
+      },
+      {
+        front: "Matrix",
+        back: "A matrix is a rectangular array of numbers, symbols, or expressions, arranged in rows and columns.",
+      },
+      {
+        front: "Vector",
+        back: "A vector is a quantity that has both magnitude and direction.",
+      },
+    ],
   },
 ];
 

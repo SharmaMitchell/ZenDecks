@@ -6,6 +6,11 @@ import { ReactComponent as Cards } from "../../assets/cards.svg";
 import { ReactComponent as Star } from "../../assets/star.svg";
 import { ReactComponent as Lightning } from "../../assets/lightning.svg";
 
+interface Card {
+  front: string;
+  back: string;
+}
+
 interface DeckPreviewProps {
   title: string;
   description: string;
@@ -14,7 +19,7 @@ interface DeckPreviewProps {
   rating?: number;
   numcards: number;
   numusers?: number;
-  // Card array for preview carousel
+  cards: Card[];
 }
 
 const DeckPreview = (props: DeckPreviewProps) => {
@@ -26,6 +31,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
     rating = 0,
     numcards,
     numusers = 0,
+    cards,
   } = props;
   return (
     <div className={styles.deckpreview}>
