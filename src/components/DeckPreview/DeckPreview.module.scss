@@ -68,6 +68,7 @@
 .swiper {
   max-width: min(90vw, 400px);
   padding: 40px 0;
+  padding-top: 25px;
   margin: 0;
   div.swiper-button-prev,
   div.swiper-button-next {
@@ -82,6 +83,7 @@
   }
   .swiper {
     padding: 40px 50px;
+    padding-top: 25px;
   }
 }
 
@@ -91,7 +93,7 @@
     max-width: 100%;
 
     &__left {
-      padding-right: 20px;
+      padding: 0 20px;
     }
 
     &__right {

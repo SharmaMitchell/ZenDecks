@@ -1,6 +1,7 @@
 import React from "react";
 import DeckPreview from "../DeckPreview/DeckPreview";
 import styles from "./DeckSelection.module.scss";
+import { motion } from "framer-motion";
 
 const exampleDecks = [
   {
@@ -72,10 +73,23 @@ const exampleDecks = [
 const DeckSelection = () => {
   return (
     <div className={styles.deckselection}>
-      <h2 className={styles.deckselection__title}>Decks</h2>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+        className={styles.deckselection__title}
+      >
+        Decks
+      </motion.h2>
       <div className={styles.deckselection__decks}>
-        {exampleDecks.map((deck) => (
-          <DeckPreview {...deck} />
+        {exampleDecks.map((deck, key) => (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35 + key * 0.1 }}
+          >
+            <DeckPreview {...deck} />
+          </motion.div>
         ))}
       </div>
     </div>
