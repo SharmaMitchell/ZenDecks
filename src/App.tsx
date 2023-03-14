@@ -6,6 +6,7 @@ import Demo from "./pages/Demo";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.scss";
+import UserAuth from "./components/UserAuth/UserAuth";
 
 function App() {
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -32,6 +33,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/demo" element={<Demo />} />
+          <Route path="/login" element={<UserAuth />} />
+          <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </Router>
     </div>
