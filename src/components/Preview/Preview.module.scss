@@ -20,6 +20,7 @@
 }
 .swiper {
   max-width: min(var(--page-width), 95vw);
+  padding-bottom: 35px;
 
   &-slide {
     width: auto !important;
@@ -44,7 +45,7 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1024px) and (hover: hover) {
   .swiper {
     max-width: calc(min(var(--page-width), 95vw) - 130px);
 

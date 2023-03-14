@@ -6,11 +6,10 @@
   max-height: 90vh;
   border-radius: 10px;
   // box-shadow: 1px 1px 3px var(--shadow-color);
-
   display: flex;
   flex-direction: column;
-
   position: relative;
+  text-align: center;
 
   transform: rotateY(var(--rotate-y, 0)) perspective(1000px)
     translateY(var(--translate-y, 0));
@@ -50,6 +49,16 @@
   &.flipped {
     --rotate-y: 180deg;
     // box-shadow: -1px 1px 3px var(--shadow-color);
+  }
+
+  &.small {
+    width: min(400px, 90vw);
+    min-height: min(240px, 90vh);
+    font-size: calc(10px + 1.25vmin);
+
+    .flashcard__hint {
+      font-size: calc(10px + 1vmin);
+    }
   }
 
   p {

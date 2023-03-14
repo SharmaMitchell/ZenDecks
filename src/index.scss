@@ -32,7 +32,7 @@
 
   /* Media Queries */
   --tablet: 768px;
-  --desktop: 1200px;
+  --desktop: 1024px;
 
   /* Card Scrollbar */
   --card-scroll-thumb-color: var(--menu-color);
@@ -104,4 +104,15 @@ blockquote {
   padding-left: 10px;
   margin-left: 0;
   margin-right: 0;
+}
+
+// swiper arrows
+div.swiper-button-prev,
+div.swiper-button-next {
+  color: var(--text-color);
+}
+
+// swiper bullets
+span.swiper-pagination-bullet {
+  background-color: var(--text-color);
 }

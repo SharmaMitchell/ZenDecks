@@ -78,8 +78,7 @@ const Preview = () => {
               nextEl: navigationNextRef.current,
             }
           }
-          // TODO: Implement custom pagination indicator (dots)
-          // pagination={true}
+          pagination={true}
           className={styles.swiper}
           onSwiper={() => setSwiperInitialized(true)}
           // TODO: set swiperUsed to true if user interacts with swiper

@@ -1,10 +1,18 @@
 import React from "react";
 import styles from "./DeckPreview.module.scss";
 import Button from "../Button/Button";
+import Flashcard from "../Flashcard/Flashcard";
 import { ReactComponent as User } from "../../assets/user.svg";
 import { ReactComponent as Cards } from "../../assets/cards.svg";
 import { ReactComponent as Star } from "../../assets/star.svg";
 import { ReactComponent as Lightning } from "../../assets/lightning.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { ReactComponent as LeftArrow } from "../../assets/arrow-left-circle.svg";
+import { ReactComponent as RightArrow } from "../../assets/arrow-right-circle.svg";
 
 interface Card {
   front: string;
@@ -70,7 +78,26 @@ const DeckPreview = (props: DeckPreviewProps) => {
       </div>
       <div className={styles.deckpreview__right}>
         <div className={styles.deckpreview__carousel}>
-          Deck preview carousel (via swiper)
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={16}
+            loop={false}
+            modules={[Navigation, Pagination]}
+            navigation={true}
+            pagination={true}
+            className={styles.swiper}
+          >
+            {cards.map((card, index) => (
+              <SwiperSlide key={index} style={{ width: "auto" }}>
+                <Flashcard
+                  front={card.front}
+                  back={card.back}
+                  hint={true}
+                  size="small"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </div>

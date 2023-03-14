@@ -16,6 +16,7 @@ interface CardProps {
   autoflip?: number | false; // Auto-flip interval in ms, false to disable
   swiperUsed?: boolean;
   setSwiperUsed?: React.Dispatch<React.SetStateAction<boolean>>;
+  size?: "small" | "large" | undefined;
 }
 
 type CodeProps = {
@@ -57,6 +58,7 @@ const Flashcard = (props: CardProps) => {
     autoflip = false,
     swiperUsed,
     setSwiperUsed,
+    size = "large",
   } = props;
 
   // flip state for card sides
@@ -121,7 +123,13 @@ const Flashcard = (props: CardProps) => {
 
   return (
     <div
-      className={styles.flashcard + " " + (isFlipped ? styles.flipped : "")}
+      className={
+        styles.flashcard +
+        " " +
+        (isFlipped ? styles.flipped : "") +
+        " " +
+        (size === "small" ? styles.small : "")
+      }
       onClick={flipCard}
     >
       <div className={styles.flashcard__front}>

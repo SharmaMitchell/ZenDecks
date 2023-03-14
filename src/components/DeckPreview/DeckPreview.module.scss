@@ -1,16 +1,14 @@
 .deckpreview {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
   margin: 25px 0;
   background-color: var(--card-color);
   padding: 20px;
   border-radius: 10px;
-
-  &__left,
-  &__right {
-    flex-basis: 50%;
-  }
+  max-width: min(95vw, 650px);
 
   &__title {
     font-size: 1.5rem;
@@ -66,17 +64,38 @@
   }
 }
 
+.swiper {
+  max-width: min(90vw, 400px);
+  padding: 40px 0;
+  margin: 0;
+  div.swiper-button-prev,
+  div.swiper-button-next {
+    display: none; //TODO: Make this work
+  }
+}
+
 @media screen and (min-width: 768px) {
+  div.swiper-button-prev,
+  div.swiper-button-next {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1024px) {
   .deckpreview {
     flex-direction: row;
+    max-width: 100%;
 
     &__left {
       padding-right: 20px;
-      border-right: 2px solid var(--background-color);
     }
 
     &__right {
       padding-left: 20px;
+      border-left: 2px solid var(--background-color);
     }
+  }
+  .swiper {
+    padding: 40px;
   }
 }
