@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./UserAuth.module.scss";
 import Button from "../Button/Button";
 import {
@@ -6,6 +6,7 @@ import {
   firestore,
   googleAuthProvider,
 } from "../../components/utils/firebase";
+import { UserContext } from "../utils/context";
 
 const signInWithGoogle = async () => {
   try {
@@ -90,8 +91,7 @@ const UsernameForm = () => {
 };
 
 const UserAuth = () => {
-  const user = null;
-  const username = null;
+  const { user, username } = useContext(UserContext);
 
   return (
     <div>
