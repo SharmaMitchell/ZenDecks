@@ -2,8 +2,8 @@
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
-  background-color: var(--saturated-teal);
-  color: var(--cool-white);
+  background-color: var(--highlight-color);
+  color: var(--button-text);
   font-size: 1.1rem;
   font-weight: 600;
   transition: all 0.3s ease-in-out;
@@ -12,6 +12,6 @@
   width: fit-content;
 
   &:hover {
-    background-color: var(--medium-teal);
+    background-color: var(--highlight-dark);
   }
 }

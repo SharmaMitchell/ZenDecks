@@ -2,11 +2,14 @@
 :root {
   /* Color palette */
   --background-color: #f1d9bd; // page background
-  --text-color: #413d3e; // text color, against page background or card
-  --saturated-teal: #00bfff; // button, highlight, link color
+  --text-color: #413d3e; // text color, against page background or card\
+  --highlight-color: #ff9980; // button, highlight, link color
+  --highlight-dark: #d97056; // button hover color
+  --button-text: var(--text-color); // button text color
+  --saturated-teal: #00bfff;
+  --medium-teal: #00a8d9;
   --light-teal: #7bb4bd;
   --dark-teal: #2c7083;
-  --medium-teal: #00a8d9; // button hover color
   --light-brown: #dba879;
   --manilla-color: #f7ebdd; // card background (light mode)
   --dark-brown: #87695f; // nav background (light mode)
@@ -43,6 +46,9 @@
   /* Dark theme color palette */
   --background-color: #1b1818;
   --text-color: #f1d9bd;
+  --highlight-color: #f3b3a6;
+  --highlight-dark: #d48e7f;
+  --button-text: var(--background-color);
   --card-color: #413d3e;
   --menu-color: #413d3e;
   --shadow-color: #878787;
