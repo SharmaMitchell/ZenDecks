@@ -1,27 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Allura&family=Parisienne");
 :root {
   /* Color palette */
-  --background-color: #f1d9bd;
-  --text-color: #413d3e;
-  --saturated-teal: #4bbed5;
+  --background-color: #f1d9bd; // page background
+  --text-color: #413d3e; // text color, against page background or card
+  --saturated-teal: #00bfff; // button, highlight, link color
   --light-teal: #7bb4bd;
   --dark-teal: #2c7083;
-  --medium-teal: #01a1b1;
+  --medium-teal: #00a8d9; // button hover color
   --light-brown: #dba879;
-  --manilla-color: #f7ebdd;
-  --dark-brown: #87695f;
-  --cool-white: #dfe8f1;
-  --shadow-color: var(--text-color);
-  --card-color: var(--manilla-color);
-  --menu-color: var(--dark-brown);
-  --menu-font: var(--cool-white);
-  --text-highlight: var(--medium-teal);
-  --sb-size: 10px;
-  // --button-text: #1b1818;
+  --manilla-color: #f7ebdd; // card background (light mode)
+  --dark-brown: #87695f; // nav background (light mode)
+  --cool-white: #dfe8f1; // nav font color (light mode), button text color
+  --shadow-color: var(--text-color); // shadow color, for box shadows
+  --card-color: var(--manilla-color); // flashcard background
+  --menu-color: var(--dark-brown); // nav & hamburger background
+  --menu-font: var(--cool-white); // nav & hamburger font color
+  --text-highlight: var(--medium-teal); // text highlight color, for links
+  --sb-size: 10px; // scrollbar size
 
   /* Cursive Logo Font */
   --logo-font: "Allura", cursive;
-  // --logo-font: "Parisienne", cursive; /* F was blending into l, looked like "Hashy" */
 
   /* Page spacing */
   --page-width: 1450px;
@@ -31,6 +29,7 @@
   --section-paddingY: 60px;
 
   /* Media Queries */
+  --mobile: 525px;
   --tablet: 768px;
   --desktop: 1024px;
 
