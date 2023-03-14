@@ -55,6 +55,7 @@
     width: min(400px, 90vw);
     min-height: min(240px, 90vh);
     font-size: calc(10px + 1.25vmin);
+    background-color: var(--background-color);
 
     .flashcard__hint {
       font-size: calc(10px + 1vmin);

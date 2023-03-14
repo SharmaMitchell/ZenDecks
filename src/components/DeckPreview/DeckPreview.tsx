@@ -80,7 +80,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
         <div className={styles.deckpreview__carousel}>
           <Swiper
             slidesPerView={1}
-            spaceBetween={16}
+            spaceBetween={60}
             loop={false}
             modules={[Navigation, Pagination]}
             navigation={true}

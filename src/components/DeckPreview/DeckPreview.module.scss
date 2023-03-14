@@ -9,6 +9,7 @@
   padding: 20px;
   border-radius: 10px;
   max-width: min(95vw, 650px);
+  transition: ease;
 
   &__title {
     font-size: 1.5rem;
@@ -74,10 +75,13 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 525px) {
   div.swiper-button-prev,
   div.swiper-button-next {
     display: block;
+  }
+  .swiper {
+    padding: 40px 50px;
   }
 }
 
@@ -91,11 +95,8 @@
     }
 
     &__right {
-      padding-left: 20px;
+      //   padding-left: 20px;
       border-left: 2px solid var(--background-color);
     }
-  }
-  .swiper {
-    padding: 40px;
   }
 }
