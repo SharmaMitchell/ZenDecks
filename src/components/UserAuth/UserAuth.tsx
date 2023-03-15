@@ -24,18 +24,23 @@ const UsernameMessage = ({
   isValid: boolean;
 }) => {
   if (username.length > 0 && username.length < 3) {
-    return <p>Your username must be at least 3 characters long.</p>;
+    return (
+      <p className={styles.usernameform__hint}>
+        Your username must be at least 3 characters long.
+      </p>
+    );
   } else if (username.length >= 3 && !isValid) {
     return (
-      <p>
-        Your username can only contain lowercase letters, numbers and
-        underscores.
+      <p className={styles.usernameform__hint}>
+        Your username can only contain letters, numbers and underscores.
       </p>
     );
   } else if (username.length >= 3 && isValid) {
-    return <p>Your username is available!</p>;
+    return (
+      <p className={styles.usernameform__hint}>Your username is available!</p>
+    );
   } else {
-    return <p></p>;
+    return <p className={styles.usernameform__hint}></p>;
   }
 };
 
@@ -45,8 +50,8 @@ const UsernameForm = () => {
   const [loading, setLoading] = React.useState(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value.toLowerCase();
-    const re = /^[a-z0-9_]+$/;
+    const val = e.target.value;
+    const re = /^[a-zA-Z0-9_]+$/;
     if (val.length < 3) {
       setFormValue(val);
       setIsValid(false);
@@ -74,16 +79,17 @@ const UsernameForm = () => {
   };
 
   return !loading ? (
-    <form onSubmit={onSubmit}>
-      <h3>Choose Username</h3>
+    <form onSubmit={onSubmit} className={styles.usernameform}>
+      <h3 className={styles.usernameform__title}>Choose Username</h3>
       <input
         name="username"
-        placeholder="myname"
+        placeholder="Username"
         value={formValue}
         onChange={onChange}
+        className={styles.usernameform__input}
       />
       <UsernameMessage username={formValue} isValid={isValid} />
-      <button type="submit"> Choose </button>
+      <Button type="submit" disabled={!isValid} label="Choose" />
     </form>
   ) : (
     <p>Loading...</p>
