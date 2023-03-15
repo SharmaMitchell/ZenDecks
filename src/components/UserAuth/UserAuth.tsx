@@ -153,10 +153,22 @@ const UserAuth = () => {
         !username ? (
           <UsernameForm />
         ) : (
-          <Button onClick={() => auth.signOut()} label="Sign Out" />
+          <div className={styles.logout}>
+            {user.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt="user avatar"
+                className={styles.logout__avatar}
+              />
+            ) : null}
+            <p className={styles.logout__username}>{username}</p>
+            <Button onClick={() => auth.signOut()} label="Log Out" />
+          </div>
         )
       ) : (
-        <Button onClick={signInWithGoogle} label="Sign in with Google" />
+        <div className={styles.login}>
+          <Button onClick={signInWithGoogle} label="Sign in with Google" />
+        </div>
       )}
     </div>
   );
