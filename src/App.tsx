@@ -28,7 +28,21 @@ function App() {
   }, [theme]);
 
   const { user, username } = useUserData();
-
+  if (user && !username) {
+    return (
+      <div className="App" data-theme={theme}>
+        <UserContext.Provider value={{ user, username } as any}>
+          <Router>
+            <ScrollToTop />
+            <Navbar switchTheme={switchTheme} theme={theme} />
+            <Routes>
+              <Route path="*" element={<UserAuth />} />
+            </Routes>
+          </Router>
+        </UserContext.Provider>
+      </div>
+    );
+  }
   return (
     <div className="App" data-theme={theme}>
       <UserContext.Provider value={{ user, username } as any}>
