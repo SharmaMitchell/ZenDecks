@@ -98,10 +98,7 @@ const Navbar = (props: NavbarProps) => {
             {user ? (
               <>
                 <div className={styles.hamburger__item}>
-                  <Link
-                    to={`/user/${username}`}
-                    className={styles.navbar__link}
-                  >
+                  <Link to="/account" className={styles.navbar__link}>
                     <User
                       fill="var(--text-color)"
                       className={styles.usericon}
