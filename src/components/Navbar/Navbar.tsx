@@ -53,7 +53,7 @@ const Navbar = (props: NavbarProps) => {
                 </Link>
               </div>
               <div className={styles.navbar__item}>
-                <Button label="Log Out" onClick={auth.signOut} />
+                <Button label="Log Out" onClick={() => auth.signOut()} />
               </div>
             </>
           ) : (
@@ -110,7 +110,7 @@ const Navbar = (props: NavbarProps) => {
                   </Link>
                 </div>
                 <div className={styles.hamburger__item}>
-                  <Button label="Log Out" onClick={auth.signOut} />
+                  <Button label="Log Out" onClick={() => auth.signOut()} />
                 </div>
               </>
             ) : (
