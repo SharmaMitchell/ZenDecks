@@ -9,6 +9,8 @@ import Navbar from "./components/Navbar/Navbar";
 import "./App.scss";
 import { UserContext } from "./components/utils/context";
 import { useUserData } from "./components/utils/hooks";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -46,19 +48,21 @@ function App() {
   // }
   return (
     <div className="App" data-theme={theme}>
-      <UserContext.Provider value={{ user, username } as any}>
-        <Router>
-          <ScrollToTop />
-          <Navbar switchTheme={switchTheme} theme={theme} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/account" element={<Login />} />
-            <Route path="*" element={<h1>404</h1>} />
-          </Routes>
-        </Router>
-      </UserContext.Provider>
+      <Provider store={store}>
+        <UserContext.Provider value={{ user, username } as any}>
+          <Router>
+            <ScrollToTop />
+            <Navbar switchTheme={switchTheme} theme={theme} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/demo" element={<Demo />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/account" element={<Login />} />
+              <Route path="*" element={<h1>404</h1>} />
+            </Routes>
+          </Router>
+        </UserContext.Provider>
+      </Provider>
     </div>
   );
 }
