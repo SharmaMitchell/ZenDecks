@@ -47,7 +47,7 @@ const Navbar = (props: NavbarProps) => {
           {user ? (
             <>
               <div className={styles.navbar__item}>
-                <Link to={`/user/${username}`} className={styles.navbar__link}>
+                <Link to="/account" className={styles.navbar__link}>
                   <User fill="var(--text-color)" className={styles.usericon} />
                   {username}
                 </Link>
@@ -62,7 +62,7 @@ const Navbar = (props: NavbarProps) => {
                 <Button label="Sign Up" link="/signup" />
               </div>
               <div className={styles.navbar__item}>
-                <Button label="Login" link="/login" />
+                <Button label="Sign In" link="/login" />
               </div>
             </>
           )}
@@ -119,7 +119,7 @@ const Navbar = (props: NavbarProps) => {
                   <Button label="Sign Up" link="/signup" />
                 </div>
                 <div className={styles.hamburger__item}>
-                  <Button label="Login" link="/login" />
+                  <Button label="Sign In" link="/login" />
                 </div>
               </>
             )}
