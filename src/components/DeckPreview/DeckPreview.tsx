@@ -28,6 +28,7 @@ interface DeckPreviewProps {
   numcards: number;
   numusers?: number;
   cards: Card[];
+  preview?: boolean;
 }
 
 const DeckPreview = (props: DeckPreviewProps) => {
@@ -40,9 +41,10 @@ const DeckPreview = (props: DeckPreviewProps) => {
     numcards,
     numusers = 0,
     cards,
+    preview = true,
   } = props;
   return (
-    <div className={styles.deckpreview}>
+    <div className={`${styles.deckpreview} ${!preview && styles.nopreview}`}>
       <div className={styles.deckpreview__left}>
         <h3 className={styles.deckpreview__title}>{title}</h3>
         <p className={styles.deckpreview__description}>{description}</p>
@@ -76,30 +78,32 @@ const DeckPreview = (props: DeckPreviewProps) => {
         </div>
         <Button label="Study deck" />
       </div>
-      <div className={styles.deckpreview__right}>
-        <div className={styles.deckpreview__carousel}>
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={60}
-            loop={false}
-            modules={[Navigation, Pagination]}
-            navigation={true}
-            pagination={true}
-            className={styles.swiper}
-          >
-            {cards.map((card, index) => (
-              <SwiperSlide key={index} style={{ width: "auto" }}>
-                <Flashcard
-                  front={card.front}
-                  back={card.back}
-                  hint={true}
-                  size="small"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+      {preview && (
+        <div className={styles.deckpreview__right}>
+          <div className={styles.deckpreview__carousel}>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={60}
+              loop={false}
+              modules={[Navigation, Pagination]}
+              navigation={true}
+              pagination={true}
+              className={styles.swiper}
+            >
+              {cards.map((card, index) => (
+                <SwiperSlide key={index} style={{ width: "auto" }}>
+                  <Flashcard
+                    front={card.front}
+                    back={card.back}
+                    hint={true}
+                    size="small"
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

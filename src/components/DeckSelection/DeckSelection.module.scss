@@ -9,8 +9,19 @@
     max-width: min(1080px, 95vw);
   }
 
+  &__deck {
+    display: inline-block;
+  }
+
   h2 {
     margin: 0;
     margin-bottom: 35px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .nopreview {
+    column-count: 2;
+    column-gap: 0;
   }
 }

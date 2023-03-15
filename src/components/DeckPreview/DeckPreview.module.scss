@@ -101,4 +101,12 @@
       border-left: 2px solid var(--background-color);
     }
   }
+  .nopreview {
+    max-width: 425px;
+    margin: 25px 10px;
+
+    .deckpreview__left {
+      padding: 0;
+    }
+  }
 }
