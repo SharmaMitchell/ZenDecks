@@ -1,7 +1,14 @@
 import { createContext } from "react";
 
-// create user context with user as type object and username as type string, with default values of null
-export const UserContext = createContext({ user: null, username: null } as {
-  user: object | null;
+interface UserContext {
+  user: {
+    uid: string;
+    photoURL: string;
+  } | null;
   username: string | null;
+}
+
+export const UserContext = createContext<UserContext>({
+  user: null,
+  username: null,
 });
