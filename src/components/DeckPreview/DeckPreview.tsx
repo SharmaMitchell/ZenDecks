@@ -56,7 +56,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
 
   const [userDoc] = useDocument(userRef as any);
 
-  const handleStudy = () => {
+  const handleAdd = () => {
     if (userDoc && !userDoc.exists()) {
       try {
         const uid = auth.currentUser?.uid;
@@ -70,7 +70,10 @@ const DeckPreview = (props: DeckPreviewProps) => {
         console.log(err);
       }
     }
+  };
 
+  const handleStudy = () => {
+    handleAdd();
     navigate(`/study/${deckRef.id}`);
   };
 
@@ -113,6 +116,9 @@ const DeckPreview = (props: DeckPreviewProps) => {
           </div>
           <div className={styles.deckpreview__button}>
             <Button label="Deck Details" link={`/decks/${deckRef.id}`} />
+          </div>
+          <div className={styles.deckpreview__button}>
+            <Button label="+" onClick={handleAdd} />
           </div>
         </div>
       </div>
