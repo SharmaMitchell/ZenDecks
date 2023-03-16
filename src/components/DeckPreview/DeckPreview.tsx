@@ -11,13 +11,10 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { ReactComponent as LeftArrow } from "../../assets/arrow-left-circle.svg";
-import { ReactComponent as RightArrow } from "../../assets/arrow-right-circle.svg";
-
-interface Card {
-  front: string;
-  back: string;
-}
+import { firestore, auth, increment } from "../../components/utils/firebase";
+import { useDocument } from "react-firebase-hooks/firestore";
+import { useNavigate } from "react-router-dom";
+import { DocumentReference } from "firebase/firestore";
 
 interface DeckPreviewProps {
   title: string;
@@ -25,10 +22,12 @@ interface DeckPreviewProps {
   tags?: string[];
   author: string;
   rating?: number;
+  numRatings?: number;
   numcards: number;
   numusers?: number;
-  cards: Card[];
+  cards?: Card[];
   preview?: boolean;
+  deckRef: any;
 }
 
 const DeckPreview = (props: DeckPreviewProps) => {
@@ -38,11 +37,43 @@ const DeckPreview = (props: DeckPreviewProps) => {
     tags = [],
     author,
     rating = 0,
+    numRatings = 1,
     numcards,
     numusers = 0,
-    cards,
+    cards = [],
     preview = true,
+    deckRef,
   } = props;
+
+  const navigate = useNavigate();
+
+  // Listen to users document for current user
+  const userRef = firestore
+    .collection("decks")
+    .doc(deckRef.id)
+    .collection("users")
+    .doc(auth.currentUser?.uid);
+
+  const [userDoc] = useDocument(userRef as any);
+
+  const handleStudy = () => {
+    if (userDoc && !userDoc.exists()) {
+      try {
+        const uid = auth.currentUser?.uid;
+        const batch = firestore.batch();
+
+        batch.update(deckRef, { userCount: increment(1) });
+        batch.set(userRef, { uid /*lastStudied: new Date()*/ });
+
+        batch.commit();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    navigate(`/study/${deckRef.id}`);
+  };
+
   return (
     <div className={`${styles.deckpreview} ${!preview && styles.nopreview}`}>
       <div className={styles.deckpreview__left}>
@@ -60,23 +91,30 @@ const DeckPreview = (props: DeckPreviewProps) => {
         </div>
         <div className={styles.deckpreview__rating}>
           <Star fill="var(--text-color)" className={styles.deckpreview__icon} />
-          {rating}
+          {numRatings > 0 ? (rating / numRatings).toFixed(1) : "N/A"}
         </div>
         <div className={styles.deckpreview__numcards}>
           <Cards
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
-          {numcards} cards
+          {numcards} Card{numcards > 1 && "s"}
         </div>
         <div className={styles.deckpreview__numusers}>
           <Lightning
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
-          {numusers} users
+          {numusers} User{numusers > 1 && "s"}
         </div>
-        <Button label="Study deck" />
+        <div className={styles.deckpreview__buttons}>
+          <div className={styles.deckpreview__button}>
+            <Button label="Study Deck" onClick={handleStudy} />
+          </div>
+          <div className={styles.deckpreview__button}>
+            <Button label="View All Cards" link={`/decks/${deckRef.id}`} />
+          </div>
+        </div>
       </div>
       {preview && (
         <div className={styles.deckpreview__right}>
@@ -90,7 +128,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
               pagination={true}
               className={styles.swiper}
             >
-              {cards.map((card, index) => (
+              {cards?.map((card, index) => (
                 <SwiperSlide key={index} style={{ width: "auto" }}>
                   <Flashcard
                     front={card.front}

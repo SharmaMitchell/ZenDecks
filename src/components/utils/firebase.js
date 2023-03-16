@@ -19,6 +19,7 @@ export const auth = firebase.auth();
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 export const firestore = firebase.firestore();
+export const increment = firebase.firestore.FieldValue.increment;
 export const storage = firebase.storage();
 
 export default firebase;

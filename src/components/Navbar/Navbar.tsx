@@ -21,7 +21,7 @@ const Navbar = (props: NavbarProps) => {
   const paths = [
     { link: "/", label: "Home" },
     { link: "/about", label: "About" },
-    { link: "/demo", label: "Demo" },
+    { link: "/decks", label: "Decks" },
   ];
 
   const { user, username } = useContext(UserContext);

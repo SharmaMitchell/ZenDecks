@@ -11,6 +11,7 @@
   cursor: pointer;
   text-decoration: none;
   width: fit-content;
+  display: block;
 
   &__disabled {
     background-color: var(--button-color-disabled);
