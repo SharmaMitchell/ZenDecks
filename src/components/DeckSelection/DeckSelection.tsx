@@ -13,22 +13,6 @@ interface DeckSelectionProps {
   preview?: boolean;
 }
 
-interface Deck {
-  id: string;
-  ref: DocumentReference<DocumentData>;
-  title: string;
-  description: string;
-  tags?: string[];
-  public: boolean;
-  authorName: string;
-  authorID: string;
-  cards?: any[];
-  rating?: number;
-  ratingCount?: number;
-  cardCount: number;
-  userCount?: number;
-}
-
 // const exampleDecks = [
 //   {
 //     title: "Japanese Software Engineering Vocabulary",

@@ -1,25 +1,5 @@
 import { configureStore, createSlice, combineReducers } from "@reduxjs/toolkit";
 
-interface Deck {
-  id: string;
-  ref: any;
-  title: string;
-  description: string;
-  tags?: string[];
-  public: boolean;
-  authorName: string;
-  authorID: string;
-  cards?: any[];
-  rating?: number;
-  ratingCount?: number;
-  cardCount: number;
-  userCount?: number;
-}
-
-interface DecksState {
-  decks: Deck[];
-}
-
 // Define initial state
 const initialState = {
   decks: [],
