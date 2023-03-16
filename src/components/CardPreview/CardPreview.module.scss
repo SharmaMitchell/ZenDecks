@@ -1,0 +1,50 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: var(--card-color);
+  margin: 20px 0;
+  padding: 10px 20px;
+
+  &__front,
+  &__back {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 1.2rem;
+  }
+
+  &__front {
+    border-bottom: solid 1px var(--background-color);
+  }
+  &__back {
+    border-top: solid 1px var(--background-color);
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    flex-direction: row;
+    padding: 10px;
+
+    &__front,
+    &__back {
+      width: 100%;
+    }
+
+    &__front {
+      border-right: solid 1px var(--background-color);
+      border-bottom: none;
+    }
+
+    &__back {
+      border-left: solid 1px var(--background-color);
+      border-top: none;
+    }
+  }
+}
