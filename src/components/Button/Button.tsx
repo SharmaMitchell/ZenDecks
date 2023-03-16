@@ -22,11 +22,18 @@ const Button = (props: ButtonProps) => {
   }, [disabled]);
 
   return link ? (
-    <Link to={link} onClick={onClick} className={styles.button}>
+    <Link
+      to={link}
+      onClick={onClick}
+      className={disabled ? styles.button__disabled : styles.button}
+    >
       {label}
     </Link>
   ) : type === "button" ? (
-    <div onClick={onClick} className={styles.button}>
+    <div
+      onClick={onClick}
+      className={disabled ? styles.button__disabled : styles.button}
+    >
       {label}
     </div>
   ) : (
