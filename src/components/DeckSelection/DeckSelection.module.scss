@@ -22,6 +22,6 @@
 @media screen and (min-width: 1024px) {
   .nopreview {
     column-count: 2;
-    column-gap: 0;
+    column-gap: 0; // TODO: why is there still a gap? (on larger viewports)
   }
 }
