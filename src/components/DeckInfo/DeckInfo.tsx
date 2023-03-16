@@ -52,7 +52,7 @@ const DeckInfo = () => {
       {deck ? (
         <div className={styles.deckinfo}>
           <div className={styles.deckinfo__top}>
-            <h3 className={styles.deckinfo__title}>{deck.title}</h3>
+            <h1 className={styles.deckinfo__title}>{deck.title}</h1>
             <p className={styles.deckinfo__description}>{deck.description}</p>
             <ul className={styles.deckinfo__tags}>
               {deck.tags?.map((tag) => (
@@ -97,6 +97,7 @@ const DeckInfo = () => {
               </div>
             </div>
           </div>
+          <h2 className={styles.deckinfo__cards__title}>Cards</h2>
           <div className={styles.deckinfo__cards}>
             {deck.cards?.map((card) => (
               <CardPreview card={card} />
