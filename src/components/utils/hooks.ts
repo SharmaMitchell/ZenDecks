@@ -28,46 +28,27 @@ export function useUserData() {
   return { user, username };
 }
 
-/* TODO: Only fetch data once per session, then store in redux store? */
-/* This didn't work before because you can't call a hook (useCollection) within a conditional or callback */
-// const FetchDecks = async () => {
-//   const [value, loading, error, snapshot] = useCollectionDataOnce(
-//     firestore.collection("decks").where("public", "==", true).limit(10) as any
-//   );
-
-//   if (snapshot) {
-//     const docs = snapshot.docs.map((doc) => ({
-//       id: doc.id,
-//       ref: doc.ref,
-//       ...doc.data(),
-//     }));
-//     store.dispatch(setDecks(docs));
-//   }
-// };
-
-// // Custom hook to get deck data from firestore
-// export function useDecks(): Deck[] {
-//   const decks = useSelector((state: RootState) => state.decks.decks);
-//   useEffect(() => {
-//     if (decks.length === 0) {
-//       FetchDecks();
-//     }
-//   }, [decks]);
-
-//   return decks;
-// }
-
-// Custom hook to get deck data from firestore
+// Custom hook to get deck data from firestore, and store it in the redux store
+// Data will only be fetched if the decks array in the store is empty
 export function useDecks(): Deck[] {
   const decks = useSelector((state: RootState) => state.decks.decks);
 
   const [value, loading, error, snapshot] = useCollectionDataOnce(
-    firestore.collection("decks").where("public", "==", true).limit(10) as any
+    decks.length === 0 // check if data is already in store
+      ? (firestore
+          .collection("decks")
+          .where("public", "==", true)
+          .limit(10) as any)
+      : null
   );
 
   // Get the first 5 cards for each deck using a collectionGroup query
   const [cardsValue, cardsLoading, cardsError, cardsSnapshot] =
-    useCollectionDataOnce(firestore.collectionGroup("cards").limit(5) as any);
+    useCollectionDataOnce(
+      decks.length === 0 // check if data is already in store
+        ? (firestore.collectionGroup("cards").limit(5) as any)
+        : null
+    );
 
   useEffect(() => {
     if (cardsSnapshot && snapshot) {
