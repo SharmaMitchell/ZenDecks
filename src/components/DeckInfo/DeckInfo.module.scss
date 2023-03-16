@@ -1,15 +1,18 @@
-.deckpreview {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: left;
-  margin: 25px 0;
-  background-color: var(--card-color);
-  padding: 20px;
-  border-radius: 10px;
-  max-width: min(95vw, 650px);
-  transition: ease;
+.deckinfo {
+  // max-width: min(95vw, 650px);
+  padding: var(--section-paddingY) 0;
+  width: min(1080px, 95vw);
+
+  &__top {
+    align-items: center;
+    text-align: left;
+    margin: 25px 0;
+    background-color: var(--card-color);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: min(1080px, 95vw);
+    transition: ease;
+  }
 
   &__title {
     font-size: 1.5rem;
@@ -71,50 +74,12 @@
   &__button {
     margin-right: 5px;
   }
-}
 
-.swiper {
-  max-width: min(90vw, 400px);
-  padding: 40px 0;
-  padding-top: 25px;
-  margin: 0;
-  div.swiper-button-prev,
-  div.swiper-button-next {
-    display: none; //TODO: Make this work
+  &__button:last-child {
+    margin-right: 0;
   }
-}
 
-@media screen and (min-width: 525px) {
-  div.swiper-button-prev,
-  div.swiper-button-next {
-    display: block;
-  }
-  .swiper {
-    padding: 40px 50px;
-    padding-top: 25px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .deckpreview {
-    flex-direction: row;
-    max-width: 100%;
-
-    &__left {
-      padding: 0 20px;
-    }
-
-    &__right {
-      //   padding-left: 20px;
-      border-left: 2px solid var(--background-color);
-    }
-  }
-  .nopreview {
-    max-width: 425px;
-    margin: 25px 10px;
-
-    .deckpreview__left {
-      padding: 0;
-    }
+  &__cards {
+    margin: 10px 0;
   }
 }

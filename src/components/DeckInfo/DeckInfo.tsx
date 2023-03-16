@@ -48,60 +48,65 @@ const DeckInfo = () => {
     navigate(`/study/${deckId}`);
   };
   return (
-    <div>
-      <div className={styles.deckpreview}>
-        <div className={styles.deckpreview__left}>
-          <h3 className={styles.deckpreview__title}>{deck.title}</h3>
-          <p className={styles.deckpreview__description}>{deck.description}</p>
-          <ul className={styles.deckpreview__tags}>
-            {deck.tags?.map((tag) => (
-              <li>{tag}</li>
-            ))}
-          </ul>
+    <>
+      {deck ? (
+        <div className={styles.deckinfo}>
+          <div className={styles.deckinfo__top}>
+            <h3 className={styles.deckinfo__title}>{deck.title}</h3>
+            <p className={styles.deckinfo__description}>{deck.description}</p>
+            <ul className={styles.deckinfo__tags}>
+              {deck.tags?.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
 
-          <div className={styles.deckpreview__author}>
-            <User
-              fill="var(--text-color)"
-              className={styles.deckpreview__icon}
-            />
-            {deck.authorName}
-          </div>
-          <div className={styles.deckpreview__rating}>
-            <Star
-              fill="var(--text-color)"
-              className={styles.deckpreview__icon}
-            />
-            {deck.ratingCount && deck.rating && deck.ratingCount > 0
-              ? (deck.rating / deck.ratingCount).toFixed(1)
-              : "N/A"}
-          </div>
-          <div className={styles.deckpreview__numcards}>
-            <Cards
-              fill="var(--text-color)"
-              className={styles.deckpreview__icon}
-            />
-            {deck.cardCount} Card{deck.cardCount > 1 && "s"}
-          </div>
-          <div className={styles.deckpreview__numusers}>
-            <Lightning
-              fill="var(--text-color)"
-              className={styles.deckpreview__icon}
-            />
-            {deck.userCount} User{deck.userCount && deck.userCount > 1 && "s"}
-          </div>
-          <div className={styles.deckpreview__buttons}>
-            <div className={styles.deckpreview__button}>
-              <Button label="Study Deck" onClick={handleStudy} />
+            <div className={styles.deckinfo__author}>
+              <User
+                fill="var(--text-color)"
+                className={styles.deckinfo__icon}
+              />
+              {deck.authorName}
+            </div>
+            <div className={styles.deckinfo__rating}>
+              <Star
+                fill="var(--text-color)"
+                className={styles.deckinfo__icon}
+              />
+              {deck.ratingCount && deck.rating && deck.ratingCount > 0
+                ? (deck.rating / deck.ratingCount).toFixed(1)
+                : "N/A"}
+            </div>
+            <div className={styles.deckinfo__numcards}>
+              <Cards
+                fill="var(--text-color)"
+                className={styles.deckinfo__icon}
+              />
+              {deck.cardCount} Card{deck.cardCount > 1 && "s"}
+            </div>
+            <div className={styles.deckinfo__numusers}>
+              <Lightning
+                fill="var(--text-color)"
+                className={styles.deckinfo__icon}
+              />
+              {deck.userCount} User
+              {deck.userCount && deck.userCount > 1 && "s"}
+            </div>
+            <div className={styles.deckinfo__buttons}>
+              <div className={styles.deckinfo__button}>
+                <Button label="Study Deck" onClick={handleStudy} />
+              </div>
             </div>
           </div>
+          <div className={styles.deckinfo__cards}>
+            {deck.cards?.map((card) => (
+              <CardPreview card={card} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div>
-        {deck.cards?.map((card) => (
-          <CardPreview card={card} />
-        ))}
-      </div>
-    </div>
+      ) : (
+        <div>Loading deck...</div>
+      )}
+    </>
   );
 };
 
