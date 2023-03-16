@@ -18,3 +18,8 @@ declare interface Deck {
   cardCount: number;
   userCount?: number;
 }
+
+declare interface Card {
+  front: string;
+  back: string;
+}

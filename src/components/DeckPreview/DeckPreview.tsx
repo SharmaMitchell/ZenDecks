@@ -16,11 +16,6 @@ import { useDocument } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 import { DocumentReference } from "firebase/firestore";
 
-interface Card {
-  front: string;
-  back: string;
-}
-
 interface DeckPreviewProps {
   title: string;
   description: string;
