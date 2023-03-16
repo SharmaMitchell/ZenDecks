@@ -1,7 +1,7 @@
 import React from "react";
 import DeckSelection from "../components/DeckSelection/DeckSelection";
 
-const Demo = () => {
+const Decks = () => {
   return (
     <div>
       <DeckSelection />
@@ -9,4 +9,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default Decks;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Home from "./pages/Home";
-import Demo from "./pages/Demo";
+import Decks from "./pages/Decks";
 import Login from "./pages/Login";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Navbar from "./components/Navbar/Navbar";
@@ -55,7 +55,7 @@ function App() {
             <Navbar switchTheme={switchTheme} theme={theme} />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/demo" element={<Demo />} />
+              <Route path="/decks" element={<Decks />} />
               <Route path="/login" element={<Login />} />
               <Route path="/account" element={<Login />} />
               <Route path="*" element={<h1>404</h1>} />
