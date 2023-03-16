@@ -69,18 +69,12 @@ const DeckPreview = (props: DeckPreviewProps) => {
         batch.set(userRef, { uid /*lastStudied: new Date()*/ });
 
         batch.commit();
-        console.log("User added to deck");
       } catch (err) {
         console.log(err);
       }
-    } else if (userDoc) {
-      console.log("User already exists in deck");
-      console.log(userDoc.exists());
-    } else {
-      console.log("User not logged in");
     }
 
-    // navigate(`/decks/${deckRef.id}`);
+    navigate(`/decks/${deckRef.id}`);
   };
 
   return (
