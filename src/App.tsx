@@ -55,7 +55,11 @@ function App() {
             <Navbar switchTheme={switchTheme} theme={theme} />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/about" element={<h1>About</h1>} />
               <Route path="/decks" element={<Decks />} />
+              <Route path="/decks/:deckId" element={<h1>Deck goes here</h1>} />
+              <Route path="/study" element={<Decks />} />
+              <Route path="/study/:deckId" element={<h1>Study goes here</h1>} />
               <Route path="/login" element={<Login />} />
               <Route path="/account" element={<Login />} />
               <Route path="*" element={<h1>404</h1>} />
