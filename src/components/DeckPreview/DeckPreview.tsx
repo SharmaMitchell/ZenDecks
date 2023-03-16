@@ -112,7 +112,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
             <Button label="Study Deck" onClick={handleStudy} />
           </div>
           <div className={styles.deckpreview__button}>
-            <Button label="View All Cards" link={`/decks/${deckRef.id}`} />
+            <Button label="Deck Details" link={`/decks/${deckRef.id}`} />
           </div>
         </div>
       </div>

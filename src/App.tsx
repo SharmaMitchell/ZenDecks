@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Home from "./pages/Home";
 import Decks from "./pages/Decks";
+import DeckInfoPage from "./pages/DeckInfo";
 import Login from "./pages/Login";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Navbar from "./components/Navbar/Navbar";
@@ -57,7 +58,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<h1>About</h1>} />
               <Route path="/decks" element={<Decks />} />
-              <Route path="/decks/:deckId" element={<h1>Deck goes here</h1>} />
+              <Route path="/decks/:deckId" element={<DeckInfoPage />} />
               <Route path="/study" element={<Decks />} />
               <Route path="/study/:deckId" element={<h1>Study goes here</h1>} />
               <Route path="/login" element={<Login />} />
