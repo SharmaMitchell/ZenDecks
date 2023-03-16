@@ -99,9 +99,15 @@ const DeckInfo = () => {
               <div className={styles.deckinfo__button}>
                 <Button label="Study Deck" onClick={handleStudy} />
               </div>
-              <div className={styles.deckpreview__button}>
-                <Button label="+" onClick={handleAdd} />
-              </div>
+              {userDoc && !userDoc.exists() ? (
+                <div className={styles.deckpreview__button}>
+                  <Button label="+" onClick={handleAdd} />
+                </div>
+              ) : (
+                <div className={styles.deckpreview__button}>
+                  <Button label="✓" disabled={true} />
+                </div>
+              )}
             </div>
           </div>
           <h2 className={styles.deckinfo__cards__title}>Cards</h2>

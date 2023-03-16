@@ -117,9 +117,15 @@ const DeckPreview = (props: DeckPreviewProps) => {
           <div className={styles.deckpreview__button}>
             <Button label="Deck Details" link={`/decks/${deckRef.id}`} />
           </div>
-          <div className={styles.deckpreview__button}>
-            <Button label="+" onClick={handleAdd} />
-          </div>
+          {userDoc && !userDoc.exists() ? (
+            <div className={styles.deckpreview__button}>
+              <Button label="+" onClick={handleAdd} />
+            </div>
+          ) : (
+            <div className={styles.deckpreview__button}>
+              <Button label="✓" disabled={true} />
+            </div>
+          )}
         </div>
       </div>
       {preview && (
