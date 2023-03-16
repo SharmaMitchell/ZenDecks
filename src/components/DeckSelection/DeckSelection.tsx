@@ -183,6 +183,7 @@ const DeckSelection = (props: DeckSelectionProps) => {
                 numcards={deck.cardCount}
                 numusers={deck.userCount}
                 preview={preview}
+                cards={deck.cards}
                 deckRef={deck.ref}
               />
             </motion.div>
