@@ -30,7 +30,7 @@ const DeckInfo = () => {
 
   const [userDoc] = useDocument(userRef as any);
 
-  const handleStudy = () => {
+  const handleAdd = () => {
     if (userDoc && !userDoc.exists()) {
       try {
         const uid = auth.currentUser?.uid;
@@ -44,6 +44,10 @@ const DeckInfo = () => {
         console.log(err);
       }
     }
+  };
+
+  const handleStudy = () => {
+    handleAdd();
 
     navigate(`/study/${deckId}`);
   };
@@ -94,6 +98,9 @@ const DeckInfo = () => {
             <div className={styles.deckinfo__buttons}>
               <div className={styles.deckinfo__button}>
                 <Button label="Study Deck" onClick={handleStudy} />
+              </div>
+              <div className={styles.deckpreview__button}>
+                <Button label="+" onClick={handleAdd} />
               </div>
             </div>
           </div>
