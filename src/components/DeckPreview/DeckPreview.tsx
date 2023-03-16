@@ -110,7 +110,14 @@ const DeckPreview = (props: DeckPreviewProps) => {
           />
           {numusers} users
         </div>
-        <Button label="Study deck" onClick={handleStudy} />
+        <div className={styles.deckpreview__buttons}>
+          <div className={styles.deckpreview__button}>
+            <Button label="Study Deck" onClick={handleStudy} />
+          </div>
+          <div className={styles.deckpreview__button}>
+            <Button label="View All Cards" />
+          </div>
+        </div>
       </div>
       {preview && (
         <div className={styles.deckpreview__right}>
