@@ -11,6 +11,7 @@ interface Deck {
   authorID: string;
   cards?: any[];
   rating?: number;
+  ratingCount?: number;
   cardCount: number;
   userCount?: number;
 }

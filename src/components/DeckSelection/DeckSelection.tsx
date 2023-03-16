@@ -24,6 +24,7 @@ interface Deck {
   authorID: string;
   cards?: any[];
   rating?: number;
+  ratingCount?: number;
   cardCount: number;
   userCount?: number;
 }
@@ -194,6 +195,7 @@ const DeckSelection = (props: DeckSelectionProps) => {
                 tags={deck.tags}
                 author={deck.authorName}
                 rating={deck.rating}
+                numRatings={deck.ratingCount}
                 numcards={deck.cardCount}
                 numusers={deck.userCount}
                 preview={preview}

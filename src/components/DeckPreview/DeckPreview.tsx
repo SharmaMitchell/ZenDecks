@@ -27,6 +27,7 @@ interface DeckPreviewProps {
   tags?: string[];
   author: string;
   rating?: number;
+  numRatings?: number;
   numcards: number;
   numusers?: number;
   cards?: Card[];
@@ -41,6 +42,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
     tags = [],
     author,
     rating = 0,
+    numRatings = 1,
     numcards,
     numusers = 0,
     cards = [],
@@ -94,21 +96,21 @@ const DeckPreview = (props: DeckPreviewProps) => {
         </div>
         <div className={styles.deckpreview__rating}>
           <Star fill="var(--text-color)" className={styles.deckpreview__icon} />
-          {rating}
+          {numRatings > 0 ? (rating / numRatings).toFixed(1) : "N/A"}
         </div>
         <div className={styles.deckpreview__numcards}>
           <Cards
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
-          {numcards} cards
+          {numcards} Card{numcards > 1 && "s"}
         </div>
         <div className={styles.deckpreview__numusers}>
           <Lightning
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
-          {numusers} users
+          {numusers} User{numusers > 1 && "s"}
         </div>
         <div className={styles.deckpreview__buttons}>
           <div className={styles.deckpreview__button}>
