@@ -8,6 +8,7 @@ interface ButtonProps {
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
+  variant?: "fill" | "outline"; //TODO: Implement variants
 }
 
 const Button = (props: ButtonProps) => {
