@@ -8,6 +8,7 @@ import { ReactComponent as User } from "../../assets/user.svg";
 import { ReactComponent as Cards } from "../../assets/cards.svg";
 import { ReactComponent as Star } from "../../assets/star.svg";
 import { ReactComponent as Lightning } from "../../assets/lightning.svg";
+import { ReactComponent as Clock } from "../../assets/clock.svg";
 import Button from "../Button/Button";
 import CardPreview from "../CardPreview/CardPreview";
 
@@ -63,13 +64,26 @@ const DeckInfo = () => {
                 <li>{tag}</li>
               ))}
             </ul>
-
             <div className={styles.deckinfo__author}>
               <User
                 fill="var(--text-color)"
                 className={styles.deckinfo__icon}
               />
               {deck.authorName}
+            </div>
+            <div className={styles.deckinfo__created}>
+              <Clock
+                fill="var(--text-color)"
+                className={styles.deckinfo__icon}
+              />
+              Mar 2023
+            </div>
+            <div className={styles.deckinfo__numcards}>
+              <Cards
+                fill="var(--text-color)"
+                className={styles.deckinfo__icon}
+              />
+              {deck.cardCount} Card{deck.cardCount > 1 && "s"}
             </div>
             <div className={styles.deckinfo__rating}>
               <Star
@@ -79,13 +93,6 @@ const DeckInfo = () => {
               {deck.ratingCount && deck.rating && deck.ratingCount > 0
                 ? (deck.rating / deck.ratingCount).toFixed(1)
                 : "N/A"}
-            </div>
-            <div className={styles.deckinfo__numcards}>
-              <Cards
-                fill="var(--text-color)"
-                className={styles.deckinfo__icon}
-              />
-              {deck.cardCount} Card{deck.cardCount > 1 && "s"}
             </div>
             <div className={styles.deckinfo__numusers}>
               <Lightning

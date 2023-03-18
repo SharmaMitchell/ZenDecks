@@ -92,16 +92,16 @@ const DeckPreview = (props: DeckPreviewProps) => {
           <User fill="var(--text-color)" className={styles.deckpreview__icon} />
           {author}
         </div>
-        <div className={styles.deckpreview__rating}>
-          <Star fill="var(--text-color)" className={styles.deckpreview__icon} />
-          {numRatings > 0 ? (rating / numRatings).toFixed(1) : "N/A"}
-        </div>
         <div className={styles.deckpreview__numcards}>
           <Cards
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
           {numcards} Card{numcards > 1 && "s"}
+        </div>
+        <div className={styles.deckpreview__rating}>
+          <Star fill="var(--text-color)" className={styles.deckpreview__icon} />
+          {numRatings > 0 ? (rating / numRatings).toFixed(1) : "N/A"}
         </div>
         <div className={styles.deckpreview__numusers}>
           <Lightning
