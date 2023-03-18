@@ -170,7 +170,7 @@ const DeckInfo = () => {
             className={styles.deckinfo__cards}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2, delay: 0.1 }}
+            transition={{ duration: 0.2, delay: 0.075 }}
           >
             {deck.cards?.map((card) => (
               <CardPreview card={card} />
@@ -182,7 +182,7 @@ const DeckInfo = () => {
                 className={styles.deckinfo__cards__title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: 0.15 }}
+                transition={{ duration: 0.2, delay: 0.125 }}
               >
                 Comments
               </motion.h2>
@@ -190,7 +190,7 @@ const DeckInfo = () => {
                 className={styles.deckinfo__comments}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: 0.2 }}
+                transition={{ duration: 0.2, delay: 0.175 }}
               >
                 {comments.map((comment) => (
                   <Comment comment={comment} />

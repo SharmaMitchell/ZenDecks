@@ -155,7 +155,7 @@ const DeckSelection = (props: DeckSelectionProps) => {
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
+        transition={{ duration: 0.2 }}
         className={styles.deckselection__title}
       >
         Decks
@@ -170,7 +170,7 @@ const DeckSelection = (props: DeckSelectionProps) => {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 + key * 0.1 }}
+              transition={{ duration: 0.25, delay: 0 + key * 0.1 }}
               className={styles.deckselection__deck}
             >
               <DeckPreview

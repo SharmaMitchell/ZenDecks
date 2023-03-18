@@ -9,10 +9,10 @@ const Hero = () => {
   return (
     <div className={styles.hero} id="home">
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.25,
+          duration: 0.2,
           opacity: { ease: "easeIn" },
           y: { ease: "easeOut" },
         }}
@@ -28,7 +28,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25, delay: 0.2 }}
+          transition={{ duration: 0.2, delay: 0.1 }}
           className={styles.hero__buttons}
         >
           <div className={styles.hero__button}>
@@ -37,7 +37,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25, delay: 0.1 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
             className={styles.hero__button}
           >
             <div className={styles.hero__button}>
@@ -47,9 +47,9 @@ const Hero = () => {
         </motion.div>
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, delay: 0.1 }}
+        transition={{ duration: 0.2, delay: 0.1 }}
         className={styles.hero__flashcard}
       >
         <Tilt
