@@ -23,3 +23,10 @@ declare interface Card {
   front: string;
   back: string;
 }
+
+declare interface UserComment {
+  authorID: string;
+  authorName: string;
+  content: string;
+  date: Date;
+}

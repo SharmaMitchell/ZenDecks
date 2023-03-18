@@ -1,0 +1,40 @@
+.comment {
+  background-color: var(--card-color);
+  color: var(--text-color);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  text-align: left;
+
+  &__top {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 4px;
+  }
+
+  &__author {
+    font-weight: 600;
+    margin-right: 10px;
+    font-size: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__date {
+    font-size: 1.125rem;
+  }
+
+  &__content {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+}

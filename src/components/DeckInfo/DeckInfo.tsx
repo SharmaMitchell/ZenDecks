@@ -11,9 +11,32 @@ import { ReactComponent as Lightning } from "../../assets/lightning.svg";
 import { ReactComponent as Clock } from "../../assets/clock.svg";
 import Button from "../Button/Button";
 import CardPreview from "../CardPreview/CardPreview";
+import Comment from "../Comment/Comment";
 
 //TODO: Fetch all cards from specific deck (implement useDeck hook)
 //TODO: Show user's SRS card weight beside each card
+
+/* 
+authorID: string;
+  authorName: string;
+  content: string;
+  date: Date;
+*/
+
+const comments: UserComment[] = [
+  {
+    authorID: "123",
+    authorName: "John Doe",
+    content: "This is a comment",
+    date: new Date(),
+  },
+  {
+    authorID: "456",
+    authorName: "Jane Doe",
+    content: "This is also a comment",
+    date: new Date(),
+  },
+];
 
 const DeckInfo = () => {
   const { deckId } = useParams<{ deckId: string }>();
@@ -121,6 +144,12 @@ const DeckInfo = () => {
           <div className={styles.deckinfo__cards}>
             {deck.cards?.map((card) => (
               <CardPreview card={card} />
+            ))}
+          </div>
+          <h2 className={styles.deckinfo__cards__title}>Comments</h2>
+          <div className={styles.deckinfo__comments}>
+            {comments.map((comment) => (
+              <Comment comment={comment} />
             ))}
           </div>
         </div>
