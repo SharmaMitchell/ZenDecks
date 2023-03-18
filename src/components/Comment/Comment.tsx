@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactComponent as User } from "../../assets/user.svg";
+import { ReactComponent as Heart } from "../../assets/heart.svg";
 import styles from "./Comment.module.scss";
 
 interface CommentProps {
@@ -22,6 +23,15 @@ const Comment = (props: CommentProps) => {
           </div>
         </div>
         <div className={styles.comment__content}>{comment.content}</div>
+        <div className={styles.comment__bottom}>
+          <div className={styles.comment__likes}>
+            <Heart
+              fill="var(--text-color)"
+              className={styles.comment__icon__heart__outlined}
+            />
+            22
+          </div>
+        </div>
       </div>
     </div>
   );

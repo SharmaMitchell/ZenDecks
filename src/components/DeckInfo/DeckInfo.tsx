@@ -36,6 +36,19 @@ const comments: UserComment[] = [
     content: "This is also a comment",
     date: new Date(),
   },
+  {
+    authorID: "123",
+    authorName: "John Doe",
+    content:
+      "This is a really really really really really really really really long comment",
+    date: new Date(),
+  },
+  {
+    authorID: "456",
+    authorName: "Jane Doe",
+    content: "This is also a comment",
+    date: new Date(),
+  },
 ];
 
 const DeckInfo = () => {
