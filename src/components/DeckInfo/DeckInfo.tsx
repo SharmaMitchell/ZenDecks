@@ -146,12 +146,16 @@ const DeckInfo = () => {
               <CardPreview card={card} />
             ))}
           </div>
-          <h2 className={styles.deckinfo__cards__title}>Comments</h2>
-          <div className={styles.deckinfo__comments}>
-            {comments.map((comment) => (
-              <Comment comment={comment} />
-            ))}
-          </div>
+          {comments && comments.length > 0 && (
+            <>
+              <h2 className={styles.deckinfo__cards__title}>Comments</h2>
+              <div className={styles.deckinfo__comments}>
+                {comments.map((comment) => (
+                  <Comment comment={comment} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       ) : (
         <div>Loading deck...</div>
