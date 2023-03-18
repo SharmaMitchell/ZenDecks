@@ -3,7 +3,7 @@ import { useDocument } from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth, firestore, increment } from "../utils/firebase";
 import { useDecks } from "../utils/hooks";
-import styles from "./DeckInfo.module.scss";
+import { motion } from "framer-motion";
 import { ReactComponent as User } from "../../assets/user.svg";
 import { ReactComponent as Cards } from "../../assets/cards.svg";
 import { ReactComponent as Star } from "../../assets/star.svg";
@@ -12,7 +12,7 @@ import { ReactComponent as Clock } from "../../assets/clock.svg";
 import Button from "../Button/Button";
 import CardPreview from "../CardPreview/CardPreview";
 import Comment from "../Comment/Comment";
-
+import styles from "./DeckInfo.module.scss";
 //TODO: Fetch all cards from specific deck (implement useDeck hook)
 //TODO: Show user's SRS card weight beside each card
 
@@ -92,7 +92,12 @@ const DeckInfo = () => {
     <>
       {deck ? (
         <div className={styles.deckinfo}>
-          <div className={styles.deckinfo__top}>
+          <motion.div
+            className={styles.deckinfo__top}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.15 }}
+          >
             <h1 className={styles.deckinfo__title}>{deck.title}</h1>
             <p className={styles.deckinfo__description}>{deck.description}</p>
             <ul className={styles.deckinfo__tags}>
@@ -152,21 +157,45 @@ const DeckInfo = () => {
                 </div>
               )}
             </div>
-          </div>
-          <h2 className={styles.deckinfo__cards__title}>Cards</h2>
-          <div className={styles.deckinfo__cards}>
+          </motion.div>
+          <motion.h2
+            className={styles.deckinfo__cards__title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            Cards
+          </motion.h2>
+          <motion.div
+            className={styles.deckinfo__cards}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
+          >
             {deck.cards?.map((card) => (
               <CardPreview card={card} />
             ))}
-          </div>
+          </motion.div>
           {comments && comments.length > 0 && (
             <>
-              <h2 className={styles.deckinfo__cards__title}>Comments</h2>
-              <div className={styles.deckinfo__comments}>
+              <motion.h2
+                className={styles.deckinfo__cards__title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: 0.15 }}
+              >
+                Comments
+              </motion.h2>
+              <motion.div
+                className={styles.deckinfo__comments}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: 0.2 }}
+              >
                 {comments.map((comment) => (
                   <Comment comment={comment} />
                 ))}
-              </div>
+              </motion.div>
             </>
           )}
         </div>
