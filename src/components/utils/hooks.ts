@@ -79,7 +79,6 @@ export function useDecks(): Deck[] {
 
 // Custom hook to get deck data and all cards from firestore, and store it in the redux store
 // Data will only be fetched once per session for each deck (need to store deck id in local storage?)
-// TODO: Fix max update depth error here, on fresh page load (when useDecks hasn't been called yet)
 export function useDeck(deckId: string): Deck | undefined {
   const [value, loading] = useDocumentData(
     firestore.collection("decks").doc(deckId) as any
@@ -96,16 +95,16 @@ export function useDeck(deckId: string): Deck | undefined {
 
   // Set card data for the deck in the redux store
   useEffect(() => {
-    if (cardsValue && value && !loading && !cardsLoading) {
+    if (cardsValue && value) {
       store.dispatch(
         setDeckById(deckId, {
-          id: deckId,
+          id: value.id,
           cards: cardsValue,
           ...value,
         } as Deck)
       );
     }
-  }, [loading, cardsLoading]);
+  }, [cardsValue, value]);
 
   // Return the corresponding deck, or undefined if not found
   return cardsValue && value && !loading && !cardsLoading
