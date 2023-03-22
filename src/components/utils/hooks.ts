@@ -33,6 +33,7 @@ export function useUserData() {
 
 // Custom hook to get deck data from firestore, and store it in the redux store
 // Data will only be fetched if the decks array in the store is empty
+// TODO: Fix max update depth error here, on fresh page load (when useDecks hasn't been called yet)
 export function useDecks(): Deck[] {
   const decks = useSelector((state: RootState) => state.decks.decks);
 
@@ -56,13 +57,9 @@ export function useDecks(): Deck[] {
   useEffect(() => {
     if (cardsSnapshot && snapshot) {
       const docs = snapshot.docs.map((doc) => {
-        console.log("cards: ", cardsSnapshot.docs[0].data());
-        console.log("parent: ", cardsSnapshot.docs[0].ref.parent?.parent?.id);
-        console.log("doc: ", doc.id);
         const deckCards = cardsSnapshot.docs
           .filter((cardDoc) => cardDoc.ref.parent?.parent?.id === doc.id)
           .map((cardDoc) => cardDoc.data());
-        console.log("deckCards: ", deckCards);
         return {
           id: doc.id,
           ref: doc.ref,
@@ -72,7 +69,6 @@ export function useDecks(): Deck[] {
       });
 
       store.dispatch(setDecks(docs));
-      console.log("useDecks: ", docs);
     }
   }, [cardsSnapshot, snapshot]);
 
@@ -81,15 +77,10 @@ export function useDecks(): Deck[] {
 
 // Custom hook to get deck data and all cards from firestore, and store it in the redux store
 // Data will only be fetched once per session for each deck (need to store deck id in local storage?)
+// TODO: Fix max update depth error here, on fresh page load (when useDecks hasn't been called yet)
 export function useDeck(deckId: string): Deck | undefined {
-  const decks = useSelector((state: RootState) => state.decks.decks);
-
-  // Find the corresponding deck in the redux store
-  const matchingDeck = decks.find((deck) => deck.id === deckId);
-
-  // TODO: Fix max update depth error here, on fresh page load (when useDecks hasn't been called yet)
   const [value, loading, error, snapshot] = useDocumentDataOnce(
-    matchingDeck ? null : (firestore.collection("decks").doc(deckId) as any)
+    firestore.collection("decks").doc(deckId) as any
   );
 
   // Get up to 100 cards for the deck (session study limit = 100)
@@ -104,21 +95,19 @@ export function useDeck(deckId: string): Deck | undefined {
 
   // Set card data for the deck in the redux store
   useEffect(() => {
-    if (cardsSnapshot && snapshot) {
-      console.log("snapshot:", snapshot);
-      console.log("cardsSnapshot:", cardsSnapshot);
-      console.log("setDeckById:", setDeckById);
-
+    if (cardsValue && value && !loading && !cardsLoading) {
       store.dispatch(
         setDeckById(deckId, {
           id: deckId,
-          cards: cardsSnapshot.docs.map((doc) => doc.data()),
-          ...(matchingDeck ?? snapshot.data()),
+          cards: cardsValue,
+          ...value,
         } as Deck)
       );
     }
-  }, [cardsSnapshot, snapshot, deckId, matchingDeck]);
+  }, [loading, cardsLoading]);
 
   // Return the corresponding deck, or undefined if not found
-  return matchingDeck;
+  return cardsValue && value && !loading && !cardsLoading
+    ? ({ id: deckId, cards: cardsValue, ...value } as Deck)
+    : undefined;
 }
