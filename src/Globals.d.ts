@@ -13,6 +13,7 @@ declare interface Deck {
   authorName: string;
   authorID: string;
   cards?: any[];
+  allCardsLoaded?: boolean;
   rating?: number;
   ratingCount?: number;
   cardCount: number;

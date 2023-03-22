@@ -66,6 +66,7 @@ export function useDecks(): Deck[] {
           id: doc.id,
           ref: doc.ref,
           cards: deckCards,
+          allCardsLoaded: false,
           ...doc.data(),
         };
       });
@@ -80,7 +81,7 @@ export function useDecks(): Deck[] {
 // Custom hook to get deck data and all cards from firestore, and store it in the redux store
 // Data will only be fetched once per session for each deck (need to store deck id in local storage?)
 export function useDeck(deckId: string): Deck | undefined {
-  const [value, loading] = useDocumentData(
+  const [value, loading, error, snapshot] = useDocumentData(
     firestore.collection("decks").doc(deckId) as any
   );
 
@@ -95,10 +96,12 @@ export function useDeck(deckId: string): Deck | undefined {
 
   // Set card data for the deck in the redux store
   useEffect(() => {
-    if (cardsValue && value) {
+    if (cardsValue && value && snapshot) {
       store.dispatch(
         setDeckById(deckId, {
           id: value.id,
+          ref: snapshot.ref,
+          allCardsLoaded: true,
           cards: cardsValue,
           ...value,
         } as Deck)
