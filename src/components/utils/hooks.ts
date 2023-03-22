@@ -68,7 +68,7 @@ export function useDecks(): Deck[] {
           cards: deckCards,
           allCardsLoaded: false,
           ...doc.data(),
-        };
+        } as Deck;
       });
 
       store.dispatch(setDecks(docs));
@@ -79,19 +79,25 @@ export function useDecks(): Deck[] {
 }
 
 // Custom hook to get deck data and all cards from firestore, and store it in the redux store
-// Data will only be fetched once per session for each deck (need to store deck id in local storage?)
+// Data will only be fetched once per session for each deck (tracked by deck.allCardsLoaded)
 export function useDeck(deckId: string): Deck | undefined {
+  const decks = useSelector((state: RootState) => state.decks.decks);
+
   const [value, loading, error, snapshot] = useDocumentData(
-    firestore.collection("decks").doc(deckId) as any
+    decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
+      ? null
+      : (firestore.collection("decks").doc(deckId) as any)
   );
 
   // Get up to 100 cards for the deck (session study limit = 100)
   const [cardsValue, cardsLoading] = useCollectionData(
-    firestore
-      .collection("decks")
-      .doc(deckId)
-      .collection("cards")
-      .limit(100) as any
+    decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
+      ? null
+      : (firestore
+          .collection("decks")
+          .doc(deckId)
+          .collection("cards")
+          .limit(100) as any)
   );
 
   // Set card data for the deck in the redux store
@@ -99,7 +105,7 @@ export function useDeck(deckId: string): Deck | undefined {
     if (cardsValue && value && snapshot) {
       store.dispatch(
         setDeckById(deckId, {
-          id: value.id,
+          id: snapshot.id,
           ref: snapshot.ref,
           allCardsLoaded: true,
           cards: cardsValue,
@@ -110,7 +116,5 @@ export function useDeck(deckId: string): Deck | undefined {
   }, [cardsValue, value]);
 
   // Return the corresponding deck, or undefined if not found
-  return cardsValue && value && !loading && !cardsLoading
-    ? ({ id: deckId, cards: cardsValue, ...value } as Deck)
-    : undefined;
+  return decks.find((deck) => deck.id === deckId);
 }
