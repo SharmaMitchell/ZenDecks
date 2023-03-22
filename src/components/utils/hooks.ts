@@ -2,8 +2,11 @@ import { auth, firestore } from "./firebase";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
-import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
-import store, { setDecks, RootState } from "../../store/store";
+import {
+  useCollectionDataOnce,
+  useDocumentDataOnce,
+} from "react-firebase-hooks/firestore";
+import store, { setDecks, RootState, setDeckById } from "../../store/store";
 
 // Custom hook to read  auth record and user profile doc
 export function useUserData() {
@@ -74,4 +77,48 @@ export function useDecks(): Deck[] {
   }, [cardsSnapshot, snapshot]);
 
   return decks;
+}
+
+// Custom hook to get deck data and all cards from firestore, and store it in the redux store
+// Data will only be fetched once per session for each deck (need to store deck id in local storage?)
+export function useDeck(deckId: string): Deck | undefined {
+  const decks = useSelector((state: RootState) => state.decks.decks);
+
+  // Find the corresponding deck in the redux store
+  const matchingDeck = decks.find((deck) => deck.id === deckId);
+
+  // TODO: Fix max update depth error here, on fresh page load (when useDecks hasn't been called yet)
+  const [value, loading, error, snapshot] = useDocumentDataOnce(
+    matchingDeck ? null : (firestore.collection("decks").doc(deckId) as any)
+  );
+
+  // Get up to 100 cards for the deck (session study limit = 100)
+  const [cardsValue, cardsLoading, cardsError, cardsSnapshot] =
+    useCollectionDataOnce(
+      firestore
+        .collection("decks")
+        .doc(deckId)
+        .collection("cards")
+        .limit(100) as any
+    );
+
+  // Set card data for the deck in the redux store
+  useEffect(() => {
+    if (cardsSnapshot && snapshot) {
+      console.log("snapshot:", snapshot);
+      console.log("cardsSnapshot:", cardsSnapshot);
+      console.log("setDeckById:", setDeckById);
+
+      store.dispatch(
+        setDeckById(deckId, {
+          id: deckId,
+          cards: cardsSnapshot.docs.map((doc) => doc.data()),
+          ...(matchingDeck ?? snapshot.data()),
+        } as Deck)
+      );
+    }
+  }, [cardsSnapshot, snapshot, deckId, matchingDeck]);
+
+  // Return the corresponding deck, or undefined if not found
+  return matchingDeck;
 }

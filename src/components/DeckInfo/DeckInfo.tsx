@@ -2,7 +2,7 @@ import React from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth, firestore, increment } from "../utils/firebase";
-import { useDecks } from "../utils/hooks";
+import { useDeck } from "../utils/hooks";
 import { motion } from "framer-motion";
 import { ReactComponent as User } from "../../assets/user.svg";
 import { ReactComponent as Cards } from "../../assets/cards.svg";
@@ -52,10 +52,10 @@ const comments: UserComment[] = [
 ];
 
 const DeckInfo = () => {
-  const { deckId } = useParams<{ deckId: string }>();
+  const { deckId = "" } = useParams<{ deckId: string }>();
 
-  //   const deck = useDeck(deckId);
-  const deck = useDecks()[0];
+  const deck = useDeck(deckId);
+  // const deck = useDecks()[0];
   const navigate = useNavigate();
 
   // Listen to users document for current user
