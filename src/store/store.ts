@@ -67,9 +67,13 @@ export default store;
 export const setDeckById =
   (id: string, deck: Deck) => (dispatch: any, getState: any) => {
     const { decks } = getState().decks;
-    const updatedDecks = decks.map((d: Deck) =>
-      d.id === id ? { ...d, ...deck } : d
-    );
+
+    // If the deck already exists, update it, otherwise add it to the list
+    const deckIndex = decks.findIndex((d: Deck) => d.id === id);
+    const updatedDecks =
+      deckIndex !== -1
+        ? decks.map((d: Deck) => (d.id === id ? { ...d, ...deck } : d))
+        : [...decks, { ...deck }];
     dispatch(setDecks(updatedDecks));
     dispatch(setDeck(deck));
   };
