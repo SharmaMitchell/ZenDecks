@@ -140,7 +140,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
               pagination={true}
               className={styles.swiper}
             >
-              {cards?.map((card, index) => (
+              {cards?.slice(0, 5).map((card, index) => (
                 <SwiperSlide key={index} style={{ width: "auto" }}>
                   <Flashcard
                     front={card.front}
