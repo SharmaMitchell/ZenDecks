@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector } from "react-redux";
 import {
+  useCollectionData,
   useCollectionDataOnce,
+  useDocumentData,
   useDocumentDataOnce,
 } from "react-firebase-hooks/firestore";
 import store, { setDecks, RootState, setDeckById } from "../../store/store";
@@ -79,19 +81,18 @@ export function useDecks(): Deck[] {
 // Data will only be fetched once per session for each deck (need to store deck id in local storage?)
 // TODO: Fix max update depth error here, on fresh page load (when useDecks hasn't been called yet)
 export function useDeck(deckId: string): Deck | undefined {
-  const [value, loading, error, snapshot] = useDocumentDataOnce(
+  const [value, loading] = useDocumentData(
     firestore.collection("decks").doc(deckId) as any
   );
 
   // Get up to 100 cards for the deck (session study limit = 100)
-  const [cardsValue, cardsLoading, cardsError, cardsSnapshot] =
-    useCollectionDataOnce(
-      firestore
-        .collection("decks")
-        .doc(deckId)
-        .collection("cards")
-        .limit(100) as any
-    );
+  const [cardsValue, cardsLoading] = useCollectionData(
+    firestore
+      .collection("decks")
+      .doc(deckId)
+      .collection("cards")
+      .limit(100) as any
+  );
 
   // Set card data for the deck in the redux store
   useEffect(() => {
