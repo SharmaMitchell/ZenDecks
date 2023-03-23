@@ -35,7 +35,6 @@ export function useUserData() {
 
 // Custom hook to get deck data from firestore, and store it in the redux store
 // Data will only be fetched if the decks array in the store is empty
-// TODO: Fix max update depth error here, on fresh page load (when useDecks hasn't been called yet)
 export function useDecks(): Deck[] {
   const decks = useSelector((state: RootState) => state.decks.decks);
 
@@ -62,15 +61,20 @@ export function useDecks(): Deck[] {
         const deckCards = cardsSnapshot.docs
           .filter((cardDoc) => cardDoc.ref.parent?.parent?.id === doc.id)
           .map((cardDoc) => cardDoc.data());
+        console.log(doc.data()?.created);
+        console.log(doc.data()?.created.toMillis());
+        console.log(doc.data()?.created.toDate());
+        console.log(doc.data()?.created.toDate().getTime());
         return {
+          ...doc.data(),
           id: doc.id,
           path: doc.ref.path,
           cards: deckCards,
           allCardsLoaded: false,
-          ...doc.data(),
+          created: doc.data()?.created.toMillis(), // Convert firebase timestamp to milliseconds
         } as Deck;
       });
-
+      console.log(docs); // created: nt {seconds: 1678726800, nanoseconds: 346000000}
       store.dispatch(setDecks(docs));
     }
   }, [cardsSnapshot, snapshot]);
@@ -105,11 +109,12 @@ export function useDeck(deckId: string): Deck | undefined {
     if (cardsValue && value && snapshot) {
       store.dispatch(
         setDeckById(deckId, {
+          ...value,
           id: snapshot.id,
           path: snapshot.ref.path,
+          created: value.created.toMillis(),
           allCardsLoaded: true,
           cards: cardsValue,
-          ...value,
         } as Deck)
       );
     }

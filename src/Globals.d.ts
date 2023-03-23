@@ -6,6 +6,7 @@ declare module "*.module.scss" {
 declare interface Deck {
   id: string;
   path: string;
+  created: number; // number for timestamp
   title: string;
   description: string;
   tags?: string[];
