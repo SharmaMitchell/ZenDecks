@@ -168,6 +168,7 @@ const DeckSelection = (props: DeckSelectionProps) => {
         >
           {decks.map((deck: Deck, key: number) => (
             <motion.div
+              key={key}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, delay: 0 + key * 0.1 }}

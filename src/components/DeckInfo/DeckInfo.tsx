@@ -101,8 +101,8 @@ const DeckInfo = () => {
             <h1 className={styles.deckinfo__title}>{deck.title}</h1>
             <p className={styles.deckinfo__description}>{deck.description}</p>
             <ul className={styles.deckinfo__tags}>
-              {deck.tags?.map((tag) => (
-                <li>{tag}</li>
+              {deck.tags?.map((tag, index) => (
+                <li key={index}>{tag}</li>
               ))}
             </ul>
             <div className={styles.deckinfo__author}>
@@ -175,8 +175,8 @@ const DeckInfo = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2, delay: 0.075 }}
           >
-            {deck.cards?.map((card) => (
-              <CardPreview card={card} />
+            {deck.cards?.map((card, index) => (
+              <CardPreview card={card} key={index} />
             ))}
           </motion.div>
           {comments && comments.length > 0 && (
@@ -195,8 +195,8 @@ const DeckInfo = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2, delay: 0.175 }}
               >
-                {comments.map((comment) => (
-                  <Comment comment={comment} />
+                {comments.map((comment, index) => (
+                  <Comment comment={comment} key={index} />
                 ))}
               </motion.div>
             </>

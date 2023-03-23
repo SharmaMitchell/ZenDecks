@@ -62,8 +62,8 @@ const DeckPreview = (props: DeckPreviewProps) => {
         <h3 className={styles.deckpreview__title}>{deck.title}</h3>
         <p className={styles.deckpreview__description}>{deck.description}</p>
         <ul className={styles.deckpreview__tags}>
-          {deck.tags?.map((tag) => (
-            <li>{tag}</li>
+          {deck.tags?.map((tag, index) => (
+            <li key={index}>{tag}</li>
           ))}
         </ul>
 
