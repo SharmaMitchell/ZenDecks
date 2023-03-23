@@ -48,11 +48,11 @@ export function useDecks(): Deck[] {
       : null
   );
 
-  // Get the first 5 cards for each deck using a collectionGroup query
+  // Get the first 5 cards PER DECK using a collectionGroup query
   const [cardsValue, cardsLoading, cardsError, cardsSnapshot] =
     useCollectionDataOnce(
       decks.length === 0 // check if data is already in store
-        ? (firestore.collectionGroup("cards").limit(5) as any)
+        ? (firestore.collectionGroup("cards") as any)
         : null
     );
 
