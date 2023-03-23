@@ -117,7 +117,10 @@ const DeckInfo = () => {
                 fill="var(--text-color)"
                 className={styles.deckinfo__icon}
               />
-              Mar 2023
+              {new Date(deck.created).toLocaleDateString("en-us", {
+                month: "short",
+                year: "numeric",
+              })}
             </div>
             <div className={styles.deckinfo__numcards}>
               <Cards
