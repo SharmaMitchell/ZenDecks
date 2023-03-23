@@ -64,7 +64,7 @@ export function useDecks(): Deck[] {
           .map((cardDoc) => cardDoc.data());
         return {
           id: doc.id,
-          ref: doc.ref,
+          path: doc.ref.path,
           cards: deckCards,
           allCardsLoaded: false,
           ...doc.data(),
@@ -106,7 +106,7 @@ export function useDeck(deckId: string): Deck | undefined {
       store.dispatch(
         setDeckById(deckId, {
           id: snapshot.id,
-          ref: snapshot.ref,
+          path: snapshot.ref.path,
           allCardsLoaded: true,
           cards: cardsValue,
           ...value,

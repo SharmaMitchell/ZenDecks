@@ -5,7 +5,7 @@ declare module "*.module.scss" {
 
 declare interface Deck {
   id: string;
-  ref: DocumentReference<DocumentData>;
+  path: string;
   title: string;
   description: string;
   tags?: string[];
