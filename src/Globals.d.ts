@@ -5,14 +5,14 @@ declare module "*.module.scss" {
 
 declare interface Deck {
   id: string;
-  ref: any;
+  ref: DocumentReference<DocumentData>;
   title: string;
   description: string;
   tags?: string[];
   public: boolean;
   authorName: string;
   authorID: string;
-  cards?: any[];
+  cards?: Card[];
   allCardsLoaded?: boolean;
   rating?: number;
   ratingCount?: number;
