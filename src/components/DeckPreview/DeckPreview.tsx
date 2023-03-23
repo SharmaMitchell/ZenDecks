@@ -17,40 +17,19 @@ import { useNavigate } from "react-router-dom";
 import { DocumentReference } from "firebase/firestore";
 
 interface DeckPreviewProps {
-  title: string;
-  description: string;
-  tags?: string[];
-  author: string;
-  rating?: number;
-  numRatings?: number;
-  numcards: number;
-  numusers?: number;
-  cards?: Card[];
+  deck: Deck;
   preview?: boolean;
-  deckRef: any;
 }
 
 const DeckPreview = (props: DeckPreviewProps) => {
-  const {
-    title,
-    description,
-    tags = [],
-    author,
-    rating = 0,
-    numRatings = 1,
-    numcards,
-    numusers = 0,
-    cards = [],
-    preview = true,
-    deckRef,
-  } = props;
+  const { deck, preview } = props;
 
   const navigate = useNavigate();
 
   // Listen to users document for current user
   const userRef = firestore
     .collection("decks")
-    .doc(deckRef.id)
+    .doc(deck.id)
     .collection("users")
     .doc(auth.currentUser?.uid);
 
@@ -62,7 +41,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
         const uid = auth.currentUser?.uid;
         const batch = firestore.batch();
 
-        batch.update(deckRef, { userCount: increment(1) });
+        batch.update(firestore.doc(deck.path), { userCount: increment(1) });
         batch.set(userRef, { uid /*lastStudied: new Date()*/ });
 
         batch.commit();
@@ -74,48 +53,50 @@ const DeckPreview = (props: DeckPreviewProps) => {
 
   const handleStudy = () => {
     handleAdd();
-    navigate(`/study/${deckRef.id}`);
+    navigate(`/study/${deck.id}`);
   };
 
   return (
     <div className={`${styles.deckpreview} ${!preview && styles.nopreview}`}>
       <div className={styles.deckpreview__left}>
-        <h3 className={styles.deckpreview__title}>{title}</h3>
-        <p className={styles.deckpreview__description}>{description}</p>
+        <h3 className={styles.deckpreview__title}>{deck.title}</h3>
+        <p className={styles.deckpreview__description}>{deck.description}</p>
         <ul className={styles.deckpreview__tags}>
-          {tags.map((tag) => (
+          {deck.tags?.map((tag) => (
             <li>{tag}</li>
           ))}
         </ul>
 
         <div className={styles.deckpreview__author}>
           <User fill="var(--text-color)" className={styles.deckpreview__icon} />
-          {author}
+          {deck.authorName}
         </div>
         <div className={styles.deckpreview__numcards}>
           <Cards
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
-          {numcards} Card{numcards > 1 && "s"}
+          {deck.cardCount} Card{deck.cardCount > 1 && "s"}
         </div>
         <div className={styles.deckpreview__rating}>
           <Star fill="var(--text-color)" className={styles.deckpreview__icon} />
-          {numRatings > 0 ? (rating / numRatings).toFixed(1) : "N/A"}
+          {deck.ratingCount && deck.rating && deck.ratingCount > 0
+            ? (deck.rating / deck.ratingCount).toFixed(1)
+            : "N/A"}
         </div>
         <div className={styles.deckpreview__numusers}>
           <Lightning
             fill="var(--text-color)"
             className={styles.deckpreview__icon}
           />
-          {numusers} User{numusers > 1 && "s"}
+          {deck.userCount} User{deck.userCount && deck.userCount > 1 && "s"}
         </div>
         <div className={styles.deckpreview__buttons}>
           <div className={styles.deckpreview__button}>
             <Button label="Study Deck" onClick={handleStudy} />
           </div>
           <div className={styles.deckpreview__button}>
-            <Button label="Deck Details" link={`/decks/${deckRef.id}`} />
+            <Button label="Deck Details" link={`/decks/${deck.id}`} />
           </div>
           {userDoc && !userDoc.exists() ? (
             <div className={styles.deckpreview__button}>
@@ -140,7 +121,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
               pagination={true}
               className={styles.swiper}
             >
-              {cards?.slice(0, 5).map((card, index) => (
+              {deck.cards?.slice(0, 5).map((card, index) => (
                 <SwiperSlide key={index} style={{ width: "auto" }}>
                   <Flashcard
                     front={card.front}

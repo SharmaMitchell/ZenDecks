@@ -173,19 +173,7 @@ const DeckSelection = (props: DeckSelectionProps) => {
               transition={{ duration: 0.25, delay: 0 + key * 0.1 }}
               className={styles.deckselection__deck}
             >
-              <DeckPreview
-                title={deck.title}
-                description={deck.description}
-                tags={deck.tags}
-                author={deck.authorName}
-                rating={deck.rating}
-                numRatings={deck.ratingCount}
-                numcards={deck.cardCount}
-                numusers={deck.userCount}
-                preview={preview}
-                cards={deck.cards}
-                deckRef={deck.ref}
-              />
+              <DeckPreview deck={deck} preview={preview} />
             </motion.div>
           ))}
         </div>
