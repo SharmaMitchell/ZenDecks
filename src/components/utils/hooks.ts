@@ -61,10 +61,6 @@ export function useDecks(): Deck[] {
         const deckCards = cardsSnapshot.docs
           .filter((cardDoc) => cardDoc.ref.parent?.parent?.id === doc.id)
           .map((cardDoc) => cardDoc.data());
-        console.log(doc.data()?.created);
-        console.log(doc.data()?.created.toMillis());
-        console.log(doc.data()?.created.toDate());
-        console.log(doc.data()?.created.toDate().getTime());
         return {
           ...doc.data(),
           id: doc.id,
@@ -74,7 +70,6 @@ export function useDecks(): Deck[] {
           created: doc.data()?.created.toMillis(), // Convert firebase timestamp to milliseconds
         } as Deck;
       });
-      console.log(docs); // created: nt {seconds: 1678726800, nanoseconds: 346000000}
       store.dispatch(setDecks(docs));
     }
   }, [cardsSnapshot, snapshot]);
