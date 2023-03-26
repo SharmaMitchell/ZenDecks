@@ -1,7 +1,12 @@
 import React from "react";
+import Study from "../components/Study/Study";
 
-const Study = () => {
-  return <div>Study</div>;
+const StudyPage = () => {
+  return (
+    <div>
+      <Study />
+    </div>
+  );
 };
 
-export default Study;
+export default StudyPage;
