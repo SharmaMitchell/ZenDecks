@@ -65,7 +65,7 @@ export function useDecks(): Deck[] {
           ...doc.data(),
           id: doc.id,
           path: doc.ref.path,
-          cards: deckCards,
+          cards: deckCards as Card[],
           allCardsLoaded: false,
           created: doc.data()?.created.toMillis(), // Convert firebase timestamp to milliseconds
         } as Deck;
@@ -109,7 +109,7 @@ export function useDeck(deckId: string): Deck | undefined {
           path: snapshot.ref.path,
           created: value.created.toMillis(),
           allCardsLoaded: true,
-          cards: cardsValue,
+          cards: cardsValue as Card[],
         } as Deck)
       );
     }
