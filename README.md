@@ -10,7 +10,7 @@ Flashy is a free, open source flashcard webapp with full Markdown and LaTeX supp
 - Currently support Google account sign-in
 - Email/Password sign-in coming soon
 
-### Cloud Firestore Databsae  
+### Cloud Firestore Database  
 **Data Model**:
 - Decks collection
   - Deck metadata (stored directly on the deck document: author, title, description, tags, etc.)
@@ -41,10 +41,10 @@ Flashy is a free, open source flashcard webapp with full Markdown and LaTeX supp
 ### Framer Motion Animations  
 - Subtle animations on component mount (usually fading in opacity and transitioning y position up from ~20px offset)
 - Globally defined animation parameters coming soon, for consistency (e.g. page content fades in the same)
-  - See (Motion Config)[https://www.framer.com/motion/motion-config/]
+  - See [Motion Config](https://www.framer.com/motion/motion-config/)
 
 ### Swiper Carousel  
-- Swiper.js used to imlpement carousels across the site, including "Preview" section on homepage, card previews on deck info panels, and study mode.
+- Swiper.js used to implement carousels across the site, including "Preview" section on homepage, card previews on deck info panels, and study mode.
 
 ## Contributing  
 Post an issue, or respond to an open issue to get started. Feel free to contact the main developer, Mitchell, via [Discord](https://discord.com/users/157610726326927361) if you have any questions.  
