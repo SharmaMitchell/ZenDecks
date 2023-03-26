@@ -9,6 +9,29 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+/* 
+Study mode MVP:
+- On start of session, queue all cards in deck (or all cards that have not been studied yet)
+- Save study progress in redux store
+- On swiper slide change, update redux store with current card index
+- On session end, update firebase with new study progress
+  - TODO: Implement firestore collection for study progress per user per deck
+
+Study mode v2:
+- Implement SRS algorithm
+  - Track "lastStudied" date for each card
+  - Track "nextReview" date for each card, based on SRS algorithm
+  - Queue cards based on "nextReview" date (queue all if "nextReview" is null)
+  - Implement "good"/"bad" buttons for card reviews
+    - Adjust "nextReview" date based on "good"/"bad" button
+
+Study mode UI improvements:
+- Larger cards on desktop (work on scaling size to screen better)
+- Fix card scrolling on overflow
+- Fix card markdown/latex
+- Fix card code blocks
+*/
+
 const Study = () => {
   const { deckId = "" } = useParams<{ deckId: string }>();
 
