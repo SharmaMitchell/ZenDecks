@@ -17,6 +17,7 @@ interface CardProps {
   swiperUsed?: boolean;
   setSwiperUsed?: React.Dispatch<React.SetStateAction<boolean>>;
   size?: "small" | "large" | undefined;
+  background?: "card" | "pagebg" | undefined;
 }
 
 type CodeProps = {
@@ -59,6 +60,7 @@ const Flashcard = (props: CardProps) => {
     swiperUsed,
     setSwiperUsed,
     size = "large",
+    background,
   } = props;
 
   // flip state for card sides
@@ -128,7 +130,9 @@ const Flashcard = (props: CardProps) => {
         " " +
         (isFlipped ? styles.flipped : "") +
         " " +
-        (size === "small" ? styles.small : "")
+        (size === "small" ? styles.small : "") +
+        " " +
+        (background === "pagebg" ? styles.pagebg : "")
       }
       onClick={flipCard}
     >

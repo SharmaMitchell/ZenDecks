@@ -128,6 +128,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
                     back={card.back}
                     hint={true}
                     size="small"
+                    background="pagebg"
                   />
                 </SwiperSlide>
               ))}
