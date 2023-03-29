@@ -13,7 +13,7 @@
   &__text {
     width: max(25vw, 400px);
     max-width: 90vw;
-    height: 400px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     text-align: left;
