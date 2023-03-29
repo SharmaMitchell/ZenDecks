@@ -1,0 +1,87 @@
+.deckcreation {
+  padding: var(--section-paddingY) 0;
+  width: min(1080px, 95vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+    margin-bottom: 35px;
+  }
+
+  &__cards {
+    margin: 10px 0;
+    text-align: left;
+
+    &__title {
+      margin: 0;
+      text-align: left;
+      font-size: 1.75rem;
+      padding: 0 10px;
+    }
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--card-color);
+  }
+
+  &__input {
+    margin: 0;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    box-sizing: border-box;
+    font-size: 1rem;
+    &__label {
+      display: block;
+      margin-bottom: 4px;
+      margin-top: 8px;
+      padding: 0;
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: left;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  scrollbar-color: var(--card-scroll-track-color) var(--card-scroll-thumb-color);
+
+  -webkit-tap-highlight-color: transparent;
+
+  ::-webkit-scrollbar {
+    width: var(--card-sb-size);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--card-scroll-track-color);
+    border-radius: 10px;
+    // border-left: solid 3px var(--card-color);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--card-scroll-thumb-color);
+    border-radius: 10px;
+    // border-left: solid 3px var(--card-color);
+  }
+}
