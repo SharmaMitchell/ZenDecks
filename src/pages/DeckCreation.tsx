@@ -1,7 +1,11 @@
 import React from "react";
-
-const DeckCreation = () => {
-  return <div>DeckCreation</div>;
+import DeckCreation from "../components/DeckCreation/DeckCreation";
+const DeckCreationPage = () => {
+  return (
+    <div>
+      <DeckCreation />
+    </div>
+  );
 };
 
-export default DeckCreation;
+export default DeckCreationPage;
