@@ -4,6 +4,7 @@ import useLocalStorage from "use-local-storage";
 import Home from "./pages/Home";
 import Decks from "./pages/Decks";
 import DeckInfoPage from "./pages/DeckInfo";
+import DeckCreation from "./pages/DeckCreation";
 import StudyPage from "./pages/Study";
 import Login from "./pages/Login";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
@@ -60,6 +61,7 @@ function App() {
               <Route path="/about" element={<h1>About</h1>} />
               <Route path="/decks" element={<Decks />} />
               <Route path="/decks/:deckId" element={<DeckInfoPage />} />
+              <Route path="/create" element={<DeckCreation />} />
               <Route path="/study" element={<Decks />} />
               <Route path="/study/:deckId" element={<StudyPage />} />
               <Route path="/login" element={<Login />} />
