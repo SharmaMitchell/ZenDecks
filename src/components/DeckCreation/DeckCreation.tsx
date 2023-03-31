@@ -10,6 +10,9 @@ TODO: Add "edit deck" functionality
   - If "edit", fetch deck info from Firebase
     - On submit, update deck info in Firebase
   - If "create", create new deck in Firebase
+
+TODO: Add save button to the bottom, near "add card" button
+
 */
 const DeckCreation = () => {
   const [title, setTitle] = useState("");
