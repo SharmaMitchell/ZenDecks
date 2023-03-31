@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./CardCreation.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
+import { motion } from "framer-motion";
 
 interface CardCreationProps {
   front: string;
@@ -27,7 +28,12 @@ const CardCreation = (props: CardCreationProps) => {
   const { front, back, handleCardChange, index } = props;
 
   return (
-    <div className={styles.cardcreation}>
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, delay: index == 0 ? 0.1 : 0 }}
+      className={styles.cardcreation}
+    >
       <div className={styles.cardcreation__form}>
         <label className={styles.cardcreation__input__label} htmlFor="front">
           Front
@@ -57,7 +63,7 @@ const CardCreation = (props: CardCreationProps) => {
       <div className={styles.cardcreation__preview}>
         <Flashcard front={front} back={back} size={"small"} hint={true} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

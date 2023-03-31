@@ -129,12 +129,7 @@ const DeckCreation = () => {
       >
         Cards
       </motion.h2>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, delay: 0.1 }}
-        className={styles.deckcreation__cards}
-      >
+      <div className={styles.deckcreation__cards}>
         {cards.map((card, index) => (
           <CardCreation
             key={index}
@@ -144,7 +139,7 @@ const DeckCreation = () => {
             handleCardChange={handleCardChange}
           />
         ))}
-      </motion.div>
+      </div>
       <div className={styles.deckcreation__addcard}>
         <Button label="Add Card" onClick={addCard} />
       </div>
