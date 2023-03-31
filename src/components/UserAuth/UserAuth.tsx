@@ -9,6 +9,10 @@ import {
 import { UserContext } from "../utils/context";
 import debounce from "lodash.debounce";
 
+/**
+ * Sign in with Google handler, using Firebase's auth.signInWithPopup
+ * method and the GoogleAuthProvider
+ */
 const signInWithGoogle = async () => {
   try {
     await auth.signInWithPopup(googleAuthProvider);
@@ -17,6 +21,9 @@ const signInWithGoogle = async () => {
   }
 };
 
+/**
+ * Username hint message, based on the username's validity
+ */
 const UsernameMessage = ({
   username,
   isValid,
@@ -54,6 +61,9 @@ const UsernameMessage = ({
   }
 };
 
+/**
+ * Username form component, for username selection upon sign up
+ */
 const UsernameForm = () => {
   const [formValue, setFormValue] = React.useState("");
   const [isValid, setIsValid] = React.useState(false);
@@ -61,10 +71,17 @@ const UsernameForm = () => {
 
   const { user, username } = useContext(UserContext);
 
+  /**
+   * Check username availability when the form value changes
+   */
   useEffect(() => {
     checkUsername(formValue);
   }, [formValue]);
 
+  /**
+   * Handle username input change
+   * @param e - The input change event
+   */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsValid(false);
     const val = e.target.value;
@@ -86,6 +103,9 @@ const UsernameForm = () => {
     }
   };
 
+  /**
+   * Check username availability as user enters it, limited to once every 500ms
+   */
   const checkUsername = useCallback(
     debounce(async (username: string) => {
       if (username.length >= 3) {
@@ -98,6 +118,9 @@ const UsernameForm = () => {
     []
   );
 
+  /**
+   * Submit handler, creates a batch write to Firestore to update the user's username
+   */
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -144,6 +167,10 @@ const UsernameForm = () => {
   );
 };
 
+/**
+ * User authentication component, renders the sign in button, or the user's avatar and username
+ * if they are signed in
+ */
 const UserAuth = () => {
   const { user, username } = useContext(UserContext);
 
