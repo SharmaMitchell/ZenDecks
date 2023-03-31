@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 import Button from "../Button/Button";
 import CardCreation from "../CardCreation/CardCreation";
 
+/*
+TODO: Add "edit deck" functionality
+  - Take in "create" or "edit" prop
+  - If "edit", fetch deck info from Firebase
+    - On submit, update deck info in Firebase
+  - If "create", create new deck in Firebase
+*/
 const DeckCreation = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -24,6 +31,7 @@ const DeckCreation = () => {
     setCards([...cards, { front: "", back: "" }]);
   };
 
+  // TODO: Implement submission to Firebase
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // submit deck info and cards to Firebase
