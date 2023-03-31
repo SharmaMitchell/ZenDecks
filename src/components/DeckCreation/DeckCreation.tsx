@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./DeckCreation.module.scss";
 import { motion } from "framer-motion";
+import Button from "../Button/Button";
 
 const DeckCreation = () => {
   return (
@@ -46,13 +47,18 @@ const DeckCreation = () => {
           >
             Tags
           </label>
-          <input
-            type="text"
-            name="decktags"
-            id="decktags"
-            placeholder="Comma separated tags: New, Deck, Wow"
-            className={styles.deckcreation__input}
-          />
+          <div className={styles.deckcreation__save}>
+            <input
+              type="text"
+              name="decktags"
+              id="decktags"
+              placeholder="Comma separated tags: New, Deck, Wow"
+              className={styles.deckcreation__input}
+            />
+            <div className={styles.deckcreation__save__button}>
+              <Button label="Save" />
+            </div>
+          </div>
         </div>
       </form>
       <motion.h2

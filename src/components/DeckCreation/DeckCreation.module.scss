@@ -61,8 +61,24 @@
     }
   }
 
+  &__save {
+    display: flex;
+    flex-direction: column;
+
+    &__button {
+      margin-top: 20px;
+      margin-left: 0;
+    }
+  }
+
   textarea {
     resize: none;
+    font-family: inherit;
+    font-variant: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-stretch: inherit;
   }
 
   scrollbar-color: var(--card-scroll-track-color) var(--card-scroll-thumb-color);
@@ -83,5 +99,18 @@
     background: var(--card-scroll-thumb-color);
     border-radius: 10px;
     // border-left: solid 3px var(--card-color);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .deckcreation {
+    &__save {
+      flex-direction: row;
+
+      &__button {
+        margin-left: 20px;
+        margin-top: 0;
+      }
+    }
   }
 }
