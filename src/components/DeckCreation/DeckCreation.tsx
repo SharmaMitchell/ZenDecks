@@ -119,6 +119,9 @@ const DeckCreation = () => {
           />
         ))}
       </div>
+      <div className={styles.deckcreation__addcard}>
+        <Button label="Add Card" onClick={addCard} />
+      </div>
     </div>
   );
 };
