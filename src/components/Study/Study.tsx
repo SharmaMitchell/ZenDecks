@@ -32,6 +32,9 @@ Study mode UI improvements:
 - Fix card code blocks
 */
 
+/**
+ * Study component (study mode): study all cards in a deck (based on deckId in URL)
+ */
 const Study = () => {
   const { deckId = "" } = useParams<{ deckId: string }>();
 

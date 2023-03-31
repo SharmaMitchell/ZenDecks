@@ -21,6 +21,12 @@ interface DeckPreviewProps {
   preview?: boolean;
 }
 
+/**
+ * DeckPreview component (preview shown in decks list, incl. metadata and demo cards)
+ * @param props - DeckPreviewProps
+ * @param props.deck - Deck to preview
+ * @param props.preview - Whether to show full preview (incl demo cards) or just metadata
+ */
 const DeckPreview = (props: DeckPreviewProps) => {
   const { deck, preview } = props;
 
@@ -35,6 +41,10 @@ const DeckPreview = (props: DeckPreviewProps) => {
 
   const [userDoc] = useDocument(userRef as any);
 
+  /**
+   * Add user to deck, when user clicks "Study" or "Add to Library"
+   * @todo Fix deckRef (see DeckInfo component)
+   */
   const handleAdd = () => {
     if (userDoc && !userDoc.exists()) {
       try {
@@ -51,6 +61,9 @@ const DeckPreview = (props: DeckPreviewProps) => {
     }
   };
 
+  /**
+   * Add user to deck and navigate to study page
+   */
   const handleStudy = () => {
     handleAdd();
     navigate(`/study/${deck.id}`);

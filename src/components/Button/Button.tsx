@@ -8,9 +8,21 @@ interface ButtonProps {
   onClick?: () => void;
   type?: "button" | "submit";
   disabled?: boolean;
-  variant?: "fill" | "outline"; //TODO: Implement variants
+  variant?: "fill" | "outline";
 }
 
+/**
+ * Button that can be clicked to navigate to a link or call a function
+ *
+ * @param props - The props object for the Button component
+ * @param props.label - The text to display on the button
+ * @param props.link - The link to navigate to when the button is clicked
+ * @param props.onClick - The function to call when the button is clicked
+ * @param props.type - The type of button (button or submit)
+ * @param props.disabled - Whether the button is disabled
+ * @param props.variant - The variant of the button (fill or outline)
+ * @todo Implement button variants (fill and outline)
+ */
 const Button = (props: ButtonProps) => {
   const { label, link, onClick, type = "button", disabled = false } = props;
   const buttonRef = useRef<HTMLButtonElement>(null);

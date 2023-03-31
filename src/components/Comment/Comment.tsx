@@ -7,6 +7,11 @@ interface CommentProps {
   comment: UserComment;
 }
 
+/**
+ * Comment component (used in DeckInfo component)
+ * @param props - The props object for the Comment component
+ * @param props.comment - The comment to render
+ */
 const Comment = (props: CommentProps) => {
   const { comment } = props;
 

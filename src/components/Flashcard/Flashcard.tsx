@@ -9,17 +9,6 @@ import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import styles from "./Flashcard.module.scss";
 
-interface CardProps {
-  front?: string;
-  back?: string;
-  hint?: boolean; // "Tap to flip" hint
-  autoflip?: number | false; // Auto-flip interval in ms, false to disable
-  swiperUsed?: boolean;
-  setSwiperUsed?: React.Dispatch<React.SetStateAction<boolean>>;
-  size?: "small" | "large" | undefined;
-  background?: "card" | "pagebg" | undefined;
-}
-
 type CodeProps = {
   node?: any;
   inline?: any;
@@ -27,6 +16,17 @@ type CodeProps = {
   children?: any;
 };
 
+/**
+ * Code component for ReactMarkdown
+ *
+ * @param CodeProps - The props object for the Code component
+ * @param CodeProps.node - The node to render
+ * @param CodeProps.inline - Whether the node is inline
+ * @param CodeProps.className - The class name of the node
+ * @param CodeProps.children - The children of the node
+ * @returns The rendered node (either a code block or inline code)
+ * @todo Export this for use in CardPreview component
+ */
 const CodeComponent: React.FunctionComponent<CodeProps> = ({
   node,
   inline,
@@ -51,6 +51,30 @@ const CodeComponent: React.FunctionComponent<CodeProps> = ({
   );
 };
 
+interface CardProps {
+  front?: string;
+  back?: string;
+  hint?: boolean; // "Tap to flip" hint
+  autoflip?: number | false; // Auto-flip interval in ms, false to disable
+  swiperUsed?: boolean;
+  setSwiperUsed?: React.Dispatch<React.SetStateAction<boolean>>;
+  size?: "small" | "large" | undefined;
+  background?: "card" | "pagebg" | undefined;
+}
+
+/**
+ * Flashcard component
+ *
+ * @param props - The props object for the Flashcard component
+ * @param props.front - The front of the card
+ * @param props.back - The back of the card
+ * @param props.hint - Whether to show the "Tap to flip" hint
+ * @param props.autoflip - The auto-flip interval in ms, false to disable
+ * @param props.swiperUsed - Whether the swiper has been used
+ * @param props.setSwiperUsed - The setter for the swiperUsed state
+ * @param props.size - The size of the card (small or large)
+ * @param props.background - The background of the card (card or pagebg)
+ */
 const Flashcard = (props: CardProps) => {
   const {
     front = "",

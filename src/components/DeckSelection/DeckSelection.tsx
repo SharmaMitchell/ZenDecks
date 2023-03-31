@@ -145,6 +145,12 @@ interface DeckSelectionProps {
 //   // },
 // ];
 
+/**
+ * DeckSelection component, displays a list of decks
+ * @param props - DeckSelectionProps
+ * @param props.preview - Whether to display a preview of the decks (default: true)
+ * @returns
+ */
 const DeckSelection = (props: DeckSelectionProps) => {
   const { preview = true } = props;
 

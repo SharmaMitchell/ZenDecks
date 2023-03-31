@@ -9,10 +9,6 @@ import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import styles from "./CardPreview.module.scss";
 
-interface CardPreviewProps {
-  card: Card;
-}
-
 type CodeProps = {
   node?: any;
   inline?: any;
@@ -20,6 +16,16 @@ type CodeProps = {
   children?: any;
 };
 
+/**
+ * Code component for ReactMarkdown
+ *
+ * @param CodeProps - The props object for the Code component
+ * @param CodeProps.node - The node to render
+ * @param CodeProps.inline - Whether the node is inline
+ * @param CodeProps.className - The class name of the node
+ * @param CodeProps.children - The children of the node
+ * @returns The rendered node (either a code block or inline code)
+ */
 const CodeComponent: React.FunctionComponent<CodeProps> = ({
   node,
   inline,
@@ -54,6 +60,16 @@ const markdownProps = {
   },
 };
 
+interface CardPreviewProps {
+  card: Card;
+}
+
+/**
+ * CardPreview component, displays a card's front and back
+ *
+ * @param props - The props object for the CardPreview component
+ * @param props.card - The card to display
+ */
 const CardPreview = (props: CardPreviewProps) => {
   const { card } = props;
   return (

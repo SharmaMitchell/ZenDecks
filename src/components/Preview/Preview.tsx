@@ -32,6 +32,9 @@ const cards = [
   },
 ];
 
+/**
+ * Preview component (demo cards carousel shown on home page)
+ */
 const Preview = () => {
   const navigationPrevRef = useRef(null); // Swiper navigation prev element
   const navigationNextRef = useRef(null); // Swiper navigation next element

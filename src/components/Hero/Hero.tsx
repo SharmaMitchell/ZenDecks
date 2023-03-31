@@ -5,6 +5,9 @@ import Button from "../Button/Button";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 
+/**
+ * Hero component: Displays features and a demo flashcard
+ */
 const Hero = () => {
   return (
     <div className={styles.hero} id="home">

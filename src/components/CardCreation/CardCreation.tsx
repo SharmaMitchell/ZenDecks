@@ -20,7 +20,6 @@ interface CardCreationProps {
  * @param props.back - The back of the card
  * @param props.handleCardChange - Function to pass card changes up to the parent
  * @param props.index - The index of the card in the array of cards
- * @returns The CardCreation component
  * @todo Implement button to delete card (add confirmation or undo)
  */
 

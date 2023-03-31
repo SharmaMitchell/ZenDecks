@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 import Button from "../Button/Button";
-// import Hamburger from "../Hamburger/Hamburger";
 import { Squash as HamburgerButton } from "hamburger-react";
 import { motion } from "framer-motion";
 import { UserContext } from "../utils/context";
@@ -14,10 +13,17 @@ interface NavbarProps {
   theme: string;
 }
 
+/**
+ * Navbar component, including hamburger menu for mobile
+ * @param props - The props object for the Navbar component
+ * @param props.switchTheme - The function to switch the theme
+ * @param props.theme - The current theme
+ */
 const Navbar = (props: NavbarProps) => {
   const { switchTheme } = props;
   const [isOpen, setOpen] = useState(false);
 
+  // Paths for navbar
   const paths = [
     { link: "/", label: "Home" },
     { link: "/about", label: "About" },
@@ -25,6 +31,7 @@ const Navbar = (props: NavbarProps) => {
     { link: "/create", label: "Create" },
   ];
 
+  // Logged in user
   const { user, username } = useContext(UserContext);
 
   return (

@@ -16,13 +16,7 @@ import styles from "./DeckInfo.module.scss";
 //TODO: Fetch all cards from specific deck (implement useDeck hook)
 //TODO: Show user's SRS card weight beside each card
 
-/* 
-authorID: string;
-  authorName: string;
-  content: string;
-  date: Date;
-*/
-
+// Plceholder mock data
 const comments: UserComment[] = [
   {
     authorID: "123",
@@ -51,6 +45,9 @@ const comments: UserComment[] = [
   },
 ];
 
+/**
+ * DeckInfo component (full info for a deck, incl. metadata, all cards, and comments)
+ */
 const DeckInfo = () => {
   const { deckId = "" } = useParams<{ deckId: string }>();
 
@@ -67,6 +64,11 @@ const DeckInfo = () => {
 
   const [userDoc] = useDocument(userRef as any);
 
+  /**
+   * Add user to deck, when user clicks "Study" or "Add to Library"
+   * @todo Fix deckRef
+   * @todo Add lastStudied field to user document
+   */
   const handleAdd = () => {
     if (userDoc && !userDoc.exists()) {
       try {
