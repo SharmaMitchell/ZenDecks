@@ -59,7 +59,8 @@ To Contribute:
 - Fork the repository
 - Implement your feature, bugfix, or idea
 - Submit a pull request
-  - Please detail your changes in the pull request
+  - Detail your changes in the pull request
+  - Document functions and component using TSDoc comments ([Example](https://github.com/SharmaMitchell/Flashy/blob/14fc5a07d2fbb8cde09c4d331bdb76bbe246fc66/src/components/CardCreation/CardCreation.tsx#L16-L25))
   - Please follow style guidelines (nothing too strict, just use Prettier and use BEM naming for any SCSS)
 
 ## Work in Progress
