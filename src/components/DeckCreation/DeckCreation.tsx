@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./DeckCreation.module.scss";
 import { motion } from "framer-motion";
 import Button from "../Button/Button";
+import CardCreation from "../CardCreation/CardCreation";
 
 const DeckCreation = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [tags, setTags] = useState("");
+  const [cards, setCards] = useState<Card[]>([{ front: "", back: "" }]);
+
+  const handleCardChange = (
+    index: number,
+    field: "front" | "back",
+    value: string
+  ) => {
+    const newCards = [...cards];
+    newCards[index][field] = value;
+    setCards(newCards);
+  };
+
+  const addCard = () => {
+    setCards([...cards, { front: "", back: "" }]);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // submit deck info and cards to Firebase
+  };
+
   return (
     <div className={styles.deckcreation}>
       <motion.h2
@@ -27,6 +52,8 @@ const DeckCreation = () => {
             id="decktitle"
             placeholder="My New Deck"
             className={styles.deckcreation__input}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <label
             className={styles.deckcreation__input__label}
@@ -40,6 +67,8 @@ const DeckCreation = () => {
             id="deckdescription"
             placeholder="This is my new deck and it is awesome"
             className={styles.deckcreation__input}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
           <label
             className={styles.deckcreation__input__label}
@@ -54,6 +83,8 @@ const DeckCreation = () => {
               id="decktags"
               placeholder="Comma separated tags: New, Deck, Wow"
               className={styles.deckcreation__input}
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
             />
             <div className={styles.deckcreation__save__button}>
               <Button label="Save" />
@@ -69,7 +100,17 @@ const DeckCreation = () => {
       >
         Cards
       </motion.h2>
-      <div className={styles.deckcreation__cards}></div>
+      <div className={styles.deckcreation__cards}>
+        {cards.map((card, index) => (
+          <CardCreation
+            key={index}
+            index={index}
+            front={card.front}
+            back={card.back}
+            handleCardChange={handleCardChange}
+          />
+        ))}
+      </div>
     </div>
   );
 };

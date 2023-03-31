@@ -22,7 +22,7 @@ declare interface Deck {
 }
 
 declare interface Card {
-  id: string;
+  id?: string;
   front: string;
   back: string;
 }
