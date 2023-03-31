@@ -4,22 +4,27 @@ import { motion } from "framer-motion";
 import Button from "../Button/Button";
 import CardCreation from "../CardCreation/CardCreation";
 
-/*
-TODO: Add "edit deck" functionality
-  - Take in "create" or "edit" prop
-  - If "edit", fetch deck info from Firebase
-    - On submit, update deck info in Firebase
-  - If "create", create new deck in Firebase
-
-TODO: Add save button to the bottom, near "add card" button
-
-*/
+/**
+ * Displays a form for creating a new deck
+ * @returns The DeckCreation component
+ * @todo Add "edit deck" functionality
+ *  - Take in "create" or "edit" prop
+ *  - If "edit", fetch deck info from Firebase, update deck info on submit
+ *  - If "create", create new deck in Firebase
+ * @todo Add save button to the bottom, near "add card" button
+ */
 const DeckCreation = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [cards, setCards] = useState<Card[]>([{ front: "", back: "" }]);
 
+  /**
+   * Updates the cards array with the new card info
+   * @param index - The index of the card in the array of cards
+   * @param field - The field to update (front or back)
+   * @param value - The new value for the field
+   */
   const handleCardChange = (
     index: number,
     field: "front" | "back",
@@ -30,11 +35,18 @@ const DeckCreation = () => {
     setCards(newCards);
   };
 
+  /**
+   * Adds a new card to the cards array
+   */
   const addCard = () => {
     setCards([...cards, { front: "", back: "" }]);
   };
 
-  // TODO: Implement submission to Firebase
+  /**
+   * Submits the deck info and cards to Firebase
+   * @param e - The form submit event
+   * @todo Add functionality to submit deck info and cards to Firebase
+   */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // submit deck info and cards to Firebase

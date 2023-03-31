@@ -1,11 +1,7 @@
 import React from "react";
 import styles from "./CardCreation.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
-/* 
-TODO:
-- Implement button to delete card
-    - Add confirmation or undo
-*/
+
 interface CardCreationProps {
   front: string;
   back: string;
@@ -16,6 +12,17 @@ interface CardCreationProps {
   ) => void;
   index: number;
 }
+
+/**
+ * Displays a form for creating a new card
+ * @param props - The props object for the CardCreation component
+ * @param props.front - The front of the card
+ * @param props.back - The back of the card
+ * @param props.handleCardChange - Function to pass card changes up to the parent
+ * @param props.index - The index of the card in the array of cards
+ * @returns The CardCreation component
+ * @todo Implement button to delete card (add confirmation or undo)
+ */
 
 const CardCreation = (props: CardCreationProps) => {
   const { front, back, handleCardChange, index } = props;
