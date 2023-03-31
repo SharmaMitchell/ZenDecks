@@ -49,7 +49,7 @@ const CardCreation = (props: CardCreationProps) => {
         />
       </div>
       <div className={styles.cardcreation__preview}>
-        <Flashcard front={front} back={back} size={"small"} />
+        <Flashcard front={front} back={back} size={"small"} hint={true} />
       </div>
     </div>
   );
