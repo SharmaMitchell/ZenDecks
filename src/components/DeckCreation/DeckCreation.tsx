@@ -63,7 +63,12 @@ const DeckCreation = () => {
         Create Deck
       </motion.h2>
       <form className={styles.deckcreation__form}>
-        <div className={styles.deckcreation__top}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className={styles.deckcreation__top}
+        >
           <label
             className={styles.deckcreation__input__label}
             htmlFor="decktitle"
@@ -114,17 +119,22 @@ const DeckCreation = () => {
               <Button label="Save" />
             </div>
           </div>
-        </div>
+        </motion.div>
       </form>
       <motion.h2
         className={styles.deckcreation__cards__title}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.2, delay: 0.1 }}
       >
         Cards
       </motion.h2>
-      <div className={styles.deckcreation__cards}>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, delay: 0.1 }}
+        className={styles.deckcreation__cards}
+      >
         {cards.map((card, index) => (
           <CardCreation
             key={index}
@@ -134,7 +144,7 @@ const DeckCreation = () => {
             handleCardChange={handleCardChange}
           />
         ))}
-      </div>
+      </motion.div>
       <div className={styles.deckcreation__addcard}>
         <Button label="Add Card" onClick={addCard} />
       </div>
