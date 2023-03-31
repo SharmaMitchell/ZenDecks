@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./CardCreation.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
-
+/* 
+TODO:
+- Implement button to delete card
+    - Add confirmation or undo
+*/
 interface CardCreationProps {
   front: string;
   back: string;
@@ -19,7 +23,6 @@ const CardCreation = (props: CardCreationProps) => {
   return (
     <div className={styles.cardcreation}>
       <div className={styles.cardcreation__form}>
-        {/* <div className={styles.cardcreation__front}> */}
         <label className={styles.cardcreation__input__label} htmlFor="front">
           Front
         </label>
@@ -32,8 +35,6 @@ const CardCreation = (props: CardCreationProps) => {
           value={front}
           onChange={(e) => handleCardChange(index, "front", e.target.value)}
         />
-        {/* </div> */}
-        {/* <div className={styles.cardcreation__back}> */}
         <label className={styles.cardcreation__input__label} htmlFor="back">
           Back
         </label>
@@ -46,7 +47,6 @@ const CardCreation = (props: CardCreationProps) => {
           value={back}
           onChange={(e) => handleCardChange(index, "back", e.target.value)}
         />
-        {/* </div> */}
       </div>
       <div className={styles.cardcreation__preview}>
         <Flashcard front={front} back={back} size={"small"} />
