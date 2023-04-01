@@ -177,7 +177,10 @@ const DeckSelection = (props: DeckSelectionProps) => {
               key={key}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25, delay: 0 + key * 0.1 }}
+              transition={{
+                duration: 0.25,
+                delay: Math.min(0 + key * 0.1, 0.4),
+              }}
               className={styles.deckselection__deck}
             >
               <DeckPreview deck={deck} preview={preview} />
