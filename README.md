@@ -70,6 +70,8 @@ This work is licensed under a
 <!--
 CC BY-NC-ND is a Creative Commons license that allows others to share and use the licensed work, but with some restrictions. This license permits others to copy and distribute the work, as long as they attribute the author, do not use the work for commercial purposes, and do not make any changes or derivatives to the work. The license also does not permit anyone to host the work privately or use it in a commercial context without the explicit permission of the author. Therefore, under this license, contributions to the codebase are allowed as long as they are non-commercial, do not create derivatives of the original work, and are made with attribution to the original author.
 -->
+See `LICENSE.md` for the full license text  
+
 **TL;DR:**
 - Allowed:  
   ✅ Contributions (code, issues, documentation, etc.)  
