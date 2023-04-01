@@ -21,7 +21,7 @@ const Hero = () => {
         }}
         className={styles.hero__text}
       >
-        <h1>Flashy</h1>
+        <h1>ZenDecks</h1>
         <h2>Effortless Flashcards</h2>
         <ul>
           <li>Free and Open Source</li>
@@ -64,7 +64,7 @@ const Hero = () => {
         >
           <Flashcard
             front="What is the **best** flashcard app?"
-            back="***Flashy***, a *free*, *open source* flashcard app.  
+            back="***ZenDecks***, a *free*, *open source* flashcard app.  
           Cards have full **Markdown** and **LaTeX** support, meaning you can format your cards for any subject! 
           - **Math**: $e^{i\pi}+1=0$
           - **Code**: `print(hello world)`
