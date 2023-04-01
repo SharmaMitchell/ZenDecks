@@ -1,6 +1,6 @@
 # Flashy: Effortless Flashcards
 
-Flashy is a free, open source flashcard webapp with full Markdown and LaTeX support. With *no ads* and *no paywalls*, Flashy is a feature-rich and *100% free* alternative to Quizlet, Anki, Memrise, and other spaced repetition systems. CSV import/export is fully supported, meaning that Flashy decks are compatible with Quizlet, Anki, Memrise, Excel, and many other apps!
+Flashy is a free, open source flashcard webapp with full Markdown and LaTeX support. Flashy is a feature-rich alternative to Quizlet, Anki, Memrise, and other spaced repetition systems. CSV import/export is fully supported, meaning that Flashy decks are compatible with Quizlet, Anki, Memrise, Excel, and many other apps!
 
 ## Tech Stack
 **Frontend**: TypeScript, ReactJS, Redux, SCSS, Framer Motion, Swiper  
