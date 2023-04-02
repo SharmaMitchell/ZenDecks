@@ -1,4 +1,4 @@
-# ZenDecks: Effortless Flashcards
+# ZenDecks: Next-gen Flashcards
 
 ZenDecks is a free, open source flashcard webapp with full Markdown and LaTeX support. ZenDecks is a feature-rich alternative to Quizlet, Anki, Memrise, and other spaced repetition systems. CSV import/export is fully supported, meaning that ZenDecks decks are compatible with Quizlet, Anki, Memrise, Excel, and many other apps!
 
