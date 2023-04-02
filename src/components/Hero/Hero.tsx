@@ -22,7 +22,7 @@ const Hero = () => {
         className={styles.hero__text}
       >
         <h1>ZenDecks</h1>
-        <h2>Effortless Flashcards</h2>
+        <h2>Next-gen Flashcards</h2>
         <ul>
           <li>Free and Open Source</li>
           <li>100% Ad-free with No paywalls</li>
@@ -63,13 +63,10 @@ const Hero = () => {
           tiltAngleXInitial={0}
         >
           <Flashcard
-            front="What is the **best** flashcard app?"
-            back="***ZenDecks***, a *free*, *open source* flashcard app.  
-          Cards have full **Markdown** and **LaTeX** support, meaning you can format your cards for any subject! 
-          - **Math**: $e^{i\pi}+1=0$
-          - **Code**: `print(hello world)`
-          - **Langauge**: 안녕하세요  
-          ... and more!"
+            front="What can I do with *ZenDecks?*"
+            back="- Study and create decks for any subject
+            - Import and Export decks compatible with other platforms
+            - Create and share your own decks with others"
             hint={true}
           />
         </Tilt>
