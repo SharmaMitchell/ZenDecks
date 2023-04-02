@@ -77,10 +77,12 @@
 
   &__markdown {
     // max-height: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: auto;
+    overflow-wrap: break-word;
     touch-action: pan-y;
   }
 
