@@ -84,6 +84,7 @@
     overflow-y: auto;
     overflow-wrap: break-word;
     touch-action: pan-y;
+    padding: 10px 0; // padding to account for inline LaTeX (adds height, causing scrollbar to appear)
   }
 
   &__hint {
