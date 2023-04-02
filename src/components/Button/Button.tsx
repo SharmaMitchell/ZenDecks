@@ -33,6 +33,12 @@ const Button = (props: ButtonProps) => {
     }
   }, [disabled]);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" && onClick) {
+      onClick();
+    }
+  };
+
   return link ? (
     <Link
       to={link}
@@ -44,7 +50,9 @@ const Button = (props: ButtonProps) => {
   ) : type === "button" ? (
     <div
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       className={disabled ? styles.button__disabled : styles.button}
+      tabIndex={0}
     >
       {label}
     </div>
