@@ -4,8 +4,8 @@ import styles from "./Footer.module.scss";
 const Footer = () => {
   return (
     <div className={styles.footer}>
-      <h1>Flashy</h1>
-      <h2>Effortless Flashcards</h2>
+      <h1>ZenDecks</h1>
+      <h2>Next-gen Flashcards</h2>
       <div className={styles.footer__infolinks}>
         <p>
           Created by{" "}
@@ -20,7 +20,7 @@ const Footer = () => {
           <a
             target="_blank"
             rel="noreferrer"
-            href="https://github.com/SharmaMitchell/Flashy"
+            href="https://github.com/SharmaMitchell/ZenDecks"
           >
             GitHub
           </a>
@@ -31,7 +31,7 @@ const Footer = () => {
           <a
             target="_blank"
             rel="noreferrer"
-            href="https://github.com/SharmaMitchell/Flashy#license"
+            href="https://github.com/SharmaMitchell/ZenDecks#license"
           >
             CC BY-NC-ND 4.0
           </a>
