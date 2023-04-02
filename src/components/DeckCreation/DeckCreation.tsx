@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./DeckCreation.module.scss";
 import { motion } from "framer-motion";
 import Button from "../Button/Button";
 import CardCreation from "../CardCreation/CardCreation";
+import { firestore, auth } from "../utils/firebase";
+import firebase from "../utils/firebase";
+import { UserContext } from "../utils/context";
 
 /**
  * Displays a form for creating a new deck
@@ -12,15 +15,18 @@ import CardCreation from "../CardCreation/CardCreation";
  *  - If "edit", fetch deck info from Firebase, update deck info on submit
  *  - If "create", create new deck in Firebase
  * @todo Add save button to the bottom, near "add card" button
- * @todo: Change focus to next card when "add card" button is clicked
- * @todo: Add card when "enter" or "tab" are pressed in the back of the last card
- * @todo: Hide card preview by default on mobile, add expand button
+ * @todo Change focus to next card when "add card" button is clicked
+ * @todo Add card when "enter" or "tab" are pressed in the back of the last card
+ * @todo Hide card preview by default on mobile, add expand button
  */
 const DeckCreation = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [cards, setCards] = useState<Card[]>([{ front: "", back: "" }]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const { user, username } = useContext(UserContext);
 
   /**
    * Updates the cards array with the new card info
@@ -48,11 +54,73 @@ const DeckCreation = () => {
   /**
    * Submits the deck info and cards to Firebase
    * @param e - The form submit event
-   * @todo Add functionality to submit deck info and cards to Firebase
+   * @todo Add UI for errors
+   * @todo Add UI for loading
+   * @todo Add UI for success
+   * @todo Set AllDecksLoaded to false in the Decks store, when a new deck is created
+   *   (Alternatively, manually add the new deck to the Decks store when it's created)
    */
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // submit deck info and cards to Firebase
+
+    if (!title) {
+      setError("Please provide a title for your deck");
+      return;
+    }
+
+    if (!cards.length) {
+      setError("Please add at least one card to your deck");
+      return;
+    }
+
+    if (!user) {
+      setError("Please log in to create a deck");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const deckRef = firestore.collection("decks").doc();
+      const cardsRef = deckRef.collection("cards");
+
+      const newDeck = {
+        authorID: auth.currentUser?.uid,
+        authorName: username,
+        cardCount: cards.length,
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+        description,
+        public: true,
+        rating: 0,
+        ratingCount: 0,
+        tags: tags.split(",").map((tag) => tag.trim()),
+        title,
+        userCount: 1,
+      };
+
+      // Add the current user to the "Users" subcollection of the new deck document
+      const userRef = firestore
+        .collection("decks")
+        .doc(deckRef.id)
+        .collection("users")
+        .doc(auth.currentUser?.uid);
+      await userRef.set({});
+
+      await deckRef.set(newDeck);
+
+      for (const card of cards) {
+        await cardsRef.add(card);
+      }
+
+      setLoading(false);
+
+      // success notification
+    } catch (error) {
+      setLoading(false);
+      setError(
+        "There was an error creating your deck. Please try again later."
+      );
+    }
   };
 
   return (
@@ -119,7 +187,7 @@ const DeckCreation = () => {
               onChange={(e) => setTags(e.target.value)}
             />
             <div className={styles.deckcreation__save__button}>
-              <Button label="Save" />
+              <Button label="Save" onClick={handleSubmit as any} />
             </div>
           </div>
         </motion.div>
