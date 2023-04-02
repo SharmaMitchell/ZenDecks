@@ -33,7 +33,7 @@ Flashy is a free, open source flashcard webapp with full Markdown and LaTeX supp
 
 ### Modular SCSS Styles  
 - One `module.scss` file per component
-- BEM naming conventions used (e.g. `[block]_[element]___[modifier]`)
+- BEM naming conventions used (e.g. `[block]__[element]__[modifier]`)
 - Global *CSS* variables defined in `index.scss` (e.g. `var(--background-color)`)
 - Dark theme defined in `index.scss` (css variables will swap to dark palette on toggle)
   - See `App.tsx` for toggle logic (using `window.matchMedia` for default theme, storing toggle state in localStorage)
