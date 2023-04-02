@@ -10,7 +10,9 @@ import {
 } from "react-firebase-hooks/firestore";
 import store, { setDecks, RootState, setDeckById } from "../../store/store";
 
-// Custom hook to read  auth record and user profile doc
+/**
+ * Custom hook to read  auth record and user profile doc
+ */
 export function useUserData() {
   const [user] = useAuthState(auth as any);
   const [username, setUsername] = useState(null);
@@ -33,8 +35,11 @@ export function useUserData() {
   return { user, username };
 }
 
-// Custom hook to get deck data from firestore, and store it in the redux store
-// Data will only be fetched if the decks array in the store is empty
+/**
+ * Custom hook to get deck data from firestore, and store it in the redux store.
+ * Data will only be fetched if the decks array in the store is empty
+ * @returns An array of decks
+ */
 export function useDecks(): Deck[] {
   const decks = useSelector((state: RootState) => state.decks.decks);
 
@@ -77,8 +82,12 @@ export function useDecks(): Deck[] {
   return decks;
 }
 
-// Custom hook to get deck data and all cards from firestore, and store it in the redux store
-// Data will only be fetched once per session for each deck (tracked by deck.allCardsLoaded)
+/**
+ * Custom hook to get deck data and all cards from firestore, and store it in the redux store.
+ * Data will only be fetched once per session for each deck (tracked by deck.allCardsLoaded)
+ * @param deckId - ID of the deck to fetch data for
+ * @returns The deck with the corresponding ID, or undefined if not found
+ */
 export function useDeck(deckId: string): Deck | undefined {
   const decks = useSelector((state: RootState) => state.decks.decks);
 
