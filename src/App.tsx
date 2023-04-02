@@ -9,6 +9,7 @@ import StudyPage from "./pages/Study";
 import Login from "./pages/Login";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import "./App.scss";
 import { UserContext } from "./components/utils/context";
 import { useUserData } from "./components/utils/hooks";
@@ -68,6 +69,7 @@ function App() {
               <Route path="/account" element={<Login />} />
               <Route path="*" element={<h1>404</h1>} />
             </Routes>
+            <Footer />
           </Router>
         </UserContext.Provider>
       </Provider>
