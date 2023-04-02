@@ -12,6 +12,8 @@ import CardCreation from "../CardCreation/CardCreation";
  *  - If "edit", fetch deck info from Firebase, update deck info on submit
  *  - If "create", create new deck in Firebase
  * @todo Add save button to the bottom, near "add card" button
+ * @todo: Change focus to next card when "add card" button is clicked
+ * @todo: Add card when "enter" or "tab" are pressed in the back of the last card
  */
 const DeckCreation = () => {
   const [title, setTitle] = useState("");
