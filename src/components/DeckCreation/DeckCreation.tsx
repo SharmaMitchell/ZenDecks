@@ -14,6 +14,7 @@ import CardCreation from "../CardCreation/CardCreation";
  * @todo Add save button to the bottom, near "add card" button
  * @todo: Change focus to next card when "add card" button is clicked
  * @todo: Add card when "enter" or "tab" are pressed in the back of the last card
+ * @todo: Hide card preview by default on mobile, add expand button
  */
 const DeckCreation = () => {
   const [title, setTitle] = useState("");
