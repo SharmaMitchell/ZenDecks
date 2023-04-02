@@ -42,7 +42,7 @@ const Navbar = (props: NavbarProps) => {
     >
       <nav className={styles.navbar}>
         <Link to="/" className={styles.logo}>
-          Flashy
+          ZenDecks
         </Link>
         <ul className={styles.navbar__list}>
           {paths.map((path) => (
