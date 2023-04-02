@@ -38,8 +38,8 @@ ZenDecks is a free, open source flashcard webapp with full Markdown and LaTeX su
 ### Modular SCSS Styles
 
 - One `module.scss` file per component
-- BEM naming conventions used (e.g. `[block]_[element]___[modifier]`)
-- Global _CSS_ variables defined in `index.scss` (e.g. `var(--background-color)`)
+- BEM naming conventions used (e.g. `[block]__[element]__[modifier]`)
+- Global *CSS* variables defined in `index.scss` (e.g. `var(--background-color)`)
 - Dark theme defined in `index.scss` (css variables will swap to dark palette on toggle)
   - See `App.tsx` for toggle logic (using `window.matchMedia` for default theme, storing toggle state in localStorage)
 
@@ -72,6 +72,29 @@ To Contribute:
   - Detail your changes in the pull request
   - Document functions and component using TSDoc comments ([Example](https://github.com/SharmaMitchell/ZenDecks/blob/14fc5a07d2fbb8cde09c4d331bdb76bbe246fc66/src/components/CardCreation/CardCreation.tsx#L16-L25))
   - Please follow style guidelines (nothing too strict, just use Prettier and use BEM naming for any SCSS)
+
+## License
+
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License][cc-by-nc-nd].
+<!--
+CC BY-NC-ND is a Creative Commons license that allows others to share and use the licensed work, but with some restrictions. This license permits others to copy and distribute the work, as long as they attribute the author, do not use the work for commercial purposes, and do not make any changes or derivatives to the work. The license also does not permit anyone to host the work privately or use it in a commercial context without the explicit permission of the author. Therefore, under this license, contributions to the codebase are allowed as long as they are non-commercial, do not create derivatives of the original work, and are made with attribution to the original author.
+-->
+See `LICENSE.md` for the full license text  
+
+**TL;DR:**
+- Allowed:  
+  ✅ Contributions (code, issues, documentation, etc.)  
+  ✅ Non-comercial use (access, collaboration, running locally, etc.)
+- Not Allowed  
+  ❌ Deploying spnioffs or derivatives  
+  ❌ Commercial use or adaptation  
+
+[![CC BY-NC-ND 4.0][cc-by-nc-nd-image]][cc-by-nc-nd]
+
+[cc-by-nc-nd]: http://creativecommons.org/licenses/by-nc-nd/4.0/
+[cc-by-nc-nd-image]: https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png
+[cc-by-nc-nd-shield]: https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg
 
 ## Work in Progress
 

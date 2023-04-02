@@ -145,6 +145,7 @@ const Flashcard = (props: CardProps) => {
     components: {
       code: CodeComponent,
     },
+    className: styles.flashcard__markdown,
   };
 
   return (
@@ -160,7 +161,13 @@ const Flashcard = (props: CardProps) => {
       }
       onClick={flipCard}
     >
-      <div className={styles.flashcard__front}>
+      <div
+        className={
+          styles.flashcard__front +
+          " " +
+          (hint && styles.flashcard__front__hint)
+        }
+      >
         <ReactMarkdown {...markdownProps}>{front}</ReactMarkdown>
         {hint && (
           <div className={styles.flashcard__hint}>

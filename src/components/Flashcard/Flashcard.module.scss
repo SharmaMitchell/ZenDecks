@@ -1,6 +1,6 @@
 .flashcard {
   background-color: var(--card-color);
-  width: min(380px, 95vw);
+  width: min(380px, 90vw);
   min-height: min(420px, 90vh);
   height: 100%;
   max-height: 90vh;
@@ -52,7 +52,7 @@
   }
 
   &.small {
-    width: min(400px, 95vw);
+    width: min(400px, 90vw);
     min-height: min(240px, 90vh);
     font-size: calc(10px + 1.25vmin);
 
@@ -76,20 +76,21 @@
   }
 
   &__markdown {
-    max-height: 100%;
-    min-height: 380px;
+    // max-height: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-y: auto;
+    overflow-wrap: break-word;
     touch-action: pan-y;
+    padding: 10px 0; // padding to account for inline LaTeX (adds height, causing scrollbar to appear)
   }
 
   &__hint {
     position: absolute;
     bottom: 0;
     padding: 10px;
-    padding-bottom: 20px;
     opacity: 60%;
     user-select: none;
     transition: opacity 0.3s ease;
@@ -105,11 +106,16 @@
   height: 100%;
   backface-visibility: hidden;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 20px; // y-padding scales with font-size of hint
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &__hint {
+    padding-bottom: calc(30px + 1.25vmin);
+  }
 }
 
 .flashcard__front {
@@ -122,7 +128,7 @@
 
 @media screen and (min-width: 1024px) {
   .flashcard {
-    width: min(600px, 95vw);
+    width: min(600px, 90vw);
     min-height: min(420px, 90vh);
     height: 100%;
     max-height: 90vh;
