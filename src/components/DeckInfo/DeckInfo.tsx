@@ -101,7 +101,7 @@ const DeckInfo = () => {
    * @todo style the delete button (maybe hide it behind a dropdown menu)
    */
   const handleDeleteDeck = async () => {
-    if (!deck || !deckId || deckId == "") return;
+    if (!deck || !deckId || deckId === "") return;
     if (!window.confirm("Are you sure you want to delete this deck?")) return;
     if (deck.authorID !== auth.currentUser?.uid) return;
     try {
