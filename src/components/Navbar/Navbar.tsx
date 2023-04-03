@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { UserContext } from "../utils/context";
 import { ReactComponent as User } from "../../assets/user.svg";
 import { auth } from "../../components/utils/firebase";
+import { InnerMoon } from "@theme-toggles/react";
+import "@theme-toggles/react/css/InnerMoon.css";
 
 interface NavbarProps {
   switchTheme: () => void;
@@ -18,9 +20,11 @@ interface NavbarProps {
  * @param props - The props object for the Navbar component
  * @param props.switchTheme - The function to switch the theme
  * @param props.theme - The current theme
+ * @todo Make the entire link/button area clickable for the mobile hamburger menu
+ *       instead of just the text. Add padding to the hamburger menu items?
  */
 const Navbar = (props: NavbarProps) => {
-  const { switchTheme } = props;
+  const { theme, switchTheme } = props;
   const [isOpen, setOpen] = useState(false);
 
   // Paths for navbar
@@ -52,6 +56,20 @@ const Navbar = (props: NavbarProps) => {
               </Link>
             </li>
           ))}
+          <li
+            className={
+              styles.navbar__item + " " + styles.navbar__themetoggle__wrapper
+            }
+          >
+            <div className={styles.navbar__link} onClick={switchTheme}>
+              Theme
+            </div>
+            <InnerMoon
+              toggle={switchTheme}
+              toggled={theme === "dark"}
+              className={styles.navbar__themetoggle}
+            />
+          </li>
           {user ? (
             <>
               <div className={styles.navbar__item}>
@@ -74,9 +92,6 @@ const Navbar = (props: NavbarProps) => {
               </div>
             </>
           )}
-          <div className={styles.navbar__item}>
-            <Button label="Theme" onClick={switchTheme} />
-          </div>
         </ul>
         <div className={styles.hamburgerbutton}>
           <HamburgerButton
@@ -103,6 +118,22 @@ const Navbar = (props: NavbarProps) => {
                 </Link>
               </li>
             ))}
+            <li
+              className={
+                styles.hamburger__item +
+                " " +
+                styles.navbar__themetoggle__wrapper
+              }
+            >
+              <InnerMoon
+                toggle={switchTheme}
+                toggled={theme === "dark"}
+                className={styles.navbar__themetoggle}
+              />
+              <a className={styles.navbar__link} onClick={switchTheme}>
+                Theme
+              </a>
+            </li>
             {user ? (
               <>
                 <div className={styles.hamburger__item}>
@@ -128,9 +159,6 @@ const Navbar = (props: NavbarProps) => {
                 </div>
               </>
             )}
-            <div className={styles.hamburger__item}>
-              <Button label="Theme" onClick={switchTheme} />
-            </div>
           </ul>
         </motion.div>
       )}
