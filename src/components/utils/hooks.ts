@@ -89,6 +89,8 @@ export function useDecks(): Deck[] {
  * @returns The deck with the corresponding ID, or undefined if not found
  */
 export function useDeck(deckId: string): Deck | undefined {
+  if (!deckId) return undefined;
+
   const decks = useSelector((state: RootState) => state.decks.decks);
 
   const [value, loading, error, snapshot] = useDocumentData(
@@ -97,15 +99,11 @@ export function useDeck(deckId: string): Deck | undefined {
       : (firestore.collection("decks").doc(deckId) as any)
   );
 
-  // Get up to 100 cards for the deck (session study limit = 100)
+  // Get cards for the deck
   const [cardsValue, cardsLoading] = useCollectionData(
     decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
       ? null
-      : (firestore
-          .collection("decks")
-          .doc(deckId)
-          .collection("cards")
-          .limit(100) as any)
+      : (firestore.collection("decks").doc(deckId).collection("cards") as any)
   );
 
   // Set card data for the deck in the redux store
