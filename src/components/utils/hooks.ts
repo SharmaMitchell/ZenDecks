@@ -89,7 +89,7 @@ export function useDecks(): Deck[] {
  * @returns The deck with the corresponding ID, or undefined if not found
  */
 export function useDeck(deckId: string): Deck | undefined {
-  if (!deckId) return undefined;
+  if (!deckId || deckId === "") return undefined;
 
   const decks = useSelector((state: RootState) => state.decks.decks);
 
