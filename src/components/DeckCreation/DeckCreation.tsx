@@ -76,8 +76,10 @@ const DeckCreation = () => {
    * @todo Add UI for errors
    * @todo Add UI for loading
    * @todo Add UI for success
-   * @todo Set AllDecksLoaded to false in the Decks store, when a new deck is created
-   *   (Alternatively, manually add the new deck to the Decks store when it's created)
+   * @todo Clear inputs on navigation (e.g. between create and edit)
+   * @todo Add loading indicator on edit path when fetching deck data
+   * @todo Add "public" checkbox
+   * @todo Add specific card order/index (and implement reordering)
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -95,43 +97,91 @@ const DeckCreation = () => {
     setLoading(true);
 
     try {
-      const deckRef = firestore.collection("decks").doc();
+      const deckRef = firestore
+        .collection("decks")
+        .doc(existingDeck?.id || undefined);
       const cardsRef = deckRef.collection("cards");
 
       const newDeck = {
-        authorID: auth.currentUser?.uid,
-        authorName: username,
+        authorID: existingDeck ? existingDeck.authorID : auth.currentUser?.uid,
+        authorName: existingDeck ? existingDeck.authorName : username,
         cardCount: cards.length,
-        created: firebase.firestore.FieldValue.serverTimestamp(),
+        created: existingDeck
+          ? firebase.firestore.Timestamp.fromDate(
+              new Date(existingDeck.created)
+            )
+          : firebase.firestore.FieldValue.serverTimestamp(),
         description,
-        public: true,
-        rating: 0,
-        ratingCount: 0,
+        public: existingDeck ? existingDeck.public : true,
+        rating: existingDeck ? existingDeck.rating : 0,
+        ratingCount: existingDeck ? existingDeck.ratingCount : 0,
         tags:
           tags.trim() !== "" ? tags.split(",").map((tag) => tag.trim()) : [],
         title,
-        userCount: 1,
+        userCount: existingDeck ? existingDeck.userCount : 1,
       };
 
-      // Add the current user to the "Users" subcollection of the new deck document
-      const userRef = firestore
-        .collection("decks")
-        .doc(deckRef.id)
-        .collection("users")
-        .doc(auth.currentUser?.uid);
-      await userRef.set({});
+      if (!existingDeck) {
+        // Add the author to the "Users" subcollection of the new deck document
+        const userRef = firestore
+          .collection("decks")
+          .doc(deckRef.id)
+          .collection("users")
+          .doc(auth.currentUser?.uid);
+        await userRef.set({});
+      }
 
-      // Add the new deck to the "Decks" store
-      await deckRef.set(newDeck);
+      // Add/Update the deck to the "Decks" collection in Firestore
+      if (existingDeck) {
+        await deckRef.update(newDeck);
+      } else {
+        await deckRef.set(newDeck);
+      }
 
       // Add cards to the "Cards" subcollection of the new deck document
       const batch = firestore.batch();
 
       cards.forEach((card) => {
         if (card.front !== "" || card.back !== "") {
-          console.log(card.back, card.front);
-          const newCardRef = cardsRef.doc();
-          batch.set(newCardRef, card);
+          const cardRef = cardsRef.doc(card.id);
+
+          const matchingCard = existingDeck?.cards?.find(
+            (c) => c.id === card.id
+          );
+          if (
+            matchingCard &&
+            matchingCard.front === card.front &&
+            matchingCard.back === card.back
+          ) {
+            // Card already exists and is unchanged, do nothing
+            console.log(
+              "Matching card id: ",
+              matchingCard.id,
+              ", card id: ",
+              card.id
+            );
+          } else if (matchingCard) {
+            // Card already exists but has been updated
+            console.log(
+              "Matching card id: ",
+              matchingCard.id,
+              ", updated id: ",
+              card.id
+            );
+            const updatedCard = {
+              ...card,
+              updated: firebase.firestore.FieldValue.serverTimestamp(),
+            };
+            batch.update(cardRef, updatedCard);
+          } else {
+            // Add a new card
+            const newCardRef = cardsRef.doc();
+            const newCard = {
+              ...card,
+              created: firebase.firestore.FieldValue.serverTimestamp(),
+            };
+            batch.set(newCardRef, newCard);
+          }
         }
       });
 
@@ -139,31 +189,25 @@ const DeckCreation = () => {
 
       // Add the new deck to the "Decks" store
       store.dispatch(
-        setDeckById(
-          deckRef.id,
-          // convert the Firestore Timestamp to a number (milliseconds since epoch)
-          {
-            ...newDeck,
-            created: Date.now(),
-            id: deckRef.id,
-            path: deckRef.path,
-            cards: cards.filter(
-              (card) => card.front !== "" || card.back !== ""
-            ),
-            allCardsLoaded: true,
-          } as Deck
-        )
+        setDeckById(deckRef.id, {
+          ...newDeck,
+          created: existingDeck ? existingDeck.created : new Date(),
+          updated: firebase.firestore.FieldValue.serverTimestamp(),
+          id: deckRef.id,
+          path: deckRef.path,
+          cards: cards.filter((card) => card.front !== "" || card.back !== ""),
+          allCardsLoaded: true,
+        } as Deck)
       );
 
       setLoading(false);
       navigate(`/decks/${deckRef.id}`);
 
       // success notification
+      console.log("Deck saved successfully");
     } catch (error) {
       setLoading(false);
-      setError(
-        "There was an error creating your deck. Please try again later."
-      );
+      setError("There was an error saving your deck. Please try again later.");
       console.error(error);
     }
   };
@@ -176,7 +220,7 @@ const DeckCreation = () => {
         transition={{ duration: 0.2 }}
         className={styles.deckcreation__title}
       >
-        Create Deck
+        {existingDeck ? "Edit " : "Create "} Deck
       </motion.h2>
       <form className={styles.deckcreation__form}>
         <motion.div
