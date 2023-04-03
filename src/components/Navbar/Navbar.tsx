@@ -22,6 +22,7 @@ interface NavbarProps {
  * @param props.theme - The current theme
  * @todo Make the entire link/button area clickable for the mobile hamburger menu
  *       instead of just the text. Add padding to the hamburger menu items?
+ * @todo Move theme toggle and logout to a dropdown menu on desktop
  */
 const Navbar = (props: NavbarProps) => {
   const { theme, switchTheme } = props;
