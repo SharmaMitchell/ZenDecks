@@ -63,6 +63,7 @@ function App() {
               <Route path="/decks" element={<Decks />} />
               <Route path="/decks/:deckId" element={<DeckInfoPage />} />
               <Route path="/create" element={<DeckCreationPage />} />
+              <Route path="/edit/:deckId" element={<DeckCreationPage />} />
               <Route path="/study" element={<Decks />} />
               <Route path="/study/:deckId" element={<StudyPage />} />
               <Route path="/login" element={<Login />} />
