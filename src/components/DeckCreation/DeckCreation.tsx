@@ -67,13 +67,8 @@ const DeckCreation = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!title) {
+    if (!title || title.trim() == "") {
       setError("Please provide a title for your deck");
-      return;
-    }
-
-    if (!cards.length) {
-      setError("Please add at least one card to your deck");
       return;
     }
 
@@ -117,8 +112,11 @@ const DeckCreation = () => {
       const batch = firestore.batch();
 
       cards.forEach((card) => {
-        const newCardRef = cardsRef.doc();
-        batch.set(newCardRef, card);
+        if (card.front != "" || card.back != "") {
+          console.log(card.back, card.front);
+          const newCardRef = cardsRef.doc();
+          batch.set(newCardRef, card);
+        }
       });
 
       await batch.commit();
@@ -133,7 +131,7 @@ const DeckCreation = () => {
             created: Date.now(),
             id: deckRef.id,
             path: deckRef.path,
-            cards: cards,
+            cards: cards.filter((card) => card.front != "" || card.back != ""),
             allCardsLoaded: true,
           } as Deck
         )
