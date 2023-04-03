@@ -7,7 +7,7 @@ import { firestore, auth } from "../utils/firebase";
 import firebase from "../utils/firebase";
 import { UserContext } from "../utils/context";
 import store, { setDeckById } from "../../store/store";
-import { Timestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Displays a form for creating a new deck
@@ -29,6 +29,7 @@ const DeckCreation = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { user, username } = useContext(UserContext);
+  const navigate = useNavigate();
 
   /**
    * Updates the cards array with the new card info
@@ -127,11 +128,13 @@ const DeckCreation = () => {
             id: deckRef.id,
             path: deckRef.path,
             cards: cards,
+            allCardsLoaded: true,
           } as Deck
         )
       );
 
       setLoading(false);
+      navigate(`/decks/${deckRef.id}`);
 
       // success notification
     } catch (error) {
