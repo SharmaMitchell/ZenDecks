@@ -155,6 +155,9 @@ const DeckSelection = (props: DeckSelectionProps) => {
   const { preview = true } = props;
 
   const decks = useDecks();
+  const sortedDecks = [...decks].sort(
+    (a: Deck, b: Deck) => b.userCount - a.userCount
+  );
 
   return (
     <div className={styles.deckselection}>
@@ -166,13 +169,13 @@ const DeckSelection = (props: DeckSelectionProps) => {
       >
         Decks
       </motion.h2>
-      {decks && (
+      {decks && sortedDecks && (
         <div
           className={`${styles.deckselection__decks} ${
             !preview && styles.nopreview
           }`}
         >
-          {decks.map((deck: Deck, key: number) => (
+          {sortedDecks.map((deck: Deck, key: number) => (
             <motion.div
               key={key}
               initial={{ opacity: 0, y: 40 }}

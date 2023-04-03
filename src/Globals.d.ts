@@ -38,7 +38,7 @@ declare interface Deck {
   rating?: number;
   ratingCount?: number;
   cardCount: number;
-  userCount?: number;
+  userCount: number;
 }
 
 /**
