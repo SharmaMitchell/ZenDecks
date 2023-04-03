@@ -85,6 +85,9 @@ const DeckInfo = () => {
     }
   };
 
+  /**
+   * Navigate to study page for deck, and add user to the deck
+   */
   const handleStudy = () => {
     handleAdd();
 
