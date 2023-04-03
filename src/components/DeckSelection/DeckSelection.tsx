@@ -149,7 +149,9 @@ interface DeckSelectionProps {
  * DeckSelection component, displays a list of decks
  * @param props - DeckSelectionProps
  * @param props.preview - Whether to display a preview of the decks (default: true)
- * @returns
+ * @todo - Add pagination
+ * @todo - Add search
+ * @todo - Display user's decks first (from users -> decks subcollection)
  */
 const DeckSelection = (props: DeckSelectionProps) => {
   const { preview = true } = props;
