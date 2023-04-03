@@ -6,6 +6,8 @@ import CardCreation from "../CardCreation/CardCreation";
 import { firestore, auth } from "../utils/firebase";
 import firebase from "../utils/firebase";
 import { UserContext } from "../utils/context";
+import store, { setDeckById } from "../../store/store";
+import { Timestamp } from "firebase/firestore";
 
 /**
  * Displays a form for creating a new deck
@@ -73,7 +75,7 @@ const DeckCreation = () => {
       return;
     }
 
-    if (!user) {
+    if (!user || !username) {
       setError("Please log in to create a deck");
       return;
     }
@@ -106,11 +108,28 @@ const DeckCreation = () => {
         .doc(auth.currentUser?.uid);
       await userRef.set({});
 
+      // Add the new deck to the "Decks" store
       await deckRef.set(newDeck);
 
+      // Add cards to the "Cards" subcollection of the new deck document
       for (const card of cards) {
         await cardsRef.add(card);
       }
+
+      // Add the new deck to the "Decks" store
+      store.dispatch(
+        setDeckById(
+          deckRef.id,
+          // convert the Firestore Timestamp to a number (milliseconds since epoch)
+          {
+            ...newDeck,
+            created: Date.now(),
+            id: deckRef.id,
+            path: deckRef.path,
+            cards: cards,
+          } as Deck
+        )
+      );
 
       setLoading(false);
 
@@ -120,6 +139,7 @@ const DeckCreation = () => {
       setError(
         "There was an error creating your deck. Please try again later."
       );
+      console.error(error);
     }
   };
 
