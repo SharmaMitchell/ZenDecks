@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./DeckCreation.module.scss";
 import { motion } from "framer-motion";
 import Button from "../Button/Button";
@@ -7,7 +7,8 @@ import { firestore, auth } from "../utils/firebase";
 import firebase from "../utils/firebase";
 import { UserContext } from "../utils/context";
 import store, { setDeckById } from "../../store/store";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDeck } from "../utils/hooks";
 
 /**
  * Displays a form for creating a new deck
@@ -23,6 +24,7 @@ import { useNavigate } from "react-router-dom";
  * @todo Hide card preview by default on mobile, add expand button
  */
 const DeckCreation = () => {
+  const { deckId } = useParams<{ deckId: string }>();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
@@ -31,6 +33,19 @@ const DeckCreation = () => {
   const [error, setError] = useState("");
   const { user, username } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const existingDeck = useDeck(deckId ?? "");
+
+  // Fetch existing deck data from Firebase if editing an existing deck
+  useEffect(() => {
+    if (existingDeck && deckId) {
+      // Set state of cards, metadata, etc.
+      setTitle(existingDeck.title);
+      setDescription(existingDeck.description);
+      setTags(existingDeck.tags?.join(", ") ?? "");
+      setCards(existingDeck.cards ?? [{ front: "", back: "" }]);
+    }
+  }, [existingDeck, deckId]);
 
   /**
    * Updates the cards array with the new card info
