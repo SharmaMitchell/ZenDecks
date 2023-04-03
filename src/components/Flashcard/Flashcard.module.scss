@@ -106,7 +106,7 @@
   height: 100%;
   backface-visibility: hidden;
   box-sizing: border-box;
-  padding: 20px; // y-padding scales with font-size of hint
+  padding: 20px;
 
   display: flex;
   flex-direction: column;
@@ -114,7 +114,7 @@
   align-items: center;
 
   &__hint {
-    padding-bottom: calc(30px + 1.25vmin);
+    padding: calc(30px + 1.25vmin) 20px; // y-padding scales with font-size of hint
   }
 }
 
