@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
  * @todo Add save button to the bottom, near "add card" button
  * @todo Change focus to next card when "add card" button is clicked
  * @todo Add card when "enter" or "tab" are pressed in the back of the last card
+ * @todo Move to next text field when "enter" is pressed
  * @todo Hide card preview by default on mobile, add expand button
  */
 const DeckCreation = () => {
@@ -96,7 +97,7 @@ const DeckCreation = () => {
         public: true,
         rating: 0,
         ratingCount: 0,
-        tags: tags.split(",").map((tag) => tag.trim()),
+        tags: tags.trim() != "" ? tags.split(",").map((tag) => tag.trim()) : [],
         title,
         userCount: 1,
       };
@@ -113,9 +114,14 @@ const DeckCreation = () => {
       await deckRef.set(newDeck);
 
       // Add cards to the "Cards" subcollection of the new deck document
-      for (const card of cards) {
-        await cardsRef.add(card);
-      }
+      const batch = firestore.batch();
+
+      cards.forEach((card) => {
+        const newCardRef = cardsRef.doc();
+        batch.set(newCardRef, card);
+      });
+
+      await batch.commit();
 
       // Add the new deck to the "Decks" store
       store.dispatch(
