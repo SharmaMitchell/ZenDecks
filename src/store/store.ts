@@ -77,3 +77,10 @@ export const setDeckById =
     dispatch(setDecks(updatedDecks));
     dispatch(setDeck(deck));
   };
+
+export const deleteDeckById =
+  (id: string) => (dispatch: any, getState: any) => {
+    const { decks } = getState().decks;
+    const updatedDecks = decks.filter((d: Deck) => d.id !== id);
+    dispatch(setDecks(updatedDecks));
+  };

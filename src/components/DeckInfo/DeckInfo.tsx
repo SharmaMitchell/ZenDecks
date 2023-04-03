@@ -13,6 +13,7 @@ import Button from "../Button/Button";
 import CardPreview from "../CardPreview/CardPreview";
 import Comment from "../Comment/Comment";
 import styles from "./DeckInfo.module.scss";
+import store, { deleteDeckById } from "../../store/store";
 //TODO: Fetch all cards from specific deck (implement useDeck hook)
 //TODO: Show user's SRS card weight beside each card
 
@@ -93,6 +94,30 @@ const DeckInfo = () => {
 
     navigate(`/study/${deckId}`);
   };
+
+  /**
+   * Delete deck from database
+   * @todo add a confirmation modal (without using window.confirm)
+   * @todo style the delete button (maybe hide it behind a dropdown menu)
+   */
+  const handleDeleteDeck = async () => {
+    if (!deck || !deckId || deckId == "") return;
+    if (!window.confirm("Are you sure you want to delete this deck?")) return;
+    if (deck.authorID !== auth.currentUser?.uid) return;
+    try {
+      const batch = firestore.batch();
+      const deckRef = firestore.collection("decks").doc(deckId);
+      batch.delete(deckRef);
+      await batch.commit();
+
+      store.dispatch(deleteDeckById(deckId));
+
+      navigate("/decks");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       {deck ? (
@@ -156,12 +181,17 @@ const DeckInfo = () => {
                 <Button label="Study Deck" onClick={handleStudy} />
               </div>
               {userDoc && !userDoc.exists() ? (
-                <div className={styles.deckpreview__button}>
+                <div className={styles.deckinfo__button}>
                   <Button label="+" onClick={handleAdd} />
                 </div>
               ) : (
-                <div className={styles.deckpreview__button}>
+                <div className={styles.deckinfo__button}>
                   <Button label="✓" disabled={true} />
+                </div>
+              )}
+              {deck.authorID === auth.currentUser?.uid && (
+                <div className={styles.deckinfo__button}>
+                  <Button label="Delete Deck" onClick={handleDeleteDeck} />
                 </div>
               )}
             </div>
