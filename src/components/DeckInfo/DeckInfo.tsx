@@ -97,6 +97,7 @@ const DeckInfo = () => {
 
   /**
    * Delete deck from database
+   * @todo fix ancestor issue (ensure that deleting deck also deletes all cards, users, ratings)
    * @todo add a confirmation modal (without using window.confirm)
    * @todo style the delete button (maybe hide it behind a dropdown menu)
    */
