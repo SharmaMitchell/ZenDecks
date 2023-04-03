@@ -92,16 +92,20 @@ export function useDeck(deckId: string): Deck | undefined {
   const decks = useSelector((state: RootState) => state.decks.decks);
 
   const [value, loading, error, snapshot] = useDocumentData(
-    decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
-      ? null
-      : (firestore.collection("decks").doc(deckId) as any)
+    deckId !== ""
+      ? decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
+        ? null
+        : (firestore.collection("decks").doc(deckId) as any)
+      : null
   );
 
   // Get cards for the deck
   const [cardsValue, cardsLoading] = useCollectionData(
-    decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
-      ? null
-      : (firestore.collection("decks").doc(deckId).collection("cards") as any)
+    deckId !== ""
+      ? decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
+        ? null
+        : (firestore.collection("decks").doc(deckId).collection("cards") as any)
+      : null
   );
 
   // Set card data for the deck in the redux store
@@ -121,5 +125,5 @@ export function useDeck(deckId: string): Deck | undefined {
   }, [cardsValue, value]);
 
   // Return the corresponding deck, or undefined if not found
-  return decks.find((deck) => deck.id === deckId);
+  return deckId !== "" ? decks.find((deck) => deck.id === deckId) : undefined;
 }
