@@ -97,9 +97,8 @@ const DeckInfo = () => {
 
   /**
    * Delete deck from database
-   * @todo fix ancestor issue (ensure that deleting deck also deletes all cards, users, ratings)
    * @todo add a confirmation modal (without using window.confirm)
-   * @todo style the delete button (maybe hide it behind a dropdown menu)
+   * @todo style the delete button (maybe hide it behind a dropdown menu, with an edit button)
    */
   const handleDeleteDeck = async () => {
     if (!deck || !deckId || deckId === "") return;
@@ -109,8 +108,21 @@ const DeckInfo = () => {
       const batch = firestore.batch();
       const deckRef = firestore.collection("decks").doc(deckId);
       batch.delete(deckRef);
-      await batch.commit();
 
+      // Delete subcollections
+      const cardsRef = deckRef.collection("cards");
+      const usersRef = deckRef.collection("users");
+      const ratingsRef = deckRef.collection("ratings");
+
+      const [cardsSnapshot, usersSnapshot, ratingsSnapshot] = await Promise.all(
+        [cardsRef.get(), usersRef.get(), ratingsRef.get()]
+      );
+
+      cardsSnapshot.forEach((doc) => batch.delete(doc.ref));
+      usersSnapshot.forEach((doc) => batch.delete(doc.ref));
+      ratingsSnapshot.forEach((doc) => batch.delete(doc.ref));
+
+      await batch.commit();
       store.dispatch(deleteDeckById(deckId));
 
       navigate("/decks");
