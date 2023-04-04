@@ -48,6 +48,9 @@ const comments: UserComment[] = [
 
 /**
  * DeckInfo component (full info for a deck, incl. metadata, all cards, and comments)
+ * @todo Add "progress"/"mastery" section displaying user's progress and stats on the deck
+ *       (e.g. how many cards they've studied, how many they've mastered, etc.)
+ *       (maybe also add a "study streak" counter - consider other stats to add)
  */
 const DeckInfo = () => {
   const { deckId = "" } = useParams<{ deckId: string }>();
