@@ -134,6 +134,10 @@ const DeckInfo = () => {
     }
   };
 
+  const handleEditDeck = () => {
+    navigate(`/edit/${deckId}`);
+  };
+
   return (
     <>
       {deck ? (
@@ -203,6 +207,11 @@ const DeckInfo = () => {
               ) : (
                 <div className={styles.deckinfo__button}>
                   <Button label="✓" disabled={true} />
+                </div>
+              )}
+              {deck.authorID === auth.currentUser?.uid && (
+                <div className={styles.deckinfo__button}>
+                  <Button label="Edit Deck" onClick={handleEditDeck} />
                 </div>
               )}
               {deck.authorID === auth.currentUser?.uid && (
