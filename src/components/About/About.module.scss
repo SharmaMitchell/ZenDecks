@@ -1,0 +1,17 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(1080px, 95vw);
+  min-height: min(600px, 100vh);
+  padding: var(--section-paddingY) 0;
+
+  h2 {
+    margin: 16px 0;
+    font-size: 1.1em;
+  }
+
+  p {
+    margin: 8px 0;
+  }
+}
