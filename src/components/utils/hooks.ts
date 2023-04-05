@@ -8,7 +8,12 @@ import {
   useDocumentData,
   useDocumentDataOnce,
 } from "react-firebase-hooks/firestore";
-import store, { setDecks, RootState, setDeckById } from "../../store/store";
+import store, {
+  setDecks,
+  RootState,
+  setDeckById,
+  setDeckMastery,
+} from "../../store/store";
 
 /**
  * Custom hook to read  auth record and user profile doc
@@ -144,4 +149,43 @@ export function useDeck(deckId: string): Deck | undefined {
 
   // Return the corresponding deck, or undefined if not found
   return deckId !== "" ? decks.find((deck) => deck.id === deckId) : undefined;
+}
+
+/**
+ * Custom hook to get mastery for a certain deck and user from firestore,
+ * and store it in the redux store.
+ * Data will only be fetched once per session for each deck (tracked by deck.masteryLoaded)
+ * @param deckId - ID of the deck to fetch data for
+ * @returns The mastery for the deck with the corresponding ID, or undefined if not found
+ */
+export function useDeckMastery(deckId: string): Mastery[] | undefined {
+  const user = auth.currentUser;
+  const [value, loading, error, snapshot] = useCollectionDataOnce(
+    deckId !== "" && user
+      ? (firestore
+          .collection("users")
+          .doc(user.uid)
+          .collection("mastery")
+          .doc(deckId)
+          .collection("cards") as any)
+      : null
+  );
+
+  useEffect(() => {
+    if (value && snapshot) {
+      const deckMastery: Mastery[] = snapshot.docs.map((cardDoc) => {
+        return {
+          [cardDoc.id]: cardDoc.data().masteryLevel,
+        };
+      });
+      store.dispatch(
+        setDeckMastery({
+          deckId,
+          deckMastery,
+        })
+      );
+    }
+  }, [value, snapshot]);
+
+  return deckId !== "" && user ? (value as Mastery[]) : undefined;
 }

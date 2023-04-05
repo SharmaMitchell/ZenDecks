@@ -1,4 +1,10 @@
-import { configureStore, createSlice, combineReducers } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  createSlice,
+  combineReducers,
+  PayloadAction,
+  createAction,
+} from "@reduxjs/toolkit";
 
 interface DecksState {
   decks: Deck[];
@@ -6,6 +12,10 @@ interface DecksState {
 
 interface DeckState {
   deck: Deck | null;
+}
+
+interface MasteryState {
+  [deckId: string]: Mastery[];
 }
 
 // Define initial state
@@ -16,6 +26,18 @@ const initialDecksState: DecksState = {
 const initialDeckState: DeckState = {
   deck: null,
 };
+
+const initialMasteryState: MasteryState = {};
+
+interface SetDeckMasteryPayload {
+  deckId: string;
+  deckMastery: Mastery[];
+}
+
+export const setDeckMastery = createAction(
+  "mastery/setDeckMastery",
+  (payload: SetDeckMasteryPayload) => ({ payload })
+);
 
 // Define a slice for the decks
 const decksSlice = createSlice({
@@ -39,6 +61,18 @@ const deckSlice = createSlice({
   },
 });
 
+const masterySlice = createSlice({
+  name: "mastery",
+  initialState: initialMasteryState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(setDeckMastery, (state, action) => {
+      const { deckId, deckMastery } = action.payload;
+      state[deckId] = deckMastery;
+    });
+  },
+});
+
 // Export the slice actions and reducers
 export const { setDecks } = decksSlice.actions;
 export const decksReducer = decksSlice.reducer;
@@ -46,9 +80,13 @@ export const decksReducer = decksSlice.reducer;
 export const { setDeck } = deckSlice.actions;
 export const deckReducer = deckSlice.reducer;
 
+// export const { setDeckMastery } = masterySlice.actions;
+export const masteryReducer = masterySlice.reducer;
+
 export const rootReducer = combineReducers({
   decks: decksReducer,
   deck: deckReducer,
+  mastery: masteryReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -58,6 +96,7 @@ const store = configureStore({
   reducer: {
     decks: decksReducer,
     deck: deckReducer,
+    mastery: masteryReducer,
   },
 });
 

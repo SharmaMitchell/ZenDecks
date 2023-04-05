@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDeck } from "../utils/hooks";
+import { useDeck, useDeckMastery } from "../utils/hooks";
 import styles from "./Study.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -41,6 +41,7 @@ const Study = () => {
   const [currentCard, setCurrentCard] = useState(0);
 
   const deck = useDeck(deckId);
+  const deckMastery = useDeckMastery(deckId);
 
   if (!deck || !deck.cards) return null;
 

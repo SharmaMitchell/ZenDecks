@@ -57,6 +57,10 @@ declare interface Card {
   created?: number; // number for timestamp
 }
 
+declare interface Mastery {
+  [cardId: string]: number;
+}
+
 /**
  * A comment left by a user.
  *
