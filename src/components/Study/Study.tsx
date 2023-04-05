@@ -38,7 +38,7 @@ const Study = () => {
   const [currentCard, setCurrentCard] = useState(0);
 
   const deck = useDeck(deckId);
-  const deckMastery = useDeckMastery(deckId);
+  //const deckMastery = useDeckMastery(deckId);
 
   if (!deck || !deck.cards) return null;
 
@@ -65,6 +65,10 @@ const Study = () => {
     setCurrentCard(currentCard - 1);
   };
 
+  const handleSaveAndExit = () => {
+    // save data to firebase
+  };
+
   return (
     <div className={styles.study}>
       <h2>{deck.title}</h2>
@@ -79,6 +83,7 @@ const Study = () => {
           <Button label="Back" onClick={handleBack} />
           <Button label="Good" onClick={handleGood} />
           <Button label="Bad" onClick={handleBad} />
+          <Button label="Save and Exit" onClick={handleSaveAndExit} />
         </div>
         <div className={styles.study__cardcount}>
           {currentCard + 1} / {totalCards}
