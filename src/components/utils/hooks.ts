@@ -170,7 +170,7 @@ export function useDeckMastery(deckId: string): Mastery[] | undefined {
           .doc(user.uid)
           .collection("mastery")
           .doc(deckId)
-          .collection("cards") as any)
+          .collection("masteryPerCard") as any)
       : null
   );
 
