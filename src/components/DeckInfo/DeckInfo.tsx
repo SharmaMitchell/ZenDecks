@@ -235,9 +235,12 @@ const DeckInfo = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2, delay: 0.075 }}
           >
-            {deck.cards?.map((card, index) => (
-              <CardPreview card={card} key={index} />
-            ))}
+            {deck.cards &&
+              [...deck.cards]
+                .sort((a, b) =>
+                  a.created && b.created ? a.created - b.created : 0
+                )
+                .map((card, index) => <CardPreview card={card} key={index} />)}
           </motion.div>
           {comments && comments.length > 0 && (
             <>
