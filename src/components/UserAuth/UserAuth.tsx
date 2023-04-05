@@ -63,6 +63,7 @@ const UsernameMessage = ({
 
 /**
  * Username form component, for username selection upon sign up
+ * @todo Add emoji "profile picture" selection
  */
 const UsernameForm = () => {
   const [formValue, setFormValue] = React.useState("");
