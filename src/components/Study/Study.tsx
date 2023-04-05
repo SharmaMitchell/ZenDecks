@@ -3,11 +3,6 @@ import { useParams } from "react-router-dom";
 import { useDeck, useDeckMastery } from "../utils/hooks";
 import styles from "./Study.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import Button from "../Button/Button";
 
 /* 
