@@ -44,6 +44,7 @@ const DeckCreation = () => {
       setDescription(existingDeck.description);
       setTags(existingDeck.tags?.join(", ") ?? "");
       setCards(existingDeck.cards ?? [{ front: "", back: "" }]);
+      console.log(existingDeck.cards);
     }
   }, [existingDeck, deckId]);
 

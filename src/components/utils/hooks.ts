@@ -65,7 +65,14 @@ export function useDecks(): Deck[] {
       const docs = snapshot.docs.map((doc) => {
         const deckCards = cardsSnapshot.docs
           .filter((cardDoc) => cardDoc.ref.parent?.parent?.id === doc.id)
-          .map((cardDoc) => cardDoc.data());
+          .map((cardDoc) => {
+            console.log("cardDoc: ", cardDoc.data());
+            console.log("id: ", cardDoc.id);
+            return {
+              ...cardDoc.data(),
+              id: cardDoc.id,
+            } as Card;
+          });
         return {
           ...doc.data(),
           id: doc.id,
@@ -100,17 +107,28 @@ export function useDeck(deckId: string): Deck | undefined {
   );
 
   // Get cards for the deck
-  const [cardsValue, cardsLoading] = useCollectionData(
-    deckId !== ""
-      ? decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
-        ? null
-        : (firestore.collection("decks").doc(deckId).collection("cards") as any)
-      : null
-  );
+  const [cardsValue, cardsLoading, cardsError, cardsSnapshot] =
+    useCollectionData(
+      deckId !== ""
+        ? decks.find((deck) => deck.id === deckId)?.allCardsLoaded // check if all cards have been loaded for this deck
+          ? null
+          : (firestore
+              .collection("decks")
+              .doc(deckId)
+              .collection("cards") as any)
+        : null
+    );
 
   // Set card data for the deck in the redux store
   useEffect(() => {
-    if (cardsValue && value && snapshot) {
+    if (cardsSnapshot && value && snapshot) {
+      const deckCards = cardsSnapshot.docs.map((cardDoc) => {
+        return {
+          ...cardDoc.data(),
+          id: cardDoc.id,
+        } as Card;
+      });
+
       store.dispatch(
         setDeckById(deckId, {
           ...value,
@@ -118,11 +136,11 @@ export function useDeck(deckId: string): Deck | undefined {
           path: snapshot.ref.path,
           created: value.created.toMillis(),
           allCardsLoaded: true,
-          cards: cardsValue as Card[],
+          cards: deckCards,
         } as Deck)
       );
     }
-  }, [cardsValue, value]);
+  }, [cardsSnapshot, value, snapshot]);
 
   // Return the corresponding deck, or undefined if not found
   return deckId !== "" ? decks.find((deck) => deck.id === deckId) : undefined;
