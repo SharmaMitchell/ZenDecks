@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDeck } from "../utils/hooks";
 import styles from "./Study.module.scss";
@@ -8,6 +8,7 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Button from "../Button/Button";
 
 /* 
 Study mode MVP:
@@ -37,30 +38,59 @@ Study mode UI improvements:
  */
 const Study = () => {
   const { deckId = "" } = useParams<{ deckId: string }>();
+  const [currentCard, setCurrentCard] = useState(0);
 
   const deck = useDeck(deckId);
 
   if (!deck || !deck.cards) return null;
 
+  const totalCards = deck.cards.length;
+
+  const handleGood = () => {
+    console.log("Good");
+    if (currentCard + 1 === totalCards) {
+      console.log("End of deck");
+      return;
+    }
+    setCurrentCard(currentCard + 1);
+  };
+
+  const handleBad = () => {
+    console.log("Bad");
+    if (currentCard + 1 === totalCards) {
+      console.log("End of deck");
+      return;
+    }
+    setCurrentCard(currentCard + 1);
+  };
+
+  const handleBack = () => {
+    console.log("Back");
+    if (currentCard === 0) {
+      console.log("Start of deck");
+      return;
+    }
+    setCurrentCard(currentCard - 1);
+  };
+
   return (
     <div className={styles.study}>
       <h2>{deck.title}</h2>
       <div className={styles.study__cards}>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={60}
-          loop={false}
-          modules={[Navigation, Pagination]}
-          navigation={true}
-          pagination={true}
-          className={styles.swiper}
-        >
-          {deck.cards.map((card, index) => (
-            <SwiperSlide key={index} style={{ width: "auto" }}>
-              <Flashcard front={card.front} back={card.back} size="large" />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div>
+          <Flashcard
+            front={deck.cards[currentCard].front}
+            back={deck.cards[currentCard].back}
+            size="large"
+            key={currentCard}
+          />
+          <div className={styles.study__buttons}>
+            <Button label="Back" onClick={handleBack} />
+            <Button label="Good" onClick={handleGood} />
+            <Button label="Bad" onClick={handleBad} />
+          </div>
+          {currentCard + 1} / {totalCards}
+        </div>
       </div>
     </div>
   );
