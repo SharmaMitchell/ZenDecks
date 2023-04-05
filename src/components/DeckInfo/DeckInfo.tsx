@@ -14,6 +14,7 @@ import CardPreview from "../CardPreview/CardPreview";
 import Comment from "../Comment/Comment";
 import styles from "./DeckInfo.module.scss";
 import store, { deleteDeckById } from "../../store/store";
+import { DropdownMenu, DropdownItem } from "../DropdownMenu/DropdownMenu";
 //TODO: Fetch all cards from specific deck (implement useDeck hook)
 //TODO: Show user's SRS card weight beside each card
 
@@ -209,7 +210,7 @@ const DeckInfo = () => {
                   <Button label="✓" disabled={true} />
                 </div>
               )}
-              {deck.authorID === auth.currentUser?.uid && (
+              {/* {deck.authorID === auth.currentUser?.uid && (
                 <div className={styles.deckinfo__button}>
                   <Button label="Edit Deck" onClick={handleEditDeck} />
                 </div>
@@ -217,6 +218,18 @@ const DeckInfo = () => {
               {deck.authorID === auth.currentUser?.uid && (
                 <div className={styles.deckinfo__button}>
                   <Button label="Delete Deck" onClick={handleDeleteDeck} />
+                </div>
+              )} */}
+              {deck.authorID === auth.currentUser?.uid && (
+                <div className={styles.deckinfo__button}>
+                  <DropdownMenu>
+                    <DropdownItem>
+                      <Button label="Edit Deck" onClick={handleEditDeck} />
+                    </DropdownItem>
+                    <DropdownItem>
+                      <Button label="Delete Deck" onClick={handleDeleteDeck} />
+                    </DropdownItem>
+                  </DropdownMenu>
                 </div>
               )}
             </div>
