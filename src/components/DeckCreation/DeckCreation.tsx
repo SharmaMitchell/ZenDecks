@@ -155,22 +155,8 @@ const DeckCreation = () => {
             matchingCard.back === card.back
           ) {
             // Card already exists and is unchanged, do nothing
-            console.log(
-              "Matching card id: ",
-              matchingCard.id,
-              ", card id: ",
-              card.id
-            );
           } else if (matchingCard) {
             // Card already exists but has been updated
-            // NOTE: Bug here due to undefined card.id
-            // TODO: refactor deck fetching and saving to include card ids
-            console.log(
-              "Matching card id: ",
-              matchingCard.id,
-              ", updated id: ",
-              card.id
-            );
             const updatedCard = {
               ...card,
               updated: firebase.firestore.FieldValue.serverTimestamp(),
