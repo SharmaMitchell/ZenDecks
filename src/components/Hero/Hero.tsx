@@ -64,9 +64,12 @@ const Hero = () => {
         >
           <Flashcard
             front="What can I do with *ZenDecks?*"
-            back="- Study and create decks for any subject
-            - Import and Export decks compatible with other platforms
-            - Create and share your own decks with others"
+            back="Create and share decks for any subject, 
+            with full ***Markdown*** and ***LaTeX*** support   
+            - **Math**: $e^{i\pi}+1=0$  
+            - **Code**: `print(hello world)`  
+            - **Langauge**: 안녕하세요  
+            - ***and more!***"
             hint={true}
           />
         </Tilt>
