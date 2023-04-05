@@ -66,11 +66,10 @@ export function useDecks(): Deck[] {
         const deckCards = cardsSnapshot.docs
           .filter((cardDoc) => cardDoc.ref.parent?.parent?.id === doc.id)
           .map((cardDoc) => {
-            console.log("cardDoc: ", cardDoc.data());
-            console.log("id: ", cardDoc.id);
             return {
               ...cardDoc.data(),
               id: cardDoc.id,
+              created: cardDoc.data()?.created?.toMillis(),
             } as Card;
           });
         return {
@@ -126,6 +125,7 @@ export function useDeck(deckId: string): Deck | undefined {
         return {
           ...cardDoc.data(),
           id: cardDoc.id,
+          created: cardDoc.data()?.created?.toMillis(),
         } as Card;
       });
 

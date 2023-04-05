@@ -48,11 +48,13 @@ declare interface Deck {
  * @property {string} [id] - The unique identifier for the card.
  * @property {string} front - The front side of the card.
  * @property {string} back - The back side of the card.
+ * @property {number} created - The timestamp of when the card was created.
  */
 declare interface Card {
   id?: string;
   front: string;
   back: string;
+  created?: number; // number for timestamp
 }
 
 /**
