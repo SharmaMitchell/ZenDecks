@@ -30,6 +30,8 @@ Study mode UI improvements:
 
 /**
  * Study component (study mode): study all cards in a deck (based on deckId in URL)
+ * @todo Use swiper to swipe through cards
+ *       (To avoid lag on large decks, only pass 3 cards to swiper at once: current, prev, next)
  */
 const Study = () => {
   const { deckId = "" } = useParams<{ deckId: string }>();
@@ -67,21 +69,19 @@ const Study = () => {
     <div className={styles.study}>
       <h2>{deck.title}</h2>
       <div className={styles.study__cards}>
-        <div>
-          <Flashcard
-            front={deck.cards[currentCard].front}
-            back={deck.cards[currentCard].back}
-            size="large"
-            key={currentCard}
-          />
-          <div className={styles.study__buttons}>
-            <Button label="Back" onClick={handleBack} />
-            <Button label="Good" onClick={handleGood} />
-            <Button label="Bad" onClick={handleBad} />
-          </div>
-          <div className={styles.study__cardcount}>
-            {currentCard + 1} / {totalCards}
-          </div>
+        <Flashcard
+          front={deck.cards[currentCard].front}
+          back={deck.cards[currentCard].back}
+          size="large"
+          key={currentCard}
+        />
+        <div className={styles.study__buttons}>
+          <Button label="Back" onClick={handleBack} />
+          <Button label="Good" onClick={handleGood} />
+          <Button label="Bad" onClick={handleBad} />
+        </div>
+        <div className={styles.study__cardcount}>
+          {currentCard + 1} / {totalCards}
         </div>
       </div>
     </div>
