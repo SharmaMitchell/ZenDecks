@@ -36,7 +36,12 @@ interface SetDeckMasteryPayload {
 
 export const setDeckMastery = createAction(
   "mastery/setDeckMastery",
-  (payload: SetDeckMasteryPayload) => ({ payload })
+  (deckId: string, masteryLevels: Mastery[]) => ({
+    payload: {
+      deckId,
+      deckMastery: masteryLevels,
+    },
+  })
 );
 
 // Define a slice for the decks

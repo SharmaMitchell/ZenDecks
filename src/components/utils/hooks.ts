@@ -160,6 +160,9 @@ export function useDeck(deckId: string): Deck | undefined {
  */
 export function useDeckMastery(deckId: string): Mastery[] | undefined {
   const user = auth.currentUser;
+
+  const mastery = useSelector((state: RootState) => state.mastery[deckId]);
+
   const [value, loading, error, snapshot] = useCollectionDataOnce(
     deckId !== "" && user
       ? (firestore
@@ -176,16 +179,11 @@ export function useDeckMastery(deckId: string): Mastery[] | undefined {
       const deckMastery: Mastery[] = snapshot.docs.map((cardDoc) => {
         return {
           [cardDoc.id]: cardDoc.data().masteryLevel,
-        };
+        } as Mastery;
       });
-      store.dispatch(
-        setDeckMastery({
-          deckId,
-          deckMastery,
-        })
-      );
+      store.dispatch(setDeckMastery(deckId, deckMastery));
     }
   }, [value, snapshot]);
 
-  return deckId !== "" && user ? (value as Mastery[]) : undefined;
+  return deckId !== "" && user ? mastery : undefined;
 }
