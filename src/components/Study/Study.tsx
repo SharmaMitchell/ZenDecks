@@ -47,27 +47,21 @@ const Study = () => {
   const totalCards = deck.cards.length;
 
   const handleGood = () => {
-    console.log("Good");
     if (currentCard + 1 === totalCards) {
-      console.log("End of deck");
       return;
     }
     setCurrentCard(currentCard + 1);
   };
 
   const handleBad = () => {
-    console.log("Bad");
     if (currentCard + 1 === totalCards) {
-      console.log("End of deck");
       return;
     }
     setCurrentCard(currentCard + 1);
   };
 
   const handleBack = () => {
-    console.log("Back");
     if (currentCard === 0) {
-      console.log("Start of deck");
       return;
     }
     setCurrentCard(currentCard - 1);
@@ -89,7 +83,9 @@ const Study = () => {
             <Button label="Good" onClick={handleGood} />
             <Button label="Bad" onClick={handleBad} />
           </div>
-          {currentCard + 1} / {totalCards}
+          <div className={styles.study__cardcount}>
+            {currentCard + 1} / {totalCards}
+          </div>
         </div>
       </div>
     </div>
