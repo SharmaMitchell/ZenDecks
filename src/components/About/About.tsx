@@ -3,6 +3,7 @@ import styles from "./About.module.scss";
 
 /**
  * About component: Displays information about the app
+ * @todo Animate on mount with Framer Motion
  * @todo Fix navigation to this section (doesn't work, probably bc of hash with react router)
  * @todo Add graphs/images for SRS alogrithm
  * @todo Revise about text - foxus more on functionality for those unfamiliar with SRS
