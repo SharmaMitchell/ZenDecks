@@ -3,16 +3,14 @@
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
-  background-color: var(--highlight-color);
-  color: var(--button-text);
   font-size: 1.1rem;
   font-weight: 600;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
   user-select: none;
   text-decoration: none;
-  // width: fit-content;
   display: block;
+  position: relative;
 
   &__disabled {
     background-color: var(--button-color-disabled);
@@ -23,8 +21,36 @@
       background-color: var(--button-color-disabled);
     }
   }
+
+  &__againstcard {
+    // background-color: var(--background-color);
+    // color: var(--text-color);
+    background-color: var(--button-bg-againstcard);
+    color: var(--button-text-againstcard);
+  }
+
+  &__againstpage {
+    // background-color: var(--menu-color);
+    // color: var(--menu-font);
+    background-color: var(--button-bg-againstpage);
+    color: var(--button-text-againstpage);
+  }
 }
 
-.button:hover {
-  background-color: var(--highlight-dark);
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--text-color);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 5px;
+  display: block;
+}
+
+.button:hover::before {
+  opacity: 0.05;
 }

@@ -80,10 +80,14 @@ const Study = () => {
           key={currentCard}
         />
         <div className={styles.study__buttons}>
-          <Button label="Back" onClick={handleBack} />
-          <Button label="Good" onClick={handleGood} />
-          <Button label="Bad" onClick={handleBad} />
-          <Button label="Save and Exit" onClick={handleSaveAndExit} />
+          <Button label="Back" onClick={handleBack} againstpage />
+          <Button label="Good" onClick={handleGood} againstpage />
+          <Button label="Bad" onClick={handleBad} againstpage />
+          <Button
+            label="Save and Exit"
+            onClick={handleSaveAndExit}
+            againstpage
+          />
         </div>
         <div className={styles.study__cardcount}>
           {currentCard + 1} / {totalCards}

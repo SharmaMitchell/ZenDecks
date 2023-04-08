@@ -121,11 +121,27 @@ const Navbar = (props: NavbarProps) => {
             </>
           ) : (
             <>
+              <li
+                className={
+                  styles.navbar__item +
+                  " " +
+                  styles.navbar__themetoggle__wrapper
+                }
+              >
+                <div className={styles.navbar__link} onClick={switchTheme}>
+                  Theme
+                </div>
+                <InnerMoon
+                  toggle={switchTheme}
+                  toggled={theme === "dark"}
+                  className={styles.navbar__themetoggle}
+                />
+              </li>
               <div className={styles.navbar__item}>
-                <Button label="Sign Up" link="/signup" />
+                <Button label="Sign Up" link="/signup" againstcard />
               </div>
               <div className={styles.navbar__item}>
-                <Button label="Sign In" link="/login" />
+                <Button label="Sign In" link="/login" againstcard />
               </div>
             </>
           )}
@@ -192,10 +208,10 @@ const Navbar = (props: NavbarProps) => {
             ) : (
               <>
                 <div className={styles.hamburger__item}>
-                  <Button label="Sign Up" link="/signup" />
+                  <Button label="Sign Up" link="/signup" againstcard />
                 </div>
                 <div className={styles.hamburger__item}>
-                  <Button label="Sign In" link="/login" />
+                  <Button label="Sign In" link="/login" againstcard />
                 </div>
               </>
             )}

@@ -264,7 +264,7 @@ const DeckCreation = () => {
               onChange={(e) => setTags(e.target.value)}
             />
             <div className={styles.deckcreation__save__button}>
-              <Button label="Save" onClick={handleSubmit as any} />
+              <Button label="Save" onClick={handleSubmit as any} againstcard />
             </div>
           </div>
         </motion.div>
@@ -294,7 +294,7 @@ const DeckCreation = () => {
         transition={{ duration: 0.2, delay: 0.1625 }}
         className={styles.deckcreation__addcard}
       >
-        <Button label="Add Card" onClick={addCard} />
+        <Button label="Add Card" onClick={addCard} againstpage />
       </motion.div>
     </div>
   );

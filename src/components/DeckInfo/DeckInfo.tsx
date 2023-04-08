@@ -199,35 +199,35 @@ const DeckInfo = () => {
             </div>
             <div className={styles.deckinfo__buttons}>
               <div className={styles.deckinfo__button}>
-                <Button label="Study Deck" onClick={handleStudy} />
+                <Button label="Study Deck" onClick={handleStudy} againstcard />
               </div>
               {userDoc && !userDoc.exists() ? (
                 <div className={styles.deckinfo__button}>
-                  <Button label="+" onClick={handleAdd} />
+                  <Button label="+" onClick={handleAdd} againstcard />
                 </div>
               ) : (
                 <div className={styles.deckinfo__button}>
                   <Button label="✓" disabled={true} />
                 </div>
               )}
-              {/* {deck.authorID === auth.currentUser?.uid && (
-                <div className={styles.deckinfo__button}>
-                  <Button label="Edit Deck" onClick={handleEditDeck} />
-                </div>
-              )}
               {deck.authorID === auth.currentUser?.uid && (
                 <div className={styles.deckinfo__button}>
-                  <Button label="Delete Deck" onClick={handleDeleteDeck} />
-                </div>
-              )} */}
-              {deck.authorID === auth.currentUser?.uid && (
-                <div className={styles.deckinfo__button}>
-                  <DropdownMenu toggleButton={<Button label="Settings" />}>
+                  <DropdownMenu
+                    toggleButton={<Button label="Settings" againstcard />}
+                  >
                     <DropdownItem>
-                      <Button label="Edit Deck" onClick={handleEditDeck} />
+                      <Button
+                        label="Edit Deck"
+                        onClick={handleEditDeck}
+                        againstcard
+                      />
                     </DropdownItem>
                     <DropdownItem>
-                      <Button label="Delete Deck" onClick={handleDeleteDeck} />
+                      <Button
+                        label="Delete Deck"
+                        onClick={handleDeleteDeck}
+                        againstcard
+                      />
                     </DropdownItem>
                   </DropdownMenu>
                 </div>

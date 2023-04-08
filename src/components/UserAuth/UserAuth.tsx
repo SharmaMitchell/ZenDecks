@@ -154,7 +154,12 @@ const UsernameForm = () => {
         isValid={isValid}
         loading={loading}
       />
-      <Button type="submit" disabled={!isValid || loading} label="Choose" />
+      <Button
+        type="submit"
+        disabled={!isValid || loading}
+        label="Choose"
+        againstpage
+      />
 
       <h3>Debug State</h3>
       <div>
@@ -190,12 +195,20 @@ const UserAuth = () => {
               />
             ) : null}
             <p className={styles.logout__username}>{username}</p>
-            <Button onClick={() => auth.signOut()} label="Log Out" />
+            <Button
+              onClick={() => auth.signOut()}
+              label="Log Out"
+              againstpage
+            />
           </div>
         )
       ) : (
         <div className={styles.login}>
-          <Button onClick={signInWithGoogle} label="Sign in with Google" />
+          <Button
+            onClick={signInWithGoogle}
+            label="Sign in with Google"
+            againstpage
+          />
         </div>
       )}
     </div>

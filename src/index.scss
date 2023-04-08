@@ -5,7 +5,18 @@
   --text-color: #413d3e; // text color, against page background or card\
   --highlight-color: #ff9980; // button, highlight, link color
   --highlight-dark: #d97056; // button hover color
-  --button-text: var(--text-color); // button text color
+  --button-text-againstcard: var(
+    --text-color
+  ); // button text color, against card bg
+  --button-bg-againstcard: var(
+    --highlight-color
+  ); // button bg color, against card bg
+  --button-text-againstpage: var(
+    --text-color
+  ); // button text color, against page bg
+  --button-bg-againstpage: var(
+    --highlight-color
+  ); // button bg color, against page bg
   --button-color-disabled: #929292; // button disabled color
   --button-text-disabled: #0000007b; // button disabled text color
   --saturated-teal: #00bfff;
@@ -50,7 +61,10 @@
   --text-color: #f1d9bd;
   --highlight-color: #f3b3a6;
   --highlight-dark: #d48e7f;
-  --button-text: var(--background-color);
+  --button-bg-againstcard: var(--background-color);
+  --button-text-againstcard: var(--text-color);
+  --button-bg-againstpage: var(--card-color);
+  --button-text-againstpage: var(--text-color);
   --card-color: #413d3e;
   --menu-color: #413d3e;
   --shadow-color: #878787;

@@ -9,6 +9,8 @@ interface ButtonProps {
   type?: "button" | "submit";
   disabled?: boolean;
   variant?: "fill" | "outline";
+  againstpage?: boolean;
+  againstcard?: boolean;
 }
 
 /**
@@ -24,8 +26,21 @@ interface ButtonProps {
  * @todo Implement button variants (fill and outline)
  */
 const Button = (props: ButtonProps) => {
-  const { label, link, onClick, type = "button", disabled = false } = props;
+  const {
+    label,
+    link,
+    onClick,
+    type = "button",
+    disabled = false,
+    againstcard = false,
+    againstpage = false,
+  } = props;
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const buttonStyle = `
+    ${againstpage ? styles.button__againstpage : ""} 
+    ${againstcard ? styles.button__againstcard : ""} 
+    ${disabled ? styles.button__disabled : styles.button}`;
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -40,18 +55,14 @@ const Button = (props: ButtonProps) => {
   };
 
   return link ? (
-    <Link
-      to={link}
-      onClick={onClick}
-      className={disabled ? styles.button__disabled : styles.button}
-    >
+    <Link to={link} onClick={onClick} className={buttonStyle}>
       {label}
     </Link>
   ) : type === "button" ? (
     <div
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      className={disabled ? styles.button__disabled : styles.button}
+      className={buttonStyle}
       tabIndex={0}
     >
       {label}
@@ -60,7 +71,7 @@ const Button = (props: ButtonProps) => {
     <button
       ref={buttonRef}
       onClick={onClick}
-      className={disabled ? styles.button__disabled : styles.button}
+      className={buttonStyle}
       type={type}
       disabled={disabled}
     >
