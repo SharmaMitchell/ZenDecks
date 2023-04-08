@@ -222,7 +222,7 @@ const DeckInfo = () => {
               )} */}
               {deck.authorID === auth.currentUser?.uid && (
                 <div className={styles.deckinfo__button}>
-                  <DropdownMenu>
+                  <DropdownMenu toggleButton={<Button label="Settings" />}>
                     <DropdownItem>
                       <Button label="Edit Deck" onClick={handleEditDeck} />
                     </DropdownItem>

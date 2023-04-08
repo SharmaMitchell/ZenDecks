@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 import Button from "../Button/Button";
 import { Squash as HamburgerButton } from "hamburger-react";
+import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 import { motion } from "framer-motion";
 import { UserContext } from "../utils/context";
 import { ReactComponent as User } from "../../assets/user.svg";
@@ -57,7 +58,7 @@ const Navbar = (props: NavbarProps) => {
               </Link>
             </li>
           ))}
-          <li
+          {/* <li
             className={
               styles.navbar__item + " " + styles.navbar__themetoggle__wrapper
             }
@@ -70,18 +71,52 @@ const Navbar = (props: NavbarProps) => {
               toggled={theme === "dark"}
               className={styles.navbar__themetoggle}
             />
-          </li>
+          </li> */}
           {user ? (
             <>
-              <div className={styles.navbar__item}>
-                <Link to="/account" className={styles.navbar__link}>
-                  <User fill="var(--text-color)" className={styles.usericon} />
-                  {username}
-                </Link>
-              </div>
-              <div className={styles.navbar__item}>
-                <Button label="Log Out" onClick={() => auth.signOut()} />
-              </div>
+              <DropdownMenu
+                isNavMenu={true}
+                toggleButton={
+                  <div className={styles.navbar__item}>
+                    <Link to="#" className={styles.navbar__link}>
+                      <User
+                        fill="var(--text-color)"
+                        className={styles.usericon}
+                      />
+                      {username}
+                    </Link>
+                  </div>
+                }
+              >
+                <li
+                  className={
+                    styles.navbar__item +
+                    " " +
+                    styles.navbar__themetoggle__wrapper
+                  }
+                >
+                  <div className={styles.navbar__link} onClick={switchTheme}>
+                    Theme
+                  </div>
+                  <InnerMoon
+                    toggle={switchTheme}
+                    toggled={theme === "dark"}
+                    className={styles.navbar__themetoggle}
+                  />
+                </li>
+                <li className={styles.navbar__item}>
+                  <Link to="/account" className={styles.navbar__link}>
+                    <User
+                      fill="var(--text-color)"
+                      className={styles.usericon}
+                    />
+                    Account
+                  </Link>
+                </li>
+                <div className={styles.navbar__item}>
+                  <Button label="Log Out" onClick={() => auth.signOut()} />
+                </div>
+              </DropdownMenu>
             </>
           ) : (
             <>
