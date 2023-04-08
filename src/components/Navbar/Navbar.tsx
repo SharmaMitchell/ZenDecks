@@ -7,6 +7,7 @@ import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 import { motion } from "framer-motion";
 import { UserContext } from "../utils/context";
 import { ReactComponent as User } from "../../assets/user.svg";
+import { ReactComponent as Power } from "../../assets/power.svg";
 import { auth } from "../../components/utils/firebase";
 import { InnerMoon } from "@theme-toggles/react";
 import "@theme-toggles/react/css/InnerMoon.css";
@@ -78,13 +79,10 @@ const Navbar = (props: NavbarProps) => {
                 isNavMenu={true}
                 toggleButton={
                   <div className={styles.navbar__item}>
-                    <Link to="#" className={styles.navbar__link}>
-                      <User
-                        fill="var(--text-color)"
-                        className={styles.usericon}
-                      />
+                    <div className={styles.navbar__link}>
+                      <User fill="currentColor" className={styles.usericon} />
                       {username}
-                    </Link>
+                    </div>
                   </div>
                 }
               >
@@ -106,16 +104,19 @@ const Navbar = (props: NavbarProps) => {
                 </li>
                 <li className={styles.navbar__item}>
                   <Link to="/account" className={styles.navbar__link}>
-                    <User
-                      fill="var(--text-color)"
-                      className={styles.usericon}
-                    />
+                    <User fill="currentColor" className={styles.usericon} />
                     Account
                   </Link>
                 </li>
-                <div className={styles.navbar__item}>
-                  <Button label="Log Out" onClick={() => auth.signOut()} />
-                </div>
+                <li className={styles.navbar__item}>
+                  <div
+                    className={styles.navbar__link}
+                    onClick={() => auth.signOut()}
+                  >
+                    <Power fill="currentColor" className={styles.usericon} />
+                    Log Out
+                  </div>
+                </li>
               </DropdownMenu>
             </>
           ) : (
@@ -174,16 +175,19 @@ const Navbar = (props: NavbarProps) => {
               <>
                 <div className={styles.hamburger__item}>
                   <Link to="/account" className={styles.navbar__link}>
-                    <User
-                      fill="var(--text-color)"
-                      className={styles.usericon}
-                    />
+                    <User fill="currentColor" className={styles.usericon} />
                     {username}
                   </Link>
                 </div>
-                <div className={styles.hamburger__item}>
-                  <Button label="Log Out" onClick={() => auth.signOut()} />
-                </div>
+                <li className={styles.hamburger__item}>
+                  <div
+                    className={styles.navbar__link}
+                    onClick={() => auth.signOut()}
+                  >
+                    <Power fill="currentColor" className={styles.usericon} />
+                    Log Out
+                  </div>
+                </li>
               </>
             ) : (
               <>
