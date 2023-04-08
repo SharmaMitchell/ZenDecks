@@ -171,50 +171,52 @@ const Navbar = (props: NavbarProps) => {
                 </Link>
               </li>
             ))}
-            <li
-              className={
-                styles.hamburger__item +
-                " " +
-                styles.navbar__themetoggle__wrapper
-              }
-            >
-              <InnerMoon
-                toggle={switchTheme}
-                toggled={theme === "dark"}
-                className={styles.navbar__themetoggle}
-              />
-              <a className={styles.navbar__link} onClick={switchTheme}>
-                Theme
-              </a>
-            </li>
-            {user ? (
-              <>
-                <div className={styles.hamburger__item}>
-                  <Link to="/account" className={styles.navbar__link}>
-                    <User fill="currentColor" className={styles.usericon} />
-                    {username}
-                  </Link>
-                </div>
-                <li className={styles.hamburger__item}>
-                  <div
-                    className={styles.navbar__link}
-                    onClick={() => auth.signOut()}
-                  >
-                    <Power fill="currentColor" className={styles.usericon} />
-                    Log Out
+            <div className={styles.hamburger__bottom}>
+              <li
+                className={
+                  styles.hamburger__item +
+                  " " +
+                  styles.navbar__themetoggle__wrapper
+                }
+              >
+                <InnerMoon
+                  toggle={switchTheme}
+                  toggled={theme === "dark"}
+                  className={styles.navbar__themetoggle}
+                />
+                <a className={styles.navbar__link} onClick={switchTheme}>
+                  Theme
+                </a>
+              </li>
+              {user ? (
+                <>
+                  <div className={styles.hamburger__item}>
+                    <Link to="/account" className={styles.navbar__link}>
+                      <User fill="currentColor" className={styles.usericon} />
+                      {username}
+                    </Link>
                   </div>
-                </li>
-              </>
-            ) : (
-              <>
-                <div className={styles.hamburger__item}>
-                  <Button label="Sign Up" link="/signup" againstcard />
-                </div>
-                <div className={styles.hamburger__item}>
-                  <Button label="Sign In" link="/login" againstcard />
-                </div>
-              </>
-            )}
+                  <li className={styles.hamburger__item}>
+                    <div
+                      className={styles.navbar__link}
+                      onClick={() => auth.signOut()}
+                    >
+                      <Power fill="currentColor" className={styles.usericon} />
+                      Log Out
+                    </div>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <div className={styles.hamburger__item}>
+                    <Button label="Sign Up" link="/signup" againstcard />
+                  </div>
+                  <div className={styles.hamburger__item}>
+                    <Button label="Sign In" link="/login" againstcard />
+                  </div>
+                </>
+              )}
+            </div>
           </ul>
         </motion.div>
       )}

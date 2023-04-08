@@ -55,7 +55,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 4px;
+    padding: 0;
+    padding-right: 8px;
 
     svg {
       width: 1.5rem;
@@ -82,7 +83,9 @@
 .usericon {
   width: 1.5rem;
   height: 1.5rem;
-  margin: 0 4px;
+  margin: 0;
+  padding: 0;
+  padding-right: 8px;
 }
 
 .hamburgerbutton {
@@ -128,6 +131,20 @@
       flex-direction: row;
     }
   }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    border-top: 2px solid var(--menu-divider);
+    margin-top: 5px;
+    padding-top: 5px;
+
+    .hamburger__item {
+      justify-content: flex-start;
+    }
+  }
 }
 
 .logo {
@@ -148,5 +165,14 @@
     &__list {
       display: flex;
     }
+
+    &__themetoggle {
+      padding-right: 0;
+      padding-left: 8px;
+    }
+  }
+  .usericon {
+    padding-right: 0;
+    padding-left: 8px;
   }
 }

@@ -31,6 +31,7 @@
   --card-color: var(--manilla-color); // flashcard background
   --menu-color: var(--dark-brown); // nav & hamburger background
   --menu-font: var(--cool-white); // nav & hamburger font color
+  --menu-divider: var(--menu-font); // hamburger divider color
   --text-highlight: var(--medium-teal); // text highlight color, for links
   --sb-size: 10px; // scrollbar size
 
@@ -67,6 +68,7 @@
   --button-text-againstpage: var(--text-color);
   --card-color: #413d3e;
   --menu-color: #413d3e;
+  --menu-divider: var(--background-color);
   --shadow-color: #878787;
   --text-highlight: var(--saturated-teal);
   --menu-font: var(--text-color);
