@@ -18,6 +18,7 @@ const About = () => {
         <a
           href="https://en.wikipedia.org/wiki/Spaced_repetition"
           target="_blank"
+          rel="noopener noreferrer"
         >
           spaced repetition
         </a>{" "}
