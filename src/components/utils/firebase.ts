@@ -2,6 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
 import "firebase/compat/auth";
+import "firebase/compat/analytics";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,5 +22,7 @@ export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 export const firestore = firebase.firestore();
 export const increment = firebase.firestore.FieldValue.increment;
 export const storage = firebase.storage();
+
+export const analytics = firebase.analytics();
 
 export default firebase;

@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useEffect } from "react";
 import styles from "./UserAuth.module.scss";
 import Button from "../Button/Button";
 import {
+  analytics,
   auth,
   firestore,
   googleAuthProvider,
@@ -16,6 +17,10 @@ import debounce from "lodash.debounce";
 const signInWithGoogle = async () => {
   try {
     await auth.signInWithPopup(googleAuthProvider);
+    analytics.logEvent("login", {
+      method: "Google",
+    });
+    auth.currentUser?.uid && analytics.setUserId(auth.currentUser?.uid);
   } catch (error) {
     console.log(error);
   }
@@ -143,6 +148,9 @@ const UsernameForm = () => {
       batch.set(userDoc, { username: formValue, photoURL: user?.photoURL });
       batch.set(usernameDoc, { uid: user?.uid });
       await batch.commit();
+      analytics.logEvent("username_set", {
+        username: formValue,
+      });
     } catch (error) {
       console.log(error);
     }
