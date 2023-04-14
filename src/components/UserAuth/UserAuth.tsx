@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import styles from "./UserAuth.module.scss";
 import Button from "../Button/Button";
 import {
@@ -10,6 +10,7 @@ import {
 } from "../../components/utils/firebase";
 import { UserContext } from "../utils/context";
 import debounce from "lodash.debounce";
+import { ReactComponent as User } from "../../assets/user.svg";
 
 /**
  * Sign in with Google handler, using Firebase's auth.signInWithPopup
@@ -203,6 +204,13 @@ const UsernameForm = () => {
  */
 const UserAuth = () => {
   const { user, username } = useContext(UserContext);
+  const [userPhoto, setUserPhoto] = useState<string | undefined>(
+    user && user.photoURL ? user.photoURL : undefined
+  );
+
+  const handleImageError = () => {
+    setUserPhoto(undefined);
+  };
 
   return (
     <div>
@@ -211,13 +219,16 @@ const UserAuth = () => {
           <UsernameForm />
         ) : (
           <div className={styles.logout}>
-            {user.photoURL ? (
+            {userPhoto ? (
               <img
-                src={user.photoURL}
+                src={userPhoto}
                 alt="user avatar"
                 className={styles.logout__avatar}
+                onError={handleImageError}
               />
-            ) : null}
+            ) : (
+              <User className={styles.logout__avatar} /> // fallback avatar
+            )}
             <p className={styles.logout__username}>{username}</p>
             <Button
               onClick={() => auth.signOut()}
