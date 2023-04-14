@@ -26,3 +26,6 @@ export const storage = firebase.storage();
 export const analytics = firebase.analytics();
 
 export default firebase;
+
+type FirebaseError = firebase.FirebaseError;
+export type { FirebaseError };

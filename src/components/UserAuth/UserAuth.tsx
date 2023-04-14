@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useEffect } from "react";
 import styles from "./UserAuth.module.scss";
 import Button from "../Button/Button";
 import {
+  FirebaseError,
   analytics,
   auth,
   firestore,
@@ -21,8 +22,13 @@ const signInWithGoogle = async () => {
       method: "Google",
     });
     auth.currentUser?.uid && analytics.setUserId(auth.currentUser?.uid);
-  } catch (error) {
+  } catch (error: FirebaseError | any) {
     console.log(error);
+    analytics.logEvent("login_error", {
+      method: "Google",
+      error: error?.code,
+      error_message: error?.message,
+    });
   }
 };
 
