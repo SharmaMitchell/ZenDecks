@@ -134,6 +134,11 @@ const DeckInfo = () => {
       await batch.commit();
       store.dispatch(deleteDeckById(deckId));
 
+      analytics.logEvent("deck_deleted", {
+        deckId,
+        deckTitle: deck.title,
+      });
+
       navigate("/decks");
     } catch (err) {
       console.log(err);

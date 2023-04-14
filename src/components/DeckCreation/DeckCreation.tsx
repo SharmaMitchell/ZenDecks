@@ -3,7 +3,7 @@ import styles from "./DeckCreation.module.scss";
 import { motion } from "framer-motion";
 import Button from "../Button/Button";
 import CardCreation from "../CardCreation/CardCreation";
-import { firestore, auth } from "../utils/firebase";
+import { firestore, auth, analytics } from "../utils/firebase";
 import firebase from "../utils/firebase";
 import { UserContext } from "../utils/context";
 import store, { setDeckById } from "../../store/store";
@@ -179,6 +179,16 @@ const DeckCreation = () => {
       });
 
       await batch.commit();
+
+      existingDeck
+        ? analytics.logEvent("deck_edited", {
+            deck_id: deckRef.id,
+            deck_title: title,
+          })
+        : analytics.logEvent("deck_created", {
+            deck_id: deckRef.id,
+            deck_title: title,
+          });
 
       // Add the new deck to the "Decks" store
       store.dispatch(
