@@ -88,12 +88,14 @@ const DeckCreation = () => {
     e.preventDefault();
 
     if (!title || title.trim() === "") {
-      setError("Please provide a title for your deck");
+      // setError("Please provide a title for your deck");
+      window.alert("Please provide a title for your deck");
       return;
     }
 
     if (!user || !username) {
-      setError("Please log in to create a deck");
+      // setError("Please log in to create a deck");
+      window.alert("Please log in to create a deck");
       return;
     }
 
