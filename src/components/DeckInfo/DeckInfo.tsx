@@ -147,7 +147,7 @@ const DeckInfo = () => {
             className={styles.deckinfo__top}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.15 }}
+            transition={{ duration: 0.15, delay: 0.1 }}
           >
             <h1 className={styles.deckinfo__title}>{deck.title}</h1>
             <p className={styles.deckinfo__description}>{deck.description}</p>
@@ -240,7 +240,7 @@ const DeckInfo = () => {
             className={styles.deckinfo__cards__title}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
           >
             Cards
           </motion.h2>
@@ -248,7 +248,7 @@ const DeckInfo = () => {
             className={styles.deckinfo__cards}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2, delay: 0.075 }}
+            transition={{ duration: 0.2, delay: 0.175 }}
           >
             {deck.cards &&
               [...deck.cards]
@@ -263,7 +263,7 @@ const DeckInfo = () => {
                 className={styles.deckinfo__cards__title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: 0.125 }}
+                transition={{ duration: 0.2, delay: 0.225 }}
               >
                 Comments
               </motion.h2>
@@ -271,7 +271,7 @@ const DeckInfo = () => {
                 className={styles.deckinfo__comments}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: 0.175 }}
+                transition={{ duration: 0.2, delay: 0.275 }}
               >
                 {comments.map((comment, index) => (
                   <Comment comment={comment} key={index} />
