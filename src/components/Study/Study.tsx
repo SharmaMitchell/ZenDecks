@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDeck, useDeckMastery } from "../utils/hooks";
 import styles from "./Study.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
@@ -40,6 +40,8 @@ const Study = () => {
   const deck = useDeck(deckId);
   //const deckMastery = useDeckMastery(deckId);
 
+  const navigate = useNavigate();
+
   if (!deck || !deck.cards) return null;
 
   const totalCards = deck.cards.length;
@@ -67,6 +69,7 @@ const Study = () => {
 
   const handleSaveAndExit = () => {
     // save data to firebase
+    navigate(`/decks/${deckId}`);
   };
 
   return (
