@@ -67,6 +67,7 @@ function App() {
               <Route path="/study" element={<Decks />} />
               <Route path="/study/:deckId" element={<StudyPage />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Login />} />
               <Route path="/account" element={<Login />} />
               <Route path="*" element={<h1>404</h1>} />
             </Routes>
