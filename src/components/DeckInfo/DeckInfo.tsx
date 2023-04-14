@@ -1,7 +1,13 @@
 import React from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
-import { analytics, auth, firestore, increment } from "../utils/firebase";
+import {
+  FirebaseError,
+  analytics,
+  auth,
+  firestore,
+  increment,
+} from "../utils/firebase";
 import { useDeck } from "../utils/hooks";
 import { motion } from "framer-motion";
 import { ReactComponent as User } from "../../assets/user.svg";
@@ -140,8 +146,14 @@ const DeckInfo = () => {
       });
 
       navigate("/decks");
-    } catch (err) {
-      console.log(err);
+    } catch (error: FirebaseError | any) {
+      console.log(error);
+      analytics.logEvent("deck_delete_error", {
+        deckId,
+        deckTitle: deck.title,
+        error: error?.code,
+        error_message: error?.message,
+      });
     }
   };
 
