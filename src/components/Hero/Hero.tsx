@@ -35,7 +35,7 @@ const Hero = () => {
           className={styles.hero__buttons}
         >
           <div className={styles.hero__button}>
-            <Button label="Get Started" link="/signup" againstpage />
+            <Button label="Get Started" link="/decks" againstpage />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -44,7 +44,7 @@ const Hero = () => {
             className={styles.hero__button}
           >
             <div className={styles.hero__button}>
-              <Button label="Learn More" link="/#about" againstpage />
+              <Button label="Learn More" link="/about" againstpage />
             </div>
           </motion.div>
         </motion.div>
