@@ -1,7 +1,7 @@
 import React from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
-import { auth, firestore, increment } from "../utils/firebase";
+import { analytics, auth, firestore, increment } from "../utils/firebase";
 import { useDeck } from "../utils/hooks";
 import { motion } from "framer-motion";
 import { ReactComponent as User } from "../../assets/user.svg";
@@ -95,6 +95,11 @@ const DeckInfo = () => {
    */
   const handleStudy = () => {
     handleAdd();
+
+    analytics.logEvent("study_deck", {
+      deckId,
+      deckTitle: deck?.title,
+    });
 
     navigate(`/study/${deckId}`);
   };

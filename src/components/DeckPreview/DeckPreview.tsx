@@ -11,7 +11,12 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { firestore, auth, increment } from "../../components/utils/firebase";
+import {
+  firestore,
+  auth,
+  increment,
+  analytics,
+} from "../../components/utils/firebase";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 import { DocumentReference } from "firebase/firestore";
@@ -68,6 +73,10 @@ const DeckPreview = (props: DeckPreviewProps) => {
    */
   const handleStudy = () => {
     handleAdd();
+    analytics.logEvent("study_deck", {
+      deckId: deck?.id,
+      deckTitle: deck?.title,
+    });
     navigate(`/study/${deck.id}`);
   };
 
