@@ -201,15 +201,17 @@ const DeckInfo = () => {
               <div className={styles.deckinfo__button}>
                 <Button label="Study Deck" onClick={handleStudy} againstcard />
               </div>
-              {userDoc && !userDoc.exists() ? (
-                <div className={styles.deckinfo__button}>
-                  <Button label="+" onClick={handleAdd} againstcard />
-                </div>
-              ) : (
-                <div className={styles.deckinfo__button}>
-                  <Button label="✓" disabled={true} />
-                </div>
-              )}
+              {userDoc ? (
+                !userDoc.exists() ? (
+                  <div className={styles.deckinfo__button}>
+                    <Button label="+" onClick={handleAdd} againstcard />
+                  </div>
+                ) : (
+                  <div className={styles.deckinfo__button}>
+                    <Button label="✓" disabled={true} />
+                  </div>
+                )
+              ) : null}
               {deck.authorID === auth.currentUser?.uid && (
                 <div className={styles.deckinfo__button}>
                   <DropdownMenu

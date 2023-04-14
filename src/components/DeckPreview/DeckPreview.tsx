@@ -115,15 +115,17 @@ const DeckPreview = (props: DeckPreviewProps) => {
               againstcard
             />
           </div>
-          {userDoc && !userDoc.exists() ? (
-            <div className={styles.deckpreview__button}>
-              <Button label="+" onClick={handleAdd} againstcard />
-            </div>
-          ) : (
-            <div className={styles.deckpreview__button}>
-              <Button label="✓" disabled={true} />
-            </div>
-          )}
+          {userDoc ? (
+            !userDoc.exists() ? (
+              <div className={styles.deckinfo__button}>
+                <Button label="+" onClick={handleAdd} againstcard />
+              </div>
+            ) : (
+              <div className={styles.deckinfo__button}>
+                <Button label="✓" disabled={true} />
+              </div>
+            )
+          ) : null}
         </div>
       </div>
       {preview && (
