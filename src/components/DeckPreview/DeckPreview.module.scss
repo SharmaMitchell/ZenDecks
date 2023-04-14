@@ -8,8 +8,12 @@
   background-color: var(--card-color);
   padding: 20px;
   border-radius: 10px;
-  max-width: min(95vw, 650px);
+  max-width: 95vw;
   transition: ease;
+
+  &__left {
+    width: 100%;
+  }
 
   &__title {
     font-size: 1.5rem;
