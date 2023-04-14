@@ -173,6 +173,7 @@ const DeckCreation = () => {
               id: newCardRef.id,
               created: firebase.firestore.FieldValue.serverTimestamp(),
             };
+            card.id = newCardRef.id;
             batch.set(newCardRef, newCard);
           }
         }
@@ -194,7 +195,7 @@ const DeckCreation = () => {
       store.dispatch(
         setDeckById(deckRef.id, {
           ...newDeck,
-          created: existingDeck ? existingDeck.created : new Date(),
+          created: existingDeck ? existingDeck.created : new Date().getTime(),
           updated: firebase.firestore.Timestamp.now().toMillis(),
           id: deckRef.id,
           path: deckRef.path,
