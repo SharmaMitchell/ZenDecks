@@ -40,7 +40,17 @@ const UsernameMessage = ({
         Your username must be at least 3 characters long.
       </p>
     );
-  } else if (username.length >= 3 && !re.test(username)) {
+  } else if (username.length > 15) {
+    return (
+      <p className={styles.usernameform__hint}>
+        Your username must be less than 15 characters long.
+      </p>
+    );
+  } else if (
+    username.length >= 3 &&
+    username.length <= 15 &&
+    !re.test(username)
+  ) {
     return (
       <p className={styles.usernameform__hint}>
         Your username can only contain letters, numbers and underscores.
@@ -109,7 +119,7 @@ const UsernameForm = () => {
    */
   const checkUsername = useCallback(
     debounce(async (username: string) => {
-      if (username.length >= 3) {
+      if (username.length >= 3 && username.length < 15) {
         const ref = firestore.doc(`usernames/${username}`);
         const { exists } = await ref.get();
         setIsValid(!exists);
