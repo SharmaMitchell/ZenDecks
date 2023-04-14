@@ -72,8 +72,9 @@ export function useDecks(): Deck[] {
           .filter((cardDoc) => cardDoc.ref.parent?.parent?.id === doc.id)
           .map((cardDoc) => {
             return {
-              ...cardDoc.data(),
               id: cardDoc.id,
+              front: cardDoc.data()?.front,
+              back: cardDoc.data()?.back,
               created: cardDoc.data()?.created?.toMillis(),
             } as Card;
           });
@@ -128,8 +129,9 @@ export function useDeck(deckId: string): Deck | undefined {
     if (cardsSnapshot && value && snapshot) {
       const deckCards = cardsSnapshot.docs.map((cardDoc) => {
         return {
-          ...cardDoc.data(),
           id: cardDoc.id,
+          front: cardDoc.data()?.front,
+          back: cardDoc.data()?.back,
           created: cardDoc.data()?.created?.toMillis(),
         } as Card;
       });
