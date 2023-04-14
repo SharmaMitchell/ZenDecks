@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./About.module.scss";
+import { motion } from "framer-motion";
 
 /**
  * About component: Displays information about the app
@@ -10,7 +11,13 @@ import styles from "./About.module.scss";
  */
 const About = () => {
   return (
-    <div className={styles.about} id="about">
+    <motion.div
+      className={styles.about}
+      id="about"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, delay: 0.2 }}
+    >
       <h2>Algorithm-powered Learning</h2>
       <p>
         ZenDecks uses a powerful algorithm to help you learn faster and more
@@ -44,7 +51,7 @@ const About = () => {
         including Quizlet, Anki, Excel, and more. You can also export your decks
         to a CSV file, which you can then import into other apps.
       </p>
-    </div>
+    </motion.div>
   );
 };
 
