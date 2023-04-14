@@ -13,10 +13,6 @@ import { useDeck } from "../utils/hooks";
 /**
  * Displays a form for creating a new deck
  * @returns The DeckCreation component
- * @todo Add "edit deck" functionality
- *  - Take in "create" or "edit" prop
- *  - If "edit", fetch deck info from Firebase, update deck info on submit
- *  - If "create", create new deck in Firebase
  * @todo Add save button to the bottom, near "add card" button
  * @todo Change focus to next card when "add card" button is clicked
  * @todo Add card when "enter" or "tab" are pressed in the back of the last card
@@ -85,6 +81,8 @@ const DeckCreation = () => {
    * @todo Add loading indicator on edit path when fetching deck data
    * @todo Add "public" checkbox
    * @todo Add specific card order/index (and implement reordering)
+   * @todo Add "delete" button for cards
+   * @todo Fix card updates (currently creates new cards instead of updating existing ones)
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
