@@ -43,6 +43,7 @@ const DeckCreation = () => {
         existingDeck?.cards?.map((card) => ({
           front: card.front,
           back: card.back,
+          id: card.id,
         })) ?? [{ front: "", back: "" }]
       );
     }
@@ -82,7 +83,6 @@ const DeckCreation = () => {
    * @todo Add "public" checkbox
    * @todo Add specific card order/index (and implement reordering)
    * @todo Add "delete" button for cards
-   * @todo Fix card updates (currently creates new cards instead of updating existing ones)
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -143,14 +143,13 @@ const DeckCreation = () => {
 
       // Add cards to the "Cards" subcollection of the new deck document
       const batch = firestore.batch();
+      const existingCards = existingDeck ? existingDeck.cards : [];
 
       cards.forEach((card) => {
         if (card.front !== "" || card.back !== "") {
-          const cardRef = cardsRef.doc(card.id);
+          const matchingCard =
+            card.id && existingCards?.find((c) => c.id === card.id);
 
-          const matchingCard = existingDeck?.cards?.find(
-            (c) => c.id === card.id
-          );
           if (
             matchingCard &&
             matchingCard.front === card.front &&
@@ -163,12 +162,13 @@ const DeckCreation = () => {
               ...card,
               updated: firebase.firestore.FieldValue.serverTimestamp(),
             };
-            batch.update(cardRef, updatedCard);
+            batch.update(cardsRef.doc(card.id), updatedCard);
           } else {
             // Add a new card
             const newCardRef = cardsRef.doc();
             const newCard = {
               ...card,
+              id: newCardRef.id,
               created: firebase.firestore.FieldValue.serverTimestamp(),
             };
             batch.set(newCardRef, newCard);
@@ -183,7 +183,7 @@ const DeckCreation = () => {
         setDeckById(deckRef.id, {
           ...newDeck,
           created: existingDeck ? existingDeck.created : new Date(),
-          updated: firebase.firestore.FieldValue.serverTimestamp(),
+          updated: firebase.firestore.Timestamp.now().toMillis(),
           id: deckRef.id,
           path: deckRef.path,
           cards: cards.filter((card) => card.front !== "" || card.back !== ""),
