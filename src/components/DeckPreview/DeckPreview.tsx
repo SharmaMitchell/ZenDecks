@@ -33,11 +33,13 @@ const DeckPreview = (props: DeckPreviewProps) => {
   const navigate = useNavigate();
 
   // Listen to users document for current user
-  const userRef = firestore
-    .collection("decks")
-    .doc(deck.id)
-    .collection("users")
-    .doc(auth.currentUser?.uid);
+  const userRef = auth.currentUser
+    ? firestore
+        .collection("decks")
+        .doc(deck.id)
+        .collection("users")
+        .doc(auth.currentUser?.uid)
+    : null;
 
   const [userDoc] = useDocument(userRef as any);
 
@@ -46,7 +48,7 @@ const DeckPreview = (props: DeckPreviewProps) => {
    * @todo Fix deckRef (see DeckInfo component)
    */
   const handleAdd = () => {
-    if (userDoc && !userDoc.exists()) {
+    if (userRef && userDoc && !userDoc.exists()) {
       try {
         const uid = auth.currentUser?.uid;
         const batch = firestore.batch();
