@@ -43,7 +43,12 @@ const DeckCreation = () => {
       setTitle(existingDeck.title);
       setDescription(existingDeck.description);
       setTags(existingDeck.tags?.join(", ") ?? "");
-      setCards(existingDeck.cards ?? [{ front: "", back: "" }]);
+      setCards(
+        existingDeck?.cards?.map((card) => ({
+          front: card.front,
+          back: card.back,
+        })) ?? [{ front: "", back: "" }]
+      );
     }
   }, [existingDeck, deckId]);
 
