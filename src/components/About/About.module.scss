@@ -6,7 +6,12 @@
   min-height: min(600px, 100vh);
   padding: var(--section-paddingY) 0;
 
-  h2 {
+  &__title {
+    margin: 0;
+    margin-bottom: 35px;
+  }
+
+  &__title__subtitle {
     margin: 16px 0;
     font-size: 1.25em;
     font-weight: 600;
@@ -17,5 +22,6 @@
     margin: 8px 0;
     font-size: 1.15rem;
     text-align: justify;
+    width: 100%;
   }
 }
