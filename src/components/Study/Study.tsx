@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDeck, useDeckMastery } from "../utils/hooks";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import styles from "./Study.module.scss";
 import Flashcard from "../Flashcard/Flashcard";
 import Button from "../Button/Button";
@@ -46,13 +51,6 @@ const Study = () => {
 
   const totalCards = deck.cards.length;
 
-  const handleGood = () => {
-    if (currentCard + 1 === totalCards) {
-      return;
-    }
-    setCurrentCard(currentCard + 1);
-  };
-
   const handleBad = () => {
     if (currentCard + 1 === totalCards) {
       return;
@@ -60,32 +58,44 @@ const Study = () => {
     setCurrentCard(currentCard + 1);
   };
 
-  const handleBack = () => {
-    if (currentCard === 0) {
-      return;
-    }
-    setCurrentCard(currentCard - 1);
-  };
-
   const handleSaveAndExit = () => {
     // save data to firebase
     navigate(`/decks/${deckId}`);
   };
 
+  console.log(currentCard);
+
   return (
     <div className={styles.study}>
       <h2>{deck.title}</h2>
       <div className={styles.study__cards}>
-        <Flashcard
-          front={deck.cards[currentCard].front}
-          back={deck.cards[currentCard].back}
-          size="large"
-          key={currentCard}
-        />
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={60}
+          loop={false}
+          modules={[Navigation]}
+          navigation={true}
+          className={styles.swiper}
+          onSwiper={(swiper) => {
+            swiper.on("slideChange", () => {
+              setCurrentCard(swiper.activeIndex);
+            });
+          }}
+        >
+          {deck.cards.map((card, index) => (
+            <SwiperSlide key={index} style={{ width: "auto" }}>
+              <Flashcard
+                front={card.front}
+                back={card.back}
+                size="large"
+                key={index}
+                isStudyMode={true}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
         <div className={styles.study__buttons}>
-          <Button label="Back" onClick={handleBack} againstpage />
-          <Button label="Good" onClick={handleGood} againstpage />
-          <Button label="Bad" onClick={handleBad} againstpage />
+          <Button label="Needs Practice" onClick={handleBad} againstpage />
           <Button
             label="Save and Exit"
             onClick={handleSaveAndExit}

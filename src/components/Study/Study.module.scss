@@ -30,13 +30,8 @@
 
 .swiper {
   max-width: min(90vw, 600px);
-  padding: 40px 0;
-  padding-top: 25px;
+  padding: 25px 0;
   margin: 0;
-  div.swiper-button-prev,
-  div.swiper-button-next {
-    display: none; //TODO: Make this work
-  }
 }
 
 @media screen and (min-width: 525px) {
@@ -45,7 +40,7 @@
     display: block;
   }
   .swiper {
-    padding: 40px 50px;
-    padding-top: 25px;
+    padding: 0 50px;
+    max-width: min(85vw, 600px);
   }
 }

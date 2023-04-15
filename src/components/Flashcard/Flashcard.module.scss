@@ -65,6 +65,13 @@
     background-color: var(--background-color);
   }
 
+  &.studymode {
+    width: min(600px, 90vw);
+    min-height: min(420px, 90vh);
+    height: 100%;
+    max-height: 90vh;
+  }
+
   p {
     margin: 0;
   }
@@ -124,6 +131,14 @@
 
 .flashcard__back {
   transform: rotateY(180deg) translateY(-2px);
+}
+
+@media screen and (min-width: 525px) {
+  .flashcard {
+    &.studymode {
+      max-width: 85vw;
+    }
+  }
 }
 
 @media screen and (min-width: 1024px) {
