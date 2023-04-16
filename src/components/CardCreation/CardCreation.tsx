@@ -12,6 +12,7 @@ interface CardCreationProps {
     value: string
   ) => void;
   index: number;
+  addCardCallback?: () => void;
 }
 
 /**
@@ -25,7 +26,22 @@ interface CardCreationProps {
  */
 
 const CardCreation = (props: CardCreationProps) => {
-  const { front, back, handleCardChange, index } = props;
+  const { front, back, handleCardChange, index, addCardCallback } = props;
+
+  const handleBackKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (
+      e.key === "Tab" &&
+      !e.shiftKey &&
+      !e.altKey &&
+      !e.ctrlKey &&
+      !e.metaKey
+    ) {
+      e.preventDefault();
+      if (addCardCallback) {
+        addCardCallback();
+      }
+    }
+  };
 
   return (
     <motion.div
@@ -64,6 +80,7 @@ const CardCreation = (props: CardCreationProps) => {
           className={styles.cardcreation__input}
           value={back}
           onChange={(e) => handleCardChange(index, "back", e.target.value)}
+          onKeyDown={addCardCallback ? handleBackKeyDown : undefined}
         />
       </div>
       <div className={styles.cardcreation__preview}>

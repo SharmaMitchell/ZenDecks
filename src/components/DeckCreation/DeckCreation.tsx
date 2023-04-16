@@ -326,6 +326,7 @@ const DeckCreation = () => {
             front={card.front}
             back={card.back}
             handleCardChange={handleCardChange}
+            addCardCallback={index == cards.length - 1 ? addCard : undefined}
           />
         ))}
       </div>
