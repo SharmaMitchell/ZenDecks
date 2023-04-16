@@ -80,20 +80,22 @@ const DeckCreation = () => {
   const addCard = () => {
     setCards([...cards, { front: "", back: "" }]);
     // Focus on the front of the new card
-    setCardAdded(!cardAdded);
+    setCardAdded(true);
   };
 
   /**
    * Sets focus to the front of the last card when a new card is added
    */
   useEffect(() => {
-    const newCard = document.getElementById(`front-${cards.length - 1}`);
-    if (newCard) {
-      newCard.focus();
-      // scroll viewport so that new card is visible
-      newCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (cardAdded) {
+      const newCard = document.getElementById(`front-${cards.length - 1}`);
+      if (newCard) {
+        newCard.focus();
+        // scroll viewport so that new card is visible
+        newCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     }
-  }, [cardAdded]);
+  }, [cardAdded, cards]);
 
   /**
    * Submits the deck info and cards to Firebase
