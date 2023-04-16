@@ -22,10 +22,10 @@ ZenDecks is a free, open source flashcard webapp with full Markdown and LaTeX su
     - front (string)
     - back (string)
   - Ratings subcollection
-    - id (string, id of the user who rated the deck == id of the rating document)
+    - id (string, the id of the user document corresponds to a user's unique uid)
     - score (number, between 1 and 5)
   - Users subcollection
-    - id (the id of the user document is the id of one user of the deck)
+    - id (string, the id of the user document corresponds to a user's unique uid)
 - Users collection
   - username (string, unique)
   - photoURL (string, url to user's Google account photo)
@@ -45,9 +45,7 @@ ZenDecks is a free, open source flashcard webapp with full Markdown and LaTeX su
 
 ### Framer Motion Animations
 
-- Subtle animations on component mount (usually fading in opacity and transitioning y position up from ~20px offset)
-- Globally defined animation parameters coming soon, for consistency (e.g. page content fades in the same)
-  - See [Motion Config](https://www.framer.com/motion/motion-config/)
+- Transitional animations on component mount
 
 ### Swiper Carousel
 
