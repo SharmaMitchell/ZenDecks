@@ -114,8 +114,8 @@ const About = (props: AboutProps) => {
             <p>
               ZenDecks is compatible with a wide range of import and export
               formats, including Quizlet, Anki, Excel, and more. You can also
-              export your decks to a CSV file, which you can then import into
-              other apps.
+              export your decks to a TSV or CSV file, which you can then import
+              into other apps.
             </p>
           </motion.div>
           <motion.div
