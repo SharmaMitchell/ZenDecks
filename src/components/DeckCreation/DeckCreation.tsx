@@ -95,7 +95,7 @@ const DeckCreation = () => {
         newCard.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
-  }, [cardAdded, cards]);
+  }, [cardAdded, cards.length]);
 
   /**
    * Submits the deck info and cards to Firebase
