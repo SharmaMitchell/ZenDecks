@@ -35,25 +35,31 @@ const CardCreation = (props: CardCreationProps) => {
       className={styles.cardcreation}
     >
       <div className={styles.cardcreation__form}>
-        <label className={styles.cardcreation__input__label} htmlFor="front">
+        <label
+          className={styles.cardcreation__input__label}
+          htmlFor={`front-${index}`}
+        >
           Front
         </label>
         <textarea
           rows={4}
           name="front"
-          id="front"
+          id={`front-${index}`}
           placeholder="Front of the card"
           className={styles.cardcreation__input}
           value={front}
           onChange={(e) => handleCardChange(index, "front", e.target.value)}
         />
-        <label className={styles.cardcreation__input__label} htmlFor="back">
+        <label
+          className={styles.cardcreation__input__label}
+          htmlFor={`back-${index}`}
+        >
           Back
         </label>
         <textarea
           rows={4}
           name="back"
-          id="back"
+          id={`back-${index}`}
           placeholder="Back of the card"
           className={styles.cardcreation__input}
           value={back}

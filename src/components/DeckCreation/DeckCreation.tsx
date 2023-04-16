@@ -25,6 +25,7 @@ const DeckCreation = () => {
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [cards, setCards] = useState<Card[]>([{ front: "", back: "" }]);
+  const [cardAdded, setCardAdded] = useState(false); // Used to focus on first input of new card
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { user, username } = useContext(UserContext);
@@ -49,6 +50,14 @@ const DeckCreation = () => {
     }
   }, [existingDeck, deckId]);
 
+  // Set focus to title input on mount
+  useEffect(() => {
+    const titleInput = document.getElementById("decktitle");
+    if (titleInput) {
+      titleInput.focus();
+    }
+  }, []);
+
   /**
    * Updates the cards array with the new card info
    * @param index - The index of the card in the array of cards
@@ -70,7 +79,21 @@ const DeckCreation = () => {
    */
   const addCard = () => {
     setCards([...cards, { front: "", back: "" }]);
+    // Focus on the front of the new card
+    setCardAdded(!cardAdded);
   };
+
+  /**
+   * Sets focus to the front of the last card when a new card is added
+   */
+  useEffect(() => {
+    const newCard = document.getElementById(`front-${cards.length - 1}`);
+    if (newCard) {
+      newCard.focus();
+      // scroll viewport so that new card is visible
+      newCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [cardAdded]);
 
   /**
    * Submits the deck info and cards to Firebase
