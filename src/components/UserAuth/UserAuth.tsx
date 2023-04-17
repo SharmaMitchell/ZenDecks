@@ -186,14 +186,14 @@ const UsernameForm = () => {
         againstpage
       />
 
-      <h3>Debug State</h3>
+      {/* <h3>Debug State</h3>
       <div>
         Username: {formValue}
         <br />
         Loading: {loading.toString()}
         <br />
         Username Valid: {isValid.toString()}
-      </div>
+      </div> */}
     </form>
   );
 };
