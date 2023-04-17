@@ -2,6 +2,9 @@
 
 ZenDecks is a free, open source flashcard webapp with full Markdown and LaTeX support. ZenDecks is a feature-rich alternative to Quizlet, Anki, Memrise, and other spaced repetition systems. CSV import/export is fully supported, meaning that ZenDecks decks are compatible with Quizlet, Anki, Memrise, Excel, and many other apps!
 
+<img src="https://user-images.githubusercontent.com/90817905/232629825-6cca7f6e-2859-4e68-86f2-42aaf4171534.png" width="720px" alt="ZenDecks Landing page device mockups" />
+
+
 ## Tech Stack
 
 **Frontend**: TypeScript, ReactJS, Redux, SCSS, Framer Motion, Swiper  
@@ -97,3 +100,10 @@ See `LICENSE.md` for the full license text
 ## Work in Progress
 
 ZenDecks is an early-stage work in progress; many features are currently missing or incomplete. Suggestions are welcome in the issues tab, as are contributions!
+
+## Development Screenshots
+<img src="https://user-images.githubusercontent.com/90817905/232630245-9ce26b1a-b983-4dfb-9277-85aafc97d9e3.jpg" width="720px" alt="Home page"/>  
+<img src="https://user-images.githubusercontent.com/90817905/232630267-f43044d8-0b29-45eb-8211-fab478a0bdcf.jpg" width="720px" alt="About page"/>  
+<img src="https://user-images.githubusercontent.com/90817905/232630330-9a1c4dd0-92c2-4d9b-86c7-f7e6d1aedba2.jpg" width="720px" alt="Decks page"/>  
+<img src="https://user-images.githubusercontent.com/90817905/232630395-77bca600-3919-4821-bdda-0222c560111b.jpg" width="720px" alt="Edit Deck page"/>  
+<img src="https://user-images.githubusercontent.com/90817905/232630425-dcf7f100-232e-4e7f-b0cc-50d052e604d9.jpg" width="720px" alt="Study Deck page"/>  
