@@ -47,23 +47,24 @@ const Study = () => {
 
   const navigate = useNavigate();
 
+  const swiperRef = useRef() as any;
+
   if (!deck || !deck.cards) return null;
 
   const totalCards = deck.cards.length;
 
-  const handleBad = () => {
+  const handleBad = (swiper: typeof Swiper) => {
     if (currentCard + 1 === totalCards) {
       return;
     }
-    setCurrentCard(currentCard + 1);
+    // swipe forward
+    swiperRef?.current?.slideNext();
   };
 
   const handleSaveAndExit = () => {
     // save data to firebase
     navigate(`/decks/${deckId}`);
   };
-
-  console.log(currentCard);
 
   return (
     <div className={styles.study}>
@@ -77,6 +78,7 @@ const Study = () => {
           navigation={true}
           className={styles.swiper}
           onSwiper={(swiper) => {
+            swiperRef.current = swiper;
             swiper.on("slideChange", () => {
               setCurrentCard(swiper.activeIndex);
             });
@@ -95,7 +97,11 @@ const Study = () => {
           ))}
         </Swiper>
         <div className={styles.study__buttons}>
-          <Button label="Needs Practice" onClick={handleBad} againstpage />
+          <Button
+            label="Needs Practice"
+            onClick={() => handleBad(Swiper)}
+            againstpage
+          />
           <Button
             label="Save and Exit"
             onClick={handleSaveAndExit}
