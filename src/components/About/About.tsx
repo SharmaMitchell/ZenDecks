@@ -103,7 +103,7 @@ const About = (props: AboutProps) => {
               be free and accessible to everyone.
             </p>
           </motion.div>
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25, delay: 0.275 }}
@@ -117,7 +117,7 @@ const About = (props: AboutProps) => {
               export your decks to a TSV or CSV file, which you can then import
               into other apps.
             </p>
-          </motion.div>
+          </motion.div> */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -135,7 +135,7 @@ const About = (props: AboutProps) => {
               possible.
             </p>
             <p>
-              The resulting Next-Gen flashcard app would boast a rich feature
+              Enter ZenDecks: a Next-Gen flashcard app boasting a rich feature
               set challenging the likes of Anki, but with an intuitive UI,
               seamless first-time setup process, and built-in community mnemonic
               support - all backed by the open source community.
