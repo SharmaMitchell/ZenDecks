@@ -169,7 +169,7 @@ const DeckSelection = (props: DeckSelectionProps) => {
         transition={{ duration: 0.2, delay: 0.1 }}
         className={styles.deckselection__title}
       >
-        Decks
+        Popular Decks
       </motion.h2>
       {decks && sortedDecks && (
         <div
@@ -193,22 +193,6 @@ const DeckSelection = (props: DeckSelectionProps) => {
           ))}
         </div>
       )}
-      {/* <div
-        className={`${styles.deckselection__decks} ${
-          !preview && styles.nopreview
-        }`}
-      >
-        {exampleDecks.map((deck, key) => (
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 + key * 0.1 }}
-            className={styles.deckselection__deck}
-          >
-            <DeckPreview {...deck} preview={preview} />
-          </motion.div>
-        ))}
-      </div> */}
     </div>
   );
 };
