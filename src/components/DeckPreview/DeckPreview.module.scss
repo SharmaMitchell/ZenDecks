@@ -20,12 +20,26 @@
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 5px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
   }
   &__description {
     font-size: 1rem;
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 5px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
   }
   ul {
     // tags list, horizontal with menu-color background, fully rounded, clickable
