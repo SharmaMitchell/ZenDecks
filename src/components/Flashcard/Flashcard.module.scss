@@ -49,6 +49,10 @@
   &.flipped {
     --rotate-y: 180deg;
     // box-shadow: -1px 1px 3px var(--shadow-color);
+
+    .flashcard__back {
+      visibility: visible;
+    }
   }
 
   &.small {
@@ -131,6 +135,7 @@
 
 .flashcard__back {
   transform: rotateY(180deg) translateY(-2px);
+  visibility: hidden;
 }
 
 @media screen and (min-width: 525px) {
