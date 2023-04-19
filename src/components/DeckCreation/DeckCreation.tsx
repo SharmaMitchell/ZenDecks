@@ -108,6 +108,7 @@ const DeckCreation = () => {
    * @todo Add "public" checkbox
    * @todo Add specific card order/index (and implement reordering)
    * @todo Add "delete" button for cards
+   * @todo Indicate remaining character count for title, desc, tags
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -23,6 +23,7 @@ interface CardCreationProps {
  * @param props.handleCardChange - Function to pass card changes up to the parent
  * @param props.index - The index of the card in the array of cards
  * @todo Implement button to delete card (add confirmation or undo)
+ * @todo Indicate remaining chars in textareas (before maxLength is reached)
  */
 
 const CardCreation = (props: CardCreationProps) => {
