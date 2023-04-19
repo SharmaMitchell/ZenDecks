@@ -59,6 +59,7 @@ const CardCreation = (props: CardCreationProps) => {
         </label>
         <textarea
           rows={4}
+          maxLength={500}
           name="front"
           id={`front-${index}`}
           placeholder="Front of the card"
@@ -74,6 +75,7 @@ const CardCreation = (props: CardCreationProps) => {
         </label>
         <textarea
           rows={4}
+          maxLength={500}
           name="back"
           id={`back-${index}`}
           placeholder="Back of the card"
