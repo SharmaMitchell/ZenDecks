@@ -13,6 +13,9 @@
     justify-content: center;
     padding: 10px;
     font-size: 1.2rem;
+    /* TODO: Fix overflow-y, see flashcard component */
+    // max-height: calc(8 * 1.2rem);
+    // overflow-y: scroll;
   }
 
   &__front {
