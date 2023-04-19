@@ -74,12 +74,16 @@ const CardPreview = (props: CardPreviewProps) => {
   const { card } = props;
   return (
     <div className={styles.card}>
-      <ReactMarkdown {...markdownProps} className={styles.card__front}>
-        {card.front}
-      </ReactMarkdown>
-      <ReactMarkdown {...markdownProps} className={styles.card__back}>
-        {card.back}
-      </ReactMarkdown>
+      <div className={styles.card__front__wrapper}>
+        <ReactMarkdown {...markdownProps} className={styles.card__front}>
+          {card.front}
+        </ReactMarkdown>
+      </div>
+      <div className={styles.card__back__wrapper}>
+        <ReactMarkdown {...markdownProps} className={styles.card__back}>
+          {card.back}
+        </ReactMarkdown>
+      </div>
     </div>
   );
 };
