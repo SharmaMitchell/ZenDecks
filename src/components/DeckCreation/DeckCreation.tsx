@@ -146,7 +146,12 @@ const DeckCreation = () => {
         rating: existingDeck ? existingDeck.rating : 0,
         ratingCount: existingDeck ? existingDeck.ratingCount : 0,
         tags:
-          tags.trim() !== "" ? tags.split(",").map((tag) => tag.trim()) : [],
+          tags.trim() !== ""
+            ? tags
+                .split(",")
+                .map((tag) => tag.trim())
+                .filter((tag) => tag !== "" && tag !== " ")
+            : [],
         title,
         userCount: existingDeck ? existingDeck.userCount : 1,
       };
@@ -266,6 +271,8 @@ const DeckCreation = () => {
           </label>
           <input
             type="text"
+            maxLength={120}
+            required
             name="decktitle"
             id="decktitle"
             placeholder="My New Deck"
@@ -281,6 +288,7 @@ const DeckCreation = () => {
           </label>
           <textarea
             rows={4}
+            maxLength={500}
             name="deckdescription"
             id="deckdescription"
             placeholder="This is my new deck and it is awesome"
@@ -297,6 +305,7 @@ const DeckCreation = () => {
           <div className={styles.deckcreation__save}>
             <input
               type="text"
+              maxLength={tags.split(",").length > 4 ? tags.length : 60}
               name="decktags"
               id="decktags"
               placeholder="Comma separated tags: New, Deck, Wow"
