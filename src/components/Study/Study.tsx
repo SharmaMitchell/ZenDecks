@@ -45,6 +45,10 @@ const Study = () => {
   const deck = useDeck(deckId);
   //const deckMastery = useDeckMastery(deckId);
 
+  useEffect(() => {
+    document.title = `Study ${deck?.title} | ZenDecks: Next-gen Flashcards`;
+  }, []);
+
   const navigate = useNavigate();
 
   const swiperRef = useRef() as any;

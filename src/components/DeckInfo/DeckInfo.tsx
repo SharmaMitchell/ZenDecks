@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -63,7 +63,11 @@ const DeckInfo = () => {
   const { deckId = "" } = useParams<{ deckId: string }>();
 
   const deck = useDeck(deckId);
-  // const deck = useDecks()[0];
+
+  useEffect(() => {
+    document.title = `${deck?.title} | ZenDecks: Next-gen Flashcards`;
+  }, [deck?.title]);
+
   const navigate = useNavigate();
 
   // Listen to users document for current user
