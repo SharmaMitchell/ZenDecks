@@ -56,7 +56,7 @@ ZenDecks is a free, open source flashcard webapp with full Markdown and LaTeX su
 
 ## Contributing
 
-Post an issue, or respond to an open issue to get started. Feel free to contact the main developer, Mitchell, via [Email](sharmamitch+gh@gmail.com) if you have any questions.
+Post an issue, or respond to an open issue to get started. Feel free to contact the main developer, Mitchell, via [Email](mailto:sharmamitch+gh@gmail.com) if you have any questions.
 
 To run the codebase locally:
 
