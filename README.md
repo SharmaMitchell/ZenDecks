@@ -38,6 +38,7 @@ ZenDecks is a free, open source flashcard webapp with full Markdown and LaTeX su
 - Stores deck data loaded from cloud firestore
 - Keeps track of deck review progress for the session
 
+<!--
 ### Modular SCSS Styles
 
 - One `module.scss` file per component
@@ -45,6 +46,7 @@ ZenDecks is a free, open source flashcard webapp with full Markdown and LaTeX su
 - Global *CSS* variables defined in `index.scss` (e.g. `var(--background-color)`)
 - Dark theme defined in `index.scss` (css variables will swap to dark palette on toggle)
   - See `App.tsx` for toggle logic (using `window.matchMedia` for default theme, storing toggle state in localStorage)
+-->
 
 ### Framer Motion Animations
 
